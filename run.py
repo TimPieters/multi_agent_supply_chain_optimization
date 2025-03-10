@@ -187,6 +187,23 @@ def _get_optimization_result(locals_dict: dict) -> dict:
     return result
 
 
+def _read_source_code(file_path: str) -> str:
+    """
+    Reads the source code of a Python model file.
+
+    Args:
+        file_path (str): Path to the Python file.
+
+    Returns:
+        str: The source code as a string.
+    """
+    try:
+        with open(file_path, "r", encoding="utf-8") as file:
+            return file.read()
+    except Exception as e:
+        raise ValueError(f"Error reading the file '{file_path}': {e}")
+
+
 # Example usage
 if __name__ == "__main__":
     # try:
@@ -248,7 +265,10 @@ for j in range(len(demand)):
 status = problem.solve()
 """
 
+    simple_model = _read_source_code("multi_agent_supply_chain_optimization/simple_model.py")
+
+
     extra_constraint = """problem += lpSum(variables[i, j] for i in [0,2] for j in range(len(demand))) <= 300, "Total_Shipment_Limit_S0_S2" """
     
-    modified_example_model_code = _replace(example_model_code, CONSTRAINT_CODE_STR, extra_constraint)
+    modified_example_model_code = _replace(simple_model, CONSTRAINT_CODE_STR, extra_constraint)
     _run_with_exec(modified_example_model_code)
