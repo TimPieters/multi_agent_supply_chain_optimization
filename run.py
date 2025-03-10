@@ -7,63 +7,11 @@ from langchain.prompts import PromptTemplate
 from dotenv import load_dotenv
 from langchain import hub
 from langchain.tools import Tool
-from pulp import LpStatus, LpStatusOptimal
+from pulp import LpStatus, LpStatusOptimal, LpStatusInfeasible
 
 
 # Load environment variables
 load_dotenv()
-
-# Load pre-trained Large Language Model from OpenAI
-llm = ChatOpenAI(model_name="gpt-4o-mini", temperature=0)
-
-# Define a simple prompt to test the connection
-prompt = PromptTemplate(
-    input_variables=["tools", "tool_names", "input", "agent_scratchpad"],
-    template="""
-    Answer the following questions as best you can. You have access to the following tools:
-
-    {tools}
-
-    Use the following format:
-
-    Question: the input question you must answer
-    Thought: you should always think about what to do
-    Action: the action to take, should be one of [{tool_names}]
-    Action Input: the input to the action
-    Observation: the result of the action
-    ... (this Thought/Action/Action Input/Observation can repeat N times)
-    Thought: I now know the final answer
-    Final Answer: the final answer to the original input question
-
-    Begin!
-
-    Question: {input}
-    Thought:{agent_scratchpad}
-    """
-)
-# Create a runnable sequence to test the LLM
-chain = llm
-
-# Create a simple tool for testing
-def echo_tool(input_text):
-    return f"Echo: {input_text}"
-
-echo_tool_obj = Tool(
-    name="EchoTool",
-    func=echo_tool,
-    description="A tool that echoes back the user input."
-)
-
-# Add the tool to the tools list
-tools = [echo_tool_obj]
-
-router_agent = create_react_agent(
-    llm=llm,
-    tools=tools,
-    prompt = prompt
-)
-
-router_agent_executor = AgentExecutor(agent=router_agent, tools=tools, verbose=True)
 
 def _replace(src_code: str, old_code: str, new_code: str) -> str:
     """
@@ -173,9 +121,15 @@ def _get_optimization_result(locals_dict: dict) -> dict:
 
     result = {
         "status": LpStatus[status],
+        "raw_status": status,  # PuLP’s internal status code
         "solution": {},
         "total_cost": None
     }
+
+    # Check if the model is infeasible and return immediately
+    if status == LpStatusInfeasible:
+        result["message"] = "The model is infeasible. The constraints are conflicting."
+        return result
 
     if status == LpStatusOptimal:
         for (i, j), var in variables.items():
@@ -203,16 +157,155 @@ def _read_source_code(file_path: str) -> str:
     except Exception as e:
         raise ValueError(f"Error reading the file '{file_path}': {e}")
 
+# Load pre-trained Large Language Model from OpenAI
+llm = ChatOpenAI(model_name="gpt-4o-mini", temperature=0)
+
+# Define a simple prompt to test the connection
+prompt = PromptTemplate(
+    input_variables=["tools", "tool_names", "input", "agent_scratchpad"],
+    partial_variables={"source_code": _read_source_code("multi_agent_supply_chain_optimization/simple_model.py")},
+    template="""
+    You are an AI assistant for supply chain optimization. You analyze the provided Python optimization model
+    and modify it based on the user's questions. You explain solutions from a PuLP Python solver.
+
+    You have access to the following tools:
+
+    {tools}
+
+    Below is the full source code of the supply chain model:
+
+    ```python
+    {source_code}
+    ```
+
+    your written code will be added to the line with substring:
+    "### CONSTRAINT CODE HERE ###"
+
+    LOOK VERY WELL at these example questions and their answers and codes:
+    --- EXAMPLES ---
+    "Limit the total supply from supplier 0 to 80 units."
+    problem += lpSum(variables[0, j] for j in range(len(demand))) <= 80, "Supply_Limit_Supplier_0"
+
+    "Ensure that Supplier 1 supplies at least 50 units in total."
+    problem += lpSum(variables[1, j] for j in range(len(demand))) >= 50, "Minimum_Supply_Supplier_1"
+    ---
+
+    Use the following format:
+
+    Question: the input question you must answer
+    Thought: you should always think about what to do
+    Action: the action to take, should be one of [{tool_names}]
+    Action Input: the input to the action
+    Observation: the result of the action
+    ... (this Thought/Action/Action Input/Observation can repeat N times)
+    Thought: I now know the final answer
+    Final Answer: the final answer to the original input question
+
+    Begin!
+
+    Question: {input}
+    Thought:{agent_scratchpad}
+    """
+)
+
+# Create a runnable sequence to test the LLM
+chain = llm
+
+# Create a simple tool for testing
+def echo_tool(input_text):
+    return f"Echo: {input_text}"
+
+echo_tool_obj = Tool(
+    name="EchoTool",
+    func=echo_tool,
+    description="A tool that echoes back the user input."
+)
+
+def format_constraint_input(constraint_code: str) -> str:
+    """
+    Ensures the constraint is formatted correctly before inserting it into the model.
+    
+    Args:
+        constraint_code (str): The constraint generated by the agent.
+    
+    Returns:
+        str: A properly formatted constraint statement.
+    """
+    # Ensure there are no unnecessary backticks or formatting issues
+    constraint_code = constraint_code.strip().strip("`")
+
+    # Ensure the constraint is a valid Python statement
+    if not constraint_code.startswith("problem +="):
+        constraint_code = f"problem += {constraint_code}"
+    
+    return constraint_code
+
+def modify_and_run_model(constraint_code: str) -> str:
+    """
+    Inserts a new constraint into the model, executes it, and returns the results.
+
+    Args:
+        constraint_code (str): The constraint code generated by the agent.
+
+    Returns:
+        str: The optimization results.
+    """
+    try:
+        # Read the original model
+        model_code = _read_source_code("multi_agent_supply_chain_optimization/simple_model.py")
+
+        # Format the constraint properly
+        formatted_constraint = format_constraint_input(constraint_code)
+
+        # Insert the constraint at the predefined placeholder
+        modified_code = _replace(model_code, "### CONSTRAINT CODE HERE ###", formatted_constraint)
+
+        # Execute the modified model
+        result = _run_with_exec(modified_code)
+
+        return result  # Return results to the agent
+
+    except Exception as e:
+        return f"Error while modifying the model: {str(e)}"
+
+# Define the tool for the agent
+modify_model_tool = Tool(
+    name="ModifyAndRunModel",
+    func=modify_and_run_model,
+    description="""
+    This tool **modifies the supply chain model by adding a constraint** and then **runs the updated model**.
+
+    **How to use this tool:**
+    - You must **generate a valid constraint** using the syntax of the provided PuLP model.
+    - The generated constraint should be passed as input to this tool.
+    - The tool will **insert the constraint, execute the model, and return the optimization results**.
+
+    DO NOT wrap the constraint in triple backticks or Markdown-style code blocks.
+    Simply return the raw Python expression as a string.
+    """
+)
+
+# Add the tool to the tools list
+tools = [echo_tool_obj, modify_model_tool]
+
+router_agent = create_react_agent(
+    llm=llm,
+    tools=tools,
+    prompt = prompt
+)
+
+router_agent_executor = AgentExecutor(agent=router_agent, tools=tools, return_intermediate_steps=True, verbose=True)
+
 
 # Example usage
 if __name__ == "__main__":
-    # try:
-    #     response = router_agent_executor.invoke({"input": "Hi how are you?"})
-    #     print("API Connection Successful! Response:")
-    #     print(response)
-    # except Exception as e:
-    #     print("API Connection Failed. Error:")
-    #     print(e)
+    try:
+        response = router_agent_executor.invoke({"input": "What happens if supply at supplier 0 is limited to 80?"})
+        print("API Connection Successful! Response:")
+        print(response)
+    except Exception as e:
+        print("API Connection Failed. Error:")
+        print(e)
 
     # src_code = 'def hello_world():\n    print("Hello, world!")\n\n# Some other code here'
     # old_code = 'print("Hello, world!")'
@@ -265,10 +358,10 @@ for j in range(len(demand)):
 status = problem.solve()
 """
 
-    simple_model = _read_source_code("multi_agent_supply_chain_optimization/simple_model.py")
+    # simple_model = _read_source_code("multi_agent_supply_chain_optimization/simple_model.py")
 
 
-    extra_constraint = """problem += lpSum(variables[i, j] for i in [0,2] for j in range(len(demand))) <= 300, "Total_Shipment_Limit_S0_S2" """
+    # extra_constraint = """problem += lpSum(variables[i, j] for i in [0,2] for j in range(len(demand))) <= 300, "Total_Shipment_Limit_S0_S2" """
     
-    modified_example_model_code = _replace(simple_model, CONSTRAINT_CODE_STR, extra_constraint)
-    _run_with_exec(modified_example_model_code)
+    # modified_example_model_code = _replace(simple_model, CONSTRAINT_CODE_STR, extra_constraint)
+    # _run_with_exec(modified_example_model_code)
