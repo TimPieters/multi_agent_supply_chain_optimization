@@ -42,13 +42,13 @@ for j in range(len(demand)):
 status = problem.solve()
 
 # Print the results
-print(LpStatus[status])
-if status == LpStatusOptimal:
-    print("Optimal Solution:")
-    for (i, j), var in variables.items():
-        if var.varValue > 0:
-            print(f"Units from Supplier {i} to Demand Center {j}: {var.varValue}")
+# print(LpStatus[status])
+# if status == LpStatusOptimal:
+#     print("Optimal Solution:")
+#     for (i, j), var in variables.items():
+#         if var.varValue > 0:
+#             print(f"Units from Supplier {i} to Demand Center {j}: {var.varValue}")
 
-    print(f"Total Cost: {problem.objective.value()}")
-else:
-    print("Not solved to optimality. Optimization status:", status)
+#     print(f"Total Cost: {problem.objective.value()}")
+# else:
+#     print("Not solved to optimality. Optimization status:", status)

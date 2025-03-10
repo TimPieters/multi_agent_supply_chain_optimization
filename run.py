@@ -7,6 +7,8 @@ from langchain.prompts import PromptTemplate
 from dotenv import load_dotenv
 from langchain import hub
 from langchain.tools import Tool
+from pulp import LpStatus, LpStatusOptimal
+
 
 # Load environment variables
 load_dotenv()
@@ -83,7 +85,7 @@ def _replace(src_code: str, old_code: str, new_code: str) -> str:
     match = re.search(pattern, src_code)
 
     if not match:
-        raise ValueError(f"❌ The specified old_code was not found in the source code.")
+        raise ValueError(f"The specified old_code was not found in the source code.")
 
     head_spaces = match.group(1)  # Capture leading spaces
     indented_new_code = "\n".join([head_spaces + line for line in new_code.split("\n")])
@@ -117,16 +119,72 @@ def _run_with_exec(src_code: str) -> str:
     Returns:
         str: The optimization result (objective value) or an error message.
     """
+    print("\nlog - Running optimization model...")  
+
     locals_dict = {}
-    locals_dict.update(globals())  # Merge global variables
-    locals_dict.update(locals())   # Merge local variables
+    locals_dict.update(globals())  
+    locals_dict.update(locals())   
 
     try:
-        # Execute the modified source code
+        print("\nlog - Executing model source code...")  
         exec(src_code, locals_dict, locals_dict)
-    
+
+        print("\nlog - Model execution completed.")  
+        
+        # Retrieve results
+        result = _get_optimization_result(locals_dict)
+
+        # Display results
+        print("\nlog - Optimization Completed.")
+        print(f"Status: {result['status']}")
+        print(f"Total Cost: {result['total_cost']}")
+        print("Solution:")
+        for key, value in result['solution'].items():
+            print(f"  - {key}: {value}")
+
+        return result
+
     except Exception as e:
-        return f"❌ Execution Error:\n{traceback.format_exc()}"
+        print("\nExecution Error:", traceback.format_exc())  
+        return f"Execution Error:\n{traceback.format_exc()}"
+
+def _get_optimization_result(locals_dict: dict) -> dict:
+    """
+    Extracts results from a solved PuLP optimization model.
+
+    Args:
+        locals_dict (dict): Dictionary containing execution context with `problem` and `variables`.
+
+    Returns:
+        dict: A dictionary containing:
+            - 'status': Solver status (Optimal, Infeasible, etc.).
+            - 'solution': Non-zero decision variable values.
+            - 'total_cost': Objective function value if solved optimally.
+    """
+    print("\nlog - Extracting optimization results...")  
+
+    if "problem" not in locals_dict or "variables" not in locals_dict:
+        print("Error: `problem` or `variables` not found in execution context.")
+        return {"status": "Error", "message": "Problem or variables not found in execution context."}
+
+    problem = locals_dict["problem"]
+    variables = locals_dict["variables"]
+    status = problem.solve()
+
+    result = {
+        "status": LpStatus[status],
+        "solution": {},
+        "total_cost": None
+    }
+
+    if status == LpStatusOptimal:
+        for (i, j), var in variables.items():
+            if var.varValue > 0:  
+                result["solution"][(i, j)] = var.varValue
+        result["total_cost"] = problem.objective.value()
+
+    print("\nlog - Optimization results extracted.")  
+    return result
 
 
 # Example usage
@@ -139,11 +197,11 @@ if __name__ == "__main__":
     #     print("API Connection Failed. Error:")
     #     print(e)
 
-    src_code = 'def hello_world():\n    print("Hello, world!")\n\n# Some other code here'
-    old_code = 'print("Hello, world!")'
-    new_code = 'print("Bonjour, monde!")\nprint("Hola, mundo!")'
-    modified_code = _replace(src_code, old_code, new_code)
-    print(modified_code)
+    # src_code = 'def hello_world():\n    print("Hello, world!")\n\n# Some other code here'
+    # old_code = 'print("Hello, world!")'
+    # new_code = 'print("Bonjour, monde!")\nprint("Hola, mundo!")'
+    # modified_code = _replace(src_code, old_code, new_code)
+    # print(modified_code)
 
     example_model_code = """
 # A simple supply chain optimization model using PuLP
@@ -188,18 +246,6 @@ for j in range(len(demand)):
 
 # Solve the problem
 status = problem.solve()
-
-# Print the results
-print(LpStatus[status])
-if status == LpStatusOptimal:
-    print("Optimal Solution:")
-    for (i, j), var in variables.items():
-        if var.varValue > 0:
-            print(f"Units from Supplier {i} to Demand Center {j}: {var.varValue}")
-
-    print(f"Total Cost: {problem.objective.value()}")
-else:
-    print("Not solved to optimality. Optimization status:", status)
 """
 
     extra_constraint = """problem += lpSum(variables[i, j] for i in [0,2] for j in range(len(demand))) <= 300, "Total_Shipment_Limit_S0_S2" """
