@@ -39,7 +39,7 @@ for j in range(len(demand)):
 
 
 # Solve the problem
-status = problem.solve()
+#status = problem.solve()
 
 # Print the results
 # print(LpStatus[status])

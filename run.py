@@ -160,34 +160,42 @@ def _read_source_code(file_path: str) -> str:
 # Load pre-trained Large Language Model from OpenAI
 llm = ChatOpenAI(model_name="gpt-4o-mini", temperature=0)
 
+original_result = _run_with_exec(_read_source_code("multi_agent_supply_chain_optimization/simple_model.py"))
+
 # Define a simple prompt to test the connection
 prompt = PromptTemplate(
     input_variables=["tools", "tool_names", "input", "agent_scratchpad"],
-    partial_variables={"source_code": _read_source_code("multi_agent_supply_chain_optimization/simple_model.py")},
+    partial_variables={"source_code": _read_source_code("multi_agent_supply_chain_optimization/simple_model.py"),
+                       "original_result": original_result},
     template="""
     You are an AI assistant for supply chain optimization. You analyze the provided Python optimization model
     and modify it based on the user's questions. You explain solutions from a PuLP Python solver.
+    You compare with the original objective value if you have it available.
 
     You have access to the following tools:
 
     {tools}
 
     Below is the full source code of the supply chain model:
-
+    ---SOURCE CODE---
     ```python
     {source_code}
     ```
 
+    Before the modification, the model had the following results:
+    ---ORIGINAL RESULT---
+    {original_result}
+    ---
     your written code will be added to the line with substring:
     "### CONSTRAINT CODE HERE ###"
 
     LOOK VERY WELL at these example questions and their answers and codes:
     --- EXAMPLES ---
     "Limit the total supply from supplier 0 to 80 units."
-    "problem += lpSum(variables[0, j] for j in range(len(demand))) <= 80, 'Supply_Limit_Supplier_0'"
+    problem += lpSum(variables[0, j] for j in range(len(demand))) <= 80, 'Supply_Limit_Supplier_0'
 
     "Ensure that Supplier 1 supplies at least 50 units in total."
-    "problem += lpSum(variables[1, j] for j in range(len(demand))) >= 50, 'Minimum_Supply_Supplier_1'"
+    problem += lpSum(variables[1, j] for j in range(len(demand))) >= 50, 'Minimum_Supply_Supplier_1'
     ---
 
     Use the following format:
