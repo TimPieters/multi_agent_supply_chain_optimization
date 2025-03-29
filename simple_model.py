@@ -3,7 +3,7 @@
 from pulp import LpProblem, LpMinimize, LpVariable, lpSum, LpStatus, LpStatusOptimal
 
 # Initialize supply, demand, and cost data
-supply = [100, 150, 200]  # Supply from three suppliers
+supply = [150, 200, 200]  # Supply from three suppliers
 demand = [120, 130, 100, 100]  # Demand from four demand centers
 costs = [
     [2, 3, 1, 4],  # Costs from supplier 0 to demand centers

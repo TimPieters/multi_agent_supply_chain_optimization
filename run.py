@@ -184,10 +184,10 @@ prompt = PromptTemplate(
     LOOK VERY WELL at these example questions and their answers and codes:
     --- EXAMPLES ---
     "Limit the total supply from supplier 0 to 80 units."
-    problem += lpSum(variables[0, j] for j in range(len(demand))) <= 80, "Supply_Limit_Supplier_0"
+    "problem += lpSum(variables[0, j] for j in range(len(demand))) <= 80, 'Supply_Limit_Supplier_0'"
 
     "Ensure that Supplier 1 supplies at least 50 units in total."
-    problem += lpSum(variables[1, j] for j in range(len(demand))) >= 50, "Minimum_Supply_Supplier_1"
+    "problem += lpSum(variables[1, j] for j in range(len(demand))) >= 50, 'Minimum_Supply_Supplier_1'"
     ---
 
     Use the following format:
