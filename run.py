@@ -170,7 +170,7 @@ prompt = PromptTemplate(
     template="""
     You are an AI assistant for supply chain optimization. You analyze the provided Python optimization model
     and modify it based on the user's questions. You explain solutions from a PuLP Python solver.
-    You compare with the original objective value if you have it available.
+    You compare with the original objective value if you have it available. You clearly report the numbers and explain the impact to the user.
 
     You have access to the following tools:
 
@@ -239,8 +239,19 @@ def format_constraint_input(constraint_code: str) -> str:
     Returns:
         str: A properly formatted constraint statement.
     """
+    print("CONSTRAINT CODE " + constraint_code)
     # Ensure there are no unnecessary backticks or formatting issues
     constraint_code = constraint_code.strip().strip("`")
+    print("STRIPPED CONSTRAINT CODE " + constraint_code)
+    # Remove backticks (`, ```) and strip enclosing quotes if the whole string is quoted
+    if constraint_code.startswith(("'", '"', "`")) and constraint_code.endswith(("'", '"', "`")):
+        constraint_code = constraint_code[1:-1].strip()
+
+        # Remove unmatched trailing or leading quote
+    if constraint_code.endswith('"') and not constraint_code.startswith('"'):
+        constraint_code = constraint_code[:-1].strip()
+    if constraint_code.startswith('"') and not constraint_code.endswith('"'):
+        constraint_code = constraint_code[1:].strip()
 
     # Ensure the constraint is a valid Python statement
     if not constraint_code.startswith("problem +="):
@@ -308,7 +319,9 @@ router_agent_executor = AgentExecutor(agent=router_agent, tools=tools, return_in
 # Example usage
 if __name__ == "__main__":
     try:
-        response = router_agent_executor.invoke({"input": "What happens if supply at supplier 0 is limited to 80?"})
+        # response = router_agent_executor.invoke({"input": "What happens if supply at supplier 0 is limited to 80?"})
+        # response = router_agent_executor.invoke({"input": "What happens if supply at supplier 0 decreases? And what if it's completely zero?"})
+        response = router_agent_executor.invoke({"input": "Limit supplier 0 to 100 and force demand center 2 to receive exactly 90 units."})
         print("API Connection Successful! Response:")
         print(response)
     except Exception as e:
