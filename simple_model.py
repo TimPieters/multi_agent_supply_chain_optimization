@@ -15,8 +15,8 @@ costs = [
 ### DATA MANIPULATION CODE HERE ###
 
 
-# Create the problem instance
-problem = LpProblem("SimpleSupplyChainProblem", LpMinimize)
+# Create the model instance
+model = LpProblem("SimpleSupplyChainProblem", LpMinimize)
 
 # Create variables for each supply-demand pair
 variables = {(i, j): LpVariable(f"x_{i}_{j}", lowBound=0, cat='Continuous')
@@ -24,22 +24,22 @@ variables = {(i, j): LpVariable(f"x_{i}_{j}", lowBound=0, cat='Continuous')
              for j in range(len(demand))}
 
 # Objective function: minimize transportation costs
-problem += lpSum(costs[i][j] * variables[i, j] for i in range(len(supply)) for j in range(len(demand))), "Total Cost"
+model += lpSum(costs[i][j] * variables[i, j] for i in range(len(supply)) for j in range(len(demand))), "Total Cost"
 
 # Supply constraints
 for i in range(len(supply)):
-    problem += lpSum(variables[i, j] for j in range(len(demand))) <= supply[i], f"Supply_{i}"
+    model += lpSum(variables[i, j] for j in range(len(demand))) <= supply[i], f"Supply_{i}"
 
 # Demand constraints
 for j in range(len(demand)):
-    problem += lpSum(variables[i, j] for i in range(len(supply))) >= demand[j], f"Demand_{j}"
+    model += lpSum(variables[i, j] for i in range(len(supply))) >= demand[j], f"Demand_{j}"
 
 
 ### CONSTRAINT CODE HERE ###
 
 
-# Solve the problem
-#status = problem.solve()
+# Solve the model
+#status = model.solve()
 
 # Print the results
 # print(LpStatus[status])
@@ -49,6 +49,6 @@ for j in range(len(demand)):
 #         if var.varValue > 0:
 #             print(f"Units from Supplier {i} to Demand Center {j}: {var.varValue}")
 
-#     print(f"Total Cost: {problem.objective.value()}")
+#     print(f"Total Cost: {model.objective.value()}")
 # else:
 #     print("Not solved to optimality. Optimization status:", status)

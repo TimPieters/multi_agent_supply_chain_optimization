@@ -105,7 +105,7 @@ def _get_optimization_result(locals_dict: dict) -> dict:
     Extracts results from a solved PuLP optimization model.
 
     Args:
-        locals_dict (dict): Dictionary containing execution context with `problem` and `variables`.
+        locals_dict (dict): Dictionary containing execution context with `model` and `variables`.
 
     Returns:
         dict: A dictionary containing:
@@ -115,13 +115,12 @@ def _get_optimization_result(locals_dict: dict) -> dict:
     """
     print("\nlog - Extracting optimization results...")  
 
-    if "problem" not in locals_dict or "variables" not in locals_dict:
-        print("Error: `problem` or `variables` not found in execution context.")
-        return {"status": "Error", "message": "Problem or variables not found in execution context."}
+    if "model" not in locals_dict:
+        print("Error: `model` not found in execution context.")
+        return {"status": "Error", "message": "model not found in execution context."}
 
-    problem = locals_dict["problem"]
-    variables = locals_dict["variables"]
-    status = problem.solve()
+    model = locals_dict["model"]
+    status = model.solve()
 
     result = {
         "status": LpStatus[status],
@@ -136,10 +135,11 @@ def _get_optimization_result(locals_dict: dict) -> dict:
         return result
 
     if status == LpStatusOptimal:
-        for (i, j), var in variables.items():
-            if var.varValue > 0:  
-                result["solution"][(i, j)] = var.varValue
-        result["total_cost"] = problem.objective.value()
+        result["solution"] = {
+            var.name: var.value() for var in model.variables()
+            if var.value() is not None and var.value() > 1e-6
+        }
+        result["total_cost"] = model.objective.value()
 
     print("\nlog - Optimization results extracted.")  
     return result
@@ -164,12 +164,14 @@ def _read_source_code(file_path: str) -> str:
 # Load pre-trained Large Language Model from OpenAI
 llm = ChatOpenAI(model_name="gpt-4o-mini", temperature=0)
 
-original_result = _run_with_exec(_read_source_code("multi_agent_supply_chain_optimization/simple_model.py"))
+source_code = _read_source_code("multi_agent_supply_chain_optimization/simple_model.py")
+new_source_code = _read_source_code("multi_agent_supply_chain_optimization/capfacloc_model.py")
+original_result = _run_with_exec(source_code)
 
 # Define a simple prompt to test the connection
 prompt = PromptTemplate(
     input_variables=["tools", "tool_names", "input", "agent_scratchpad"],
-    partial_variables={"source_code": _read_source_code("multi_agent_supply_chain_optimization/simple_model.py"),
+    partial_variables={"source_code": source_code,
                        "original_result": original_result},
     template="""
     You are an AI assistant for supply chain optimization. You analyze the provided Python optimization model
@@ -197,10 +199,10 @@ prompt = PromptTemplate(
     LOOK VERY WELL at these example questions and their answers and codes:
     --- EXAMPLES ---
     "Limit the total supply from supplier 0 to 80 units."
-    problem += lpSum(variables[0, j] for j in range(len(demand))) <= 80, 'Supply_Limit_Supplier_0'
+    model += lpSum(variables[0, j] for j in range(len(demand))) <= 80, 'Supply_Limit_Supplier_0'
 
     "Ensure that Supplier 1 supplies at least 50 units in total."
-    problem += lpSum(variables[1, j] for j in range(len(demand))) >= 50, 'Minimum_Supply_Supplier_1'
+    model += lpSum(variables[1, j] for j in range(len(demand))) >= 50, 'Minimum_Supply_Supplier_1'
     ---
 
     Use the following format:
@@ -259,8 +261,8 @@ def format_constraint_input(constraint_code: str) -> str:
         constraint_code = constraint_code[1:].strip()
 
     # Ensure the constraint is a valid Python statement
-    if not constraint_code.startswith("problem +="):
-        constraint_code = f"problem += {constraint_code}"
+    if not constraint_code.startswith("model +="):
+        constraint_code = f"model += {constraint_code}"
     
     return constraint_code
 
@@ -287,8 +289,8 @@ def _clean_agent_code(raw_code: str, code_type: str) -> str:
     if code.startswith('"') and not code.endswith('"'):
         code = code[1:].strip()
 
-    if code_type == "ADD CONSTRAINT" and not code.startswith("problem +="):
-        code = f"problem += {code}"
+    if code_type == "ADD CONSTRAINT" and not code.startswith("model +="):
+        code = f"model += {code}"
 
     return code
 
@@ -366,7 +368,7 @@ modify_model_tool = Tool(
         You must provide the input as a valid JSON object using double quotes for both keys and values.
         Example:
         {
-        "ADD CONSTRAINT": "problem += lpSum(variables[0, j] for j in range(len(demand))) <= 80, \\"Supply_Limit_Supplier_0\\""
+        "ADD CONSTRAINT": "model += lpSum(variables[0, j] for j in range(len(demand))) <= 80, \\"Supply_Limit_Supplier_0\\""
         }
         or
         {
@@ -412,7 +414,7 @@ if __name__ == "__main__":
     # }
 
     # agent_constraint_json = {
-    # "ADD CONSTRAINT": "problem += lpSum(variables[0, j] for j in range(len(demand))) <= 100, 'Limit_Supplier_0'"
+    # "ADD CONSTRAINT": "model += lpSum(variables[0, j] for j in range(len(demand))) <= 100, 'Limit_Supplier_0'"
     # }
 
     # source_code = _read_source_code("multi_agent_supply_chain_optimization/simple_model.py")
