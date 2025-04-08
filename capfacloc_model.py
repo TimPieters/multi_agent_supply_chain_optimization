@@ -51,35 +51,14 @@ for i in range(n_customers):
 ### CONSTRAINT CODE HERE ###
 
 
-# result = get_results()
-# print(result)
-
-print(model.to_dict)
+#print(model.to_dict)
 
 # Solve the model
-status = model.solve()
-print("Total Cost:", model.objective.value())
-# Decision Variables
-for v in model.variables():
-    try:
-        print(v.name,"=", v.value())
-    except:
-        print("error couldnt find value")
-# status_str = LpStatus[status]
-# total_cost = None
-# if status_str == "Optimal":
-#     total_cost = value(model.objective)
-
-# print("Solve status:", status_str)
-# if total_cost is not None:
-#     print("Total Cost:", total_cost)
-
-# print("\nAssignments:")
-# for (i, j), var in assignment.items():
-#     if var.varValue is not None and var.varValue > 1e-6:
-#         print(f"  Customer {i} -> Facility {j}: {var.varValue}")
-
-# print("\nOpen Facilities:")
-# for j, var in facility_open.items():
-#     if var.varValue is not None and var.varValue > 0.5:
-#         print(f"  Facility {j} is open")
+#status = model.solve()
+# print("Total Cost:", model.objective.value())
+# # Decision Variables
+# for v in model.variables():
+#     try:
+#         print(v.name,"=", v.value())
+#     except:
+#         print("error couldnt find value")
