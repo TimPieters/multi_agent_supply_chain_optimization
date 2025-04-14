@@ -9,9 +9,14 @@ from langchain.prompts import PromptTemplate
 from dotenv import load_dotenv
 from langchain import hub
 from langchain.tools import Tool
+from langchain_core.tools import tool
 from pulp import LpStatus, LpStatusOptimal, LpStatusInfeasible
 import time
 import os
+from typing import List
+import json
+from langchain.agents.tools import InvalidTool
+
 
 # Load environment variables
 load_dotenv()
@@ -138,7 +143,7 @@ def _get_optimization_result(locals_dict: dict) -> dict:
     if status == LpStatusOptimal:
         result["solution"] = {
             var.name: var.value() for var in model.variables()
-            if var.value() is not None and var.value() > 1e-6
+            if var.value() is not None and var.value() >= 0
         }
         result["total_cost"] = model.objective.value()
 
@@ -177,8 +182,11 @@ prompt = PromptTemplate(
     and modify it based on the user's questions. You explain solutions from a PuLP Python solver.
     You compare with the original objective value if you have it available. You clearly report the numbers and explain the impact to the user.
 
-    You have access to the following tools:
+    your written code will be added to the line with substring:
+    "### DATA MANIPULATION CODE HERE ###"    
+    "### CONSTRAINT CODE HERE ###"
 
+    You have access to the following tools:
     {tools}
 
     Below is the full source code of the supply chain model:
@@ -186,29 +194,18 @@ prompt = PromptTemplate(
     ```python
     {source_code}
     ```
+    ---
 
     Before the modification, the model had the following results:
     ---ORIGINAL RESULT---
     {original_result}
     ---
-    your written code will be added to the line with substring:
-    "### DATA MANIPULATION CODE HERE ###"    
-    "### CONSTRAINT CODE HERE ###"
 
-    LOOK VERY WELL at these example questions and their answers and codes:
-    --- EXAMPLES ---
-    "Limit the total supply from supplier 0 to 80 units."
-    model += lpSum(variables[0, j] for j in range(len(demand))) <= 80, 'Supply_Limit_Supplier_0'
-
-    "Ensure that Supplier 1 supplies at least 50 units in total."
-    model += lpSum(variables[1, j] for j in range(len(demand))) >= 50, 'Minimum_Supply_Supplier_1'
-    ---
-
-    Use the following format:
+    Use the following FORMAT:
 
     Question: the input question you must answer
     Thought: you should always think about what to do
-    Action: the action to take, should be one of [{tool_names}]
+    Action: the tool to use, MUST BE exactly one of [{tool_names}] (for example, "update_model")
     Action Input: the input to the action
     Observation: the result of the action
     ... (this Thought/Action/Action Input/Observation can repeat N times)
@@ -324,13 +321,12 @@ def _apply_model_modification(source_code: str, operations: dict) -> str:
 
     return updated_code
 
-
 def modify_and_run_model(modification_json: dict) -> str:
     """
-    Applies a structured modification (e.g., adding data or constraints), executes the model, and returns results.
+    Applies a structured modification (e.g., adding data or constraints), executes the supply chain model, and returns results.
 
     Args:
-        modification_json (dict or str): A dictionary or JSON string specifying the operation(s).
+        modification_json (dict or str): A JSON specifying the operation(s).
 
     Returns:
         str: The optimization results or error message.
@@ -357,11 +353,11 @@ def modify_and_run_model(modification_json: dict) -> str:
 
 # Define the tool for the agent
 modify_model_tool = Tool(
-    name="ModifyAndRunModel",
+    name="update_model",
     func=modify_and_run_model,
     description="""
         "Use this tool to modify the model by adding constraints or data. "
-        You must provide the input as a valid JSON object using double quotes for both keys and values.
+        You must provide the input as a valid JSON object using double quotes for both keys and values. NEVER add ```json ```
         Example:
         {
         "ADD CONSTRAINT": "model += lpSum(variables[0, j] for j in range(len(demand))) <= 80, \\"Supply_Limit_Supplier_0\\""
@@ -375,8 +371,18 @@ modify_model_tool = Tool(
     """
 )
 
+
+class CustomInvalidTool(InvalidTool):
+    def run(self, tool_input: str) -> str:
+        # Instead of the default behavior, immediately return an error message string.
+        return f"INVALID_TOOL_ERROR: The tool '{self.tool_name}' is invalid. Received input: {tool_input}"
+
+
 # Add the tool to the tools list
 tools = [modify_model_tool]
+
+def _handle_error(error) -> str:
+    return str(error)[:50]
 
 LOG_FILE = "agent_execution_log.json"
 
@@ -511,16 +517,21 @@ if __name__ == "__main__":
         prompt = prompt
     )
 
-    router_agent_executor = AgentExecutor(agent=router_agent, tools=tools, return_intermediate_steps=True, verbose=True, handle_parsing_errors=False)
+    router_agent_executor = AgentExecutor(agent=router_agent, tools=tools, return_intermediate_steps=True, verbose=True, handle_parsing_errors=True)
 
     try:
         #simple_model.py:
         # response = router_agent_executor.invoke({"input": "What happens if supply at supplier 0 is limited to 80?"})
         # response = router_agent_executor.invoke({"input": "What happens if supply at supplier 0 decreases? And what if it's completely zero?"})
         # response = router_agent_executor.invoke({"input": "Limit supplier 0 to 100 and force demand center 2 to receive exactly 90 units."})
+        
         #capfacloc_model.py:
-        response = router_agent_executor.invoke({"input": "What happens if the capacity of the first facility is limited to 15?"})
+        # response = router_agent_executor.invoke({"input": "What happens if the capacity of the first facility is limited to 50?"})
+        # response = router_agent_executor.invoke({"input": "What happens if the demand for the second customer increases by 15 units, raising it from 25 to 40?"})       
+        # response = router_agent_executor.invoke({"input": "What happens if the fixed cost of the third facility is increased by 25%?"})
+        response = router_agent_executor.invoke({"input": "What happens if the demand for the fourth customer increases by 30 units, raising it from 18 to 48?"})
         #response = router_agent_executor.invoke({"input": "Please perform in depth sensitivity analysis. Calculate the impact of multiple scenarios and then report your results."})
+        #response = router_agent_executor.invoke({"input": "What scenarios did we test in the past?"})
         print("API Connection Successful! Response:")
         print(response)
         # Optionally, also write the string representation to a text file
