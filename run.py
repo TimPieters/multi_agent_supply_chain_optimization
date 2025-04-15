@@ -16,161 +16,23 @@ import os
 from typing import List
 import json
 from langchain.agents.tools import InvalidTool
-
+from utils import _replace, _read_source_code, _run_with_exec, _apply_model_modification, modify_and_run_model
 
 # Load environment variables
 load_dotenv()
-
-def _replace(src_code: str, old_code: str, new_code: str) -> str:
-    """
-    Replaces an old code snippet with new code inside a source string.
-
-    Args:
-        src_code (str): The source code to modify.
-        old_code (str): The code block to be replaced.
-        new_code (str): The new code block to insert.
-
-    Returns:
-        str: The modified source code.
-    """
-    # Escape special characters in old_code to match literally
-    old_code_escaped = re.escape(old_code)
-
-    # Find the correct indentation level
-    pattern = rf"(\s*){old_code_escaped}"
-    match = re.search(pattern, src_code)
-
-    if not match:
-        raise ValueError(f"The specified old_code was not found in the source code.")
-
-    head_spaces = match.group(1)  # Capture leading spaces
-    indented_new_code = "\n".join([head_spaces + line for line in new_code.split("\n")])
-
-    # Replace the old code with the correctly formatted new code
-    return re.sub(pattern, indented_new_code, src_code)
 
 # Placeholder in the source code where constraints will be inserted
 DATA_CODE_STR = "### DATA MANIPULATION CODE HERE ###"
 # Placeholder in the source code where constraints will be inserted
 CONSTRAINT_CODE_STR = "### CONSTRAINT CODE HERE ###"
 
-def _insert_code(src_code: str, new_lines: str) -> str:
-    """
-    Inserts new constraint code into the supply chain model at the designated placeholder.
-
-    Args:
-        src_code (str): The full source code as a string.
-        new_lines (str): The new constraint code to be inserted.
-
-    Returns:
-        str: The modified source code with the new constraint added.
-    """
-    return _replace(src_code, CONSTRAINT_CODE_STR, new_lines)
-
-def _run_with_exec(src_code: str) -> str:
-    """
-    Executes a dynamically modified PuLP model and extracts the results.
-
-    Args:
-        src_code (str): The source code containing the modified PuLP model.
-
-    Returns:
-        str: The optimization result (objective value) or an error message.
-    """
-    print("\nlog - Running optimization model...")  
-
-    locals_dict = {}
-    locals_dict.update(globals())  
-    locals_dict.update(locals())   
-
-    try:
-        print("\nlog - Executing model source code...")  
-        exec(src_code, locals_dict, locals_dict)
-
-        print("\nlog - Model execution completed.")  
-        
-        # Retrieve results
-        result = _get_optimization_result(locals_dict)
-
-        # Display results
-        print("\nlog - Optimization Completed.")
-        print(f"Status: {result['status']}")
-        print(f"Total Cost: {result['total_cost']}")
-        print("Solution:")
-        for key, value in result['solution'].items():
-            print(f"  - {key}: {value}")
-
-        return result
-
-    except Exception as e:
-        print("\nExecution Error:", traceback.format_exc())  
-        return f"Execution Error:\n{traceback.format_exc()}"
-
-def _get_optimization_result(locals_dict: dict) -> dict:
-    """
-    Extracts results from a solved PuLP optimization model.
-
-    Args:
-        locals_dict (dict): Dictionary containing execution context with `model` and `variables`.
-
-    Returns:
-        dict: A dictionary containing:
-            - 'status': Solver status (Optimal, Infeasible, etc.).
-            - 'solution': Non-zero decision variable values.
-            - 'total_cost': Objective function value if solved optimally.
-    """
-    print("\nlog - Extracting optimization results...")  
-
-    if "model" not in locals_dict:
-        print("Error: `model` not found in execution context.")
-        return {"status": "Error", "message": "model not found in execution context."}
-
-    model = locals_dict["model"]
-    status = model.solve()
-
-    result = {
-        "status": LpStatus[status],
-        "raw_status": status,  # PuLP’s internal status code
-        "solution": {},
-        "total_cost": None
-    }
-
-    # Check if the model is infeasible and return immediately
-    if status == LpStatusInfeasible:
-        result["message"] = "The model is infeasible. The constraints are conflicting."
-        return result
-
-    if status == LpStatusOptimal:
-        result["solution"] = {
-            var.name: var.value() for var in model.variables()
-            if var.value() is not None and var.value() >= 0
-        }
-        result["total_cost"] = model.objective.value()
-
-    print("\nlog - Optimization results extracted.")  
-    return result
-
-
-def _read_source_code(file_path: str) -> str:
-    """
-    Reads the source code of a Python model file.
-
-    Args:
-        file_path (str): Path to the Python file.
-
-    Returns:
-        str: The source code as a string.
-    """
-    try:
-        with open(file_path, "r", encoding="utf-8") as file:
-            return file.read()
-    except Exception as e:
-        raise ValueError(f"Error reading the file '{file_path}': {e}")
-
 
 source_code = _read_source_code("multi_agent_supply_chain_optimization/simple_model.py")
 new_source_code = _read_source_code("multi_agent_supply_chain_optimization/capfacloc_model.py")
-original_result = _run_with_exec(new_source_code)
+original_result = "{'status': 'Optimal', 'raw_status': 1, 'solution': {'Open_0': 1.0, 'Open_1': 0.0, 'Open_2': 1.0, 'Open_3': 0.0, 'Open_4': 0.0, 'Serve_0_0': 1.0, 'Serve_0_1': 0.0, 'Serve_0_2': 0.0, 'Serve_0_3': 0.0, 'Serve_0_4': 0.0, 'Serve_1_0': 0.0, 'Serve_1_1': 0.0, 'Serve_1_2': 1.0, 'Serve_1_3': 0.0, 'Serve_1_4': 0.0, 'Serve_2_0': 0.1, 'Serve_2_1': 0.0, 'Serve_2_2': 0.9, 'Serve_2_3': 0.0, 'Serve_2_4': 0.0, 'Serve_3_0': 0.0, 'Serve_3_1': 0.0, 'Serve_3_2': 1.0, 'Serve_3_3': 0.0, 'Serve_3_4': 0.0, 'Serve_4_0': 1.0, 'Serve_4_1': 0.0, 'Serve_4_2': 0.0, 'Serve_4_3': 0.0, 'Serve_4_4': 0.0}, 'total_cost': 366.1}"
+
+
+# === WHAT-IF AGENT ===
 
 # Define a simple prompt to test the connection
 prompt = PromptTemplate(
@@ -180,7 +42,8 @@ prompt = PromptTemplate(
     template="""
     You are an AI assistant for supply chain optimization. You analyze the provided Python optimization model
     and modify it based on the user's questions. You explain solutions from a PuLP Python solver.
-    You compare with the original objective value if you have it available. You clearly report the numbers and explain the impact to the user.
+    You compare with the original objective value if you have it available.
+    You clearly report the numbers and explain the impact to the user.
 
     your written code will be added to the line with substring:
     "### DATA MANIPULATION CODE HERE ###"    
@@ -219,137 +82,6 @@ prompt = PromptTemplate(
     """
 )
 
-# Create a simple tool for testing
-def echo_tool(input_text):
-    return f"Echo: {input_text}"
-
-echo_tool_obj = Tool(
-    name="EchoTool",
-    func=echo_tool,
-    description="A tool that echoes back the user input."
-)
-
-def format_constraint_input(constraint_code: str) -> str:
-    """
-    Ensures the constraint is formatted correctly before inserting it into the model.
-    
-    Args:
-        constraint_code (str): The constraint generated by the agent.
-    
-    Returns:
-        str: A properly formatted constraint statement.
-    """
-    print("CONSTRAINT CODE " + constraint_code)
-    # Ensure there are no unnecessary backticks or formatting issues
-    constraint_code = constraint_code.strip().strip("`")
-    print("STRIPPED CONSTRAINT CODE " + constraint_code)
-    # Remove backticks (`, ```) and strip enclosing quotes if the whole string is quoted
-    if constraint_code.startswith(("'", '"', "`")) and constraint_code.endswith(("'", '"', "`")):
-        constraint_code = constraint_code[1:-1].strip()
-
-        # Remove unmatched trailing or leading quote
-    if constraint_code.endswith('"') and not constraint_code.startswith('"'):
-        constraint_code = constraint_code[:-1].strip()
-    if constraint_code.startswith('"') and not constraint_code.endswith('"'):
-        constraint_code = constraint_code[1:].strip()
-
-    # Ensure the constraint is a valid Python statement
-    if not constraint_code.startswith("model +="):
-        constraint_code = f"model += {constraint_code}"
-    
-    return constraint_code
-
-
-
-def _clean_agent_code(raw_code: str, code_type: str) -> str:
-    """
-    Cleans syntax issues from LLM-generated code, adds prefix for constraints.
-
-    Args:
-        raw_code (str): Agent output string.
-        code_type (str): One of 'ADD DATA' or 'ADD CONSTRAINT'.
-
-    Returns:
-        str: Clean and executable Python code.
-    """
-    code = raw_code.strip().strip("`")
-
-    if code.startswith(("'", '"')) and code.endswith(("'", '"')):
-        code = code[1:-1].strip()
-
-    if code.endswith('"') and not code.startswith('"'):
-        code = code[:-1].strip()
-    if code.startswith('"') and not code.endswith('"'):
-        code = code[1:].strip()
-
-    if code_type == "ADD CONSTRAINT" and not code.startswith("model +="):
-        code = f"model += {code}"
-
-    return code
-
-
-def _apply_model_modification(source_code: str, operations: dict) -> str:
-    """
-    Modifies the model's source code by inserting agent-generated data or constraint blocks.
-
-    Args:
-        source_code (str): Original code as string.
-        operations (dict): Dictionary with keys like 'ADD DATA' or 'ADD CONSTRAINT'
-                           and string or list-of-strings as values.
-
-    Returns:
-        str: Modified source code with inserted code blocks.
-    """
-    updated_code = source_code
-
-    if not isinstance(operations, dict):
-        raise ValueError("Operations must be a dictionary with keys like 'ADD DATA' or 'ADD CONSTRAINT'.")
-
-    for op_type, code_blocks in operations.items():
-        if not isinstance(code_blocks, list):
-            code_blocks = [code_blocks]
-
-        for block in code_blocks:
-            cleaned_block = _clean_agent_code(block, op_type)
-
-            if op_type == "ADD DATA":
-                updated_code = _replace(updated_code, DATA_CODE_STR, cleaned_block)
-            elif op_type == "ADD CONSTRAINT":
-                updated_code = _replace(updated_code, CONSTRAINT_CODE_STR, cleaned_block)
-            else:
-                raise ValueError(f"Unsupported operation: {op_type}")
-
-    return updated_code
-
-def modify_and_run_model(modification_json: dict) -> str:
-    """
-    Applies a structured modification (e.g., adding data or constraints), executes the supply chain model, and returns results.
-
-    Args:
-        modification_json (dict or str): A JSON specifying the operation(s).
-
-    Returns:
-        str: The optimization results or error message.
-    """
-    try:
-        if isinstance(modification_json, str):
-            modification_json = modification_json.strip().strip("`")
-            try:
-                modification_json = json.loads(modification_json)
-            except json.JSONDecodeError as json_err:
-                return f"JSON decoding error: {json_err.msg}. Please ensure keys and strings use double quotes. Make sure you don't include ```json ... ``` in the tool input."
-
-        if not isinstance(modification_json, dict):
-            raise ValueError("Parsed input is not a dictionary. Ensure proper JSON format with double quotes.")
-
-        model_code = _read_source_code("multi_agent_supply_chain_optimization/capfacloc_model.py")
-        modified_code = _apply_model_modification(model_code, modification_json)
-        result = _run_with_exec(modified_code)
-
-        return result
-
-    except Exception as e:
-        return f"Error during modification or execution: {str(e)}"
 
 # Define the tool for the agent
 modify_model_tool = Tool(
@@ -371,18 +103,9 @@ modify_model_tool = Tool(
     """
 )
 
-
-class CustomInvalidTool(InvalidTool):
-    def run(self, tool_input: str) -> str:
-        # Instead of the default behavior, immediately return an error message string.
-        return f"INVALID_TOOL_ERROR: The tool '{self.tool_name}' is invalid. Received input: {tool_input}"
-
-
 # Add the tool to the tools list
 tools = [modify_model_tool]
 
-def _handle_error(error) -> str:
-    return str(error)[:50]
 
 LOG_FILE = "agent_execution_log.json"
 
@@ -509,29 +232,32 @@ def extract_last_run_details(log_file=LOG_FILE):
 if __name__ == "__main__":
 
     # Load pre-trained Large Language Model from OpenAI
-    llm = ChatOpenAI(model_name="gpt-4o-mini", temperature=0)
+    llm = ChatOpenAI(model_name="gpt-4o", temperature=0)
 
-    router_agent = create_react_agent(
+    whatif_agent = create_react_agent(
         llm=llm,
         tools=tools,
         prompt = prompt
     )
 
-    router_agent_executor = AgentExecutor(agent=router_agent, tools=tools, return_intermediate_steps=True, verbose=True, handle_parsing_errors=True)
+    whatif_agent_executor = AgentExecutor(agent=whatif_agent, tools=tools, return_intermediate_steps=True, verbose=True, handle_parsing_errors=True)
 
     try:
         #simple_model.py:
-        # response = router_agent_executor.invoke({"input": "What happens if supply at supplier 0 is limited to 80?"})
-        # response = router_agent_executor.invoke({"input": "What happens if supply at supplier 0 decreases? And what if it's completely zero?"})
-        # response = router_agent_executor.invoke({"input": "Limit supplier 0 to 100 and force demand center 2 to receive exactly 90 units."})
+        # response = whatif_agent_executor.invoke({"input": "What happens if supply at supplier 0 is limited to 80?"})
+        # response = whatif_agent_executor.invoke({"input": "What happens if supply at supplier 0 decreases? And what if it's completely zero?"})
+        # response = whatif_agent_executor.invoke({"input": "Limit supplier 0 to 100 and force demand center 2 to receive exactly 90 units."})
         
         #capfacloc_model.py:
-        # response = router_agent_executor.invoke({"input": "What happens if the capacity of the first facility is limited to 50?"})
-        # response = router_agent_executor.invoke({"input": "What happens if the demand for the second customer increases by 15 units, raising it from 25 to 40?"})       
-        # response = router_agent_executor.invoke({"input": "What happens if the fixed cost of the third facility is increased by 25%?"})
-        response = router_agent_executor.invoke({"input": "What happens if the demand for the fourth customer increases by 30 units, raising it from 18 to 48?"})
-        #response = router_agent_executor.invoke({"input": "Please perform in depth sensitivity analysis. Calculate the impact of multiple scenarios and then report your results."})
-        #response = router_agent_executor.invoke({"input": "What scenarios did we test in the past?"})
+        # response = whatif_agent_executor.invoke({"input": "What happens if the capacity of the first facility is limited to 50?"})
+        # response = whatif_agent_executor.invoke({"input": "What happens if the demand for the second customer increases by 15 units, raising it from 25 to 40?"})       
+        # response = whatif_agent_executor.invoke({"input": "What happens if the fixed cost of the third facility is increased by 25%?"})
+        # response = whatif_agent_executor.invoke({"input": "What happens if the demand for the fourth customer increases by 30 units, raising it from 18 to 48?"})
+        # response = whatif_agent_executor.invoke({"input": "What happens if the demand for the first customer increases by 50 units, raising it from 20 to 70?"})
+        response = whatif_agent_executor.invoke({"input": "What happens if the capacity of the first facility is limited to 15?"})
+        # response = whatif_agent_executor.invoke({"input": "What happens if the demand for the fifth customer increases by 40 units, raising it from 22 to 62?"})
+        #response = whatif_agent_executor.invoke({"input": "Please perform in depth sensitivity analysis. Calculate the impact of multiple scenarios and then report your results."})
+        #response = whatif_agent_executor.invoke({"input": "What scenarios did we test in the past?"})
         print("API Connection Successful! Response:")
         print(response)
         # Optionally, also write the string representation to a text file
