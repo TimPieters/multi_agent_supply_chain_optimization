@@ -147,9 +147,9 @@ def generate_new_scenario(scenario_log: list[str], base_context: str = BASE_CONT
 # Set up the LLM engine
 llm = ChatOpenAI(model="gpt-4o", temperature=0.7)
 
-# Load execution log
-with open("agent_execution_log.json", "r") as f:
-    run_logs = json.load(f)
+# # Load execution log
+# with open("agent_execution_log.json", "r") as f:
+#     run_logs = json.load(f)
 
 # Create a formatted scenario log
 baseline_obj = 366.10

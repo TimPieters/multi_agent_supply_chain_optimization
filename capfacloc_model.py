@@ -21,7 +21,7 @@ model = LpProblem("CapacitatedFacilityLocation", LpMinimize)
 # Decision variables: facility_open indicates if a facility is open;
 # assignment represents the service level from facility j to customer i.
 facility_open = {j: LpVariable(f"Open_{j}", cat=LpBinary) for j in range(n_facilities)}
-assignment = {(i, j): LpVariable(f"Serve_{i}_{j}", lowBound=0,
+assignment = {(i, j): LpVariable(f"Serve_{i}_{j}", lowBound=0, upBound=1,
                                    cat=LpContinuous)
               for i in range(n_customers) for j in range(n_facilities)}
 

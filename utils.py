@@ -1,9 +1,14 @@
 import json
-from pulp import LpStatus, LpStatusOptimal, LpStatusInfeasible
+from pulp import LpStatus, LpStatusOptimal, LpStatusInfeasible, LpProblem, LpVariable
 import time
 import os
 import traceback
 import re
+import io
+import pulp
+import networkx as nx
+import pandas as pd
+import matplotlib.pyplot as plt
 
 # --- extracting and modifying model code. ---
 
@@ -260,3 +265,285 @@ def modify_and_run_model(modification_json: dict) -> str:
 
     except Exception as e:
         return f"Error during modification or execution: {str(e)}"
+    
+
+# ======== PuLP Model Util Functions =========
+
+def get_objective_function(model):
+    """
+    Returns the objective function of the PuLP model.
+    
+    Args:
+        model: A PuLP LpProblem instance
+        
+    Returns:
+        The objective function object
+    """
+    return model.objective
+
+def get_constraints(model):
+    """
+    Returns all constraints in the PuLP model.
+    
+    Args:
+        model: A PuLP LpProblem instance
+        
+    Returns:
+        A dictionary of constraints where keys are constraint names
+    """
+    return model.constraints
+
+def get_variables(model):
+    """
+    Returns all variables in the PuLP model.
+    
+    Args:
+        model: A PuLP LpProblem instance
+        
+    Returns:
+        A list of all variables in the model
+    """
+    return model.variables()
+
+def get_mps_format(model):
+    """
+    Exports the model to MPS format and returns the filename.
+    
+    Args:
+        model: A PuLP LpProblem instance
+        
+    Returns:
+        The filename of the exported MPS file
+    """
+    # Export the model to MPS format
+    filename = f"{model.name}.mps"
+    model.writeMPS(filename)
+    
+    print(f"Model exported to MPS format: {filename}")
+    return filename
+
+def get_lp_format(model):
+    """
+    Exports the model to LP format and returns the filename.
+    
+    Args:
+        model: A PuLP LpProblem instance
+        
+    Returns:
+        The filename of the exported LP file
+    """
+    # Export the model to LP format
+    filename = f"{model.name}.lp"
+    model.writeLP(filename)
+    
+    print(f"Model exported to LP format: {filename}")
+    return filename
+
+def build_model_from_lp(lp_file):
+    """
+    Builds a PuLP model from an LP file.
+    
+    Args:
+        lp_file: Path to the LP file
+        
+    Returns:
+        A new PuLP LpProblem instance
+    """
+    # Create a new empty model
+    model = pulp.LpProblem(name=lp_file.replace('.lp', ''))
+    
+    print(f"Model built from LP file: {lp_file}")
+    return model
+
+def build_model_from_mps(mps_file):
+    """
+    Builds a PuLP model from an MPS file.
+    
+    Args:
+        mps_file: Path to the MPS file
+        
+    Returns:
+        A new PuLP LpProblem instance
+    """
+    variables_dict, model = pulp.LpProblem.fromMPS(mps_file, sense=pulp.LpMinimize)
+    
+    print(f"Model built from MPS file: {mps_file}")
+    return model
+
+
+def pulp_model_to_networkx(model):
+    """
+    Convert a PuLP model to a NetworkX bipartite graph for analysis and visualization.
+
+    Args:
+        model: A PuLP LpProblem instance
+
+    Returns:
+        G: A NetworkX graph representing the model structure
+    """
+    # Create an empty graph
+    G = nx.Graph()
+
+    # Get variables and constraints
+    variables = model.variables()
+    constraints = model.constraints
+
+    # Add variable nodes
+    for var in variables:
+        var_type = "binary" if var.cat == pulp.LpBinary else "continuous"
+        G.add_node(var.name, bipartite=0, type='variable', var_type=var_type)
+
+    # Add constraint nodes
+    for constraint_name, constraint in constraints.items():
+        G.add_node(constraint_name, bipartite=1, type='constraint')
+
+    # Add objective node
+    objective_name = "Objective"
+    G.add_node(objective_name, bipartite=1, type='objective')
+
+    # Build edges between variables and constraints
+    for constraint_name, constraint in constraints.items():
+        # constraint.expr is an LpAffineExpression
+        for var, coef in constraint.expr.items():
+            # Add edge only if coefficient is nonzero
+            if abs(coef) > 1e-15:
+                G.add_edge(var.name, constraint_name, weight=coef)
+
+    # Build edges for the objective function
+    # model.objective is also an LpAffineExpression
+    for var, coef in model.objective.items():
+        if abs(coef) > 1e-15:
+            G.add_edge(var.name, objective_name, weight=coef)
+
+    return G
+
+def plot_pulp_model_graph(G):
+    """
+    Plot the bipartite PuLP model graph using NetworkX and matplotlib.
+
+    Args:
+        G: A NetworkX graph returned by pulp_model_to_networkx.
+    """
+    # Separate nodes by 'bipartite' set or by 'type' attribute
+    variable_nodes = [n for n, d in G.nodes(data=True) if d.get('bipartite') == 0]
+    other_nodes = [n for n, d in G.nodes(data=True) if d.get('bipartite') == 1]
+
+    # Use a bipartite layout, placing all 'bipartite=0' nodes on one side
+    pos = nx.bipartite_layout(G, variable_nodes)
+
+    # Create the plot
+    plt.figure()
+    nx.draw(G, pos, with_labels=True)
+
+    # Draw coefficient labels on edges
+    edge_labels = nx.get_edge_attributes(G, 'weight')
+    nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels)
+
+    # Show the figure
+    plt.show()
+
+
+def get_model_stats(G):
+    """
+    Calculate statistics from a model graph.
+    
+    Args:
+        G: NetworkX graph of the model
+        
+    Returns:
+        stats: Dictionary of model statistics
+    """
+    variable_nodes = [n for n, d in G.nodes(data=True) if d.get('type') == 'variable']
+    binary_vars = [n for n, d in G.nodes(data=True) 
+                  if d.get('type') == 'variable' and d.get('var_type') == 'binary']
+    continuous_vars = [n for n, d in G.nodes(data=True) 
+                      if d.get('type') == 'variable' and d.get('var_type') == 'continuous']
+    
+    constraint_nodes = [n for n, d in G.nodes(data=True) if d.get('type') == 'constraint']
+    
+    stats = {
+        "num_variables": len(variable_nodes),
+        "num_binary_vars": len(binary_vars),
+        "num_continuous_vars": len(continuous_vars),
+        "num_constraints": len(constraint_nodes),
+        "num_connections": G.number_of_edges(),
+        "graph_density": nx.density(G),
+        "average_constraint_degree": sum(G.degree(c) for c in constraint_nodes) / len(constraint_nodes) if constraint_nodes else 0,
+        "average_variable_degree": sum(G.degree(v) for v in variable_nodes) / len(variable_nodes) if variable_nodes else 0
+    }
+    
+    return stats
+
+
+if __name__ == "__main__":
+    # Read the source code from file
+    print("Reading source code from 'multi_agent_supply_chain_optimization/capfacloc_model.py'...")
+    src_code = _read_source_code("multi_agent_supply_chain_optimization/capfacloc_model.py")
+    print(f"Source code read successfully. Length: {len(src_code)} characters")
+    
+    # Create locals and globals dictionaries
+    print("Setting up execution environment...")
+    locals_dict = {}
+    locals_dict.update(globals())  
+    locals_dict.update(locals())   
+    print("Execution environment set up successfully")
+    
+    # Execute the source code
+    print("Executing model source code...")
+    exec(src_code, locals_dict, locals_dict)
+    print("Model source code executed successfully")
+    
+    # Get the model from the locals dictionary
+    print("Retrieving model from execution context...")
+    model = locals_dict["model"]
+    print(f"Model retrieved successfully: {model.name}")
+    
+    # Example usage with print statements:
+    print("\n---------- OBJECTIVE FUNCTION ----------")
+    objective = get_objective_function(model)
+    print(f"Objective function: {objective}")
+    print(f"Objective function type: {type(objective)}")
+    print(f"Objective function name: {objective.name}")
+    
+    print("\n---------- CONSTRAINTS ----------")
+    constraints = get_constraints(model)
+    print(f"Number of constraints: {len(constraints)}")
+    print(f"Constraint names: {list(constraints.keys())[:5]}... (showing first 5)")
+    
+    print("\n---------- VARIABLES ----------")
+    variables = get_variables(model)
+    print(f"Number of variables: {len(variables)}")
+    print(f"First 5 variables: {[v.name for v in variables[:5]]}... (showing first 5)")
+    
+    print("\n---------- MPS FORMAT ----------")
+    print("Exporting model to MPS format...")
+    mps_file = get_mps_format(model)
+    print(f"Model exported to MPS file: {mps_file}")
+    
+    print("\n---------- LP FORMAT ----------")
+    print("Exporting model to LP format...")
+    lp_file = get_lp_format(model)
+    print(f"Model exported to LP file: {lp_file}")
+    
+    print("\n---------- BUILDING MODEL FROM LP ----------")
+    print("Building new model from LP file...")
+    new_model_from_lp = build_model_from_lp(lp_file)
+    print(f"Model name: {new_model_from_lp.name}")
+    print(f"Number of constraints: {len(new_model_from_lp.constraints)}")
+    print(new_model_from_lp)
+    
+    print("\n---------- BUILDING MODEL FROM MPS ----------")
+    print("Building new model from MPS file...")
+    new_model_from_mps = build_model_from_mps(mps_file)
+    print(f"Model name: {new_model_from_mps.name}")
+    print(f"Number of constraints: {len(new_model_from_mps.constraints)}")
+    # print(new_model_from_mps)
+    # print("Solving model... \n")
+    # new_model_from_mps.solve()
+
+    print("\nGenerate graph: \n\n")
+    G = pulp_model_to_networkx(new_model_from_mps)
+    plot_pulp_model_graph(G)
+
+    graph_stats = get_model_stats(G)
+    print(graph_stats)
