@@ -2,5 +2,9 @@
 .env
 **/__pycache__/
 __pycache__/
-benchmark/CFLP/cflp_benchmark_25cust_25_fac.csv
-benchmark/CFLP/cflp_benchmark_25cust_25_fac.parquet
+# Ignore any CSV or Parquet under benchmark/CFLP
+benchmark/CFLP/*.csv
+benchmark/CFLP/*.parquet
+# Ignore any CSV under logs/ and results/
+logs/*.csv
+results/*.csv
