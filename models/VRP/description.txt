@@ -1,0 +1,15 @@
+This is a Vehicle Routing Problem (VRP) optimization model.
+The objective is to minimize the total distance traveled by vehicles to serve all customers from a central depot.
+Key parameters include:
+- n_customers: The number of customer locations.
+- vehicle_capacity: The maximum demand a single vehicle can serve.
+- num_vehicles: The total number of vehicles available.
+- demand: The demand at each customer location.
+- distance: The matrix of travel distances between all locations.
+- coords: The coordinates of each location.
+
+Scenarios for sensitivity analysis might involve changing:
+- Customer demands (e.g., increasing/decreasing specific demands or all demands).
+- Vehicle capacity (e.g., reducing capacity to test feasibility).
+- Number of available vehicles.
+- Adding new constraints related to specific routes or customer assignments.

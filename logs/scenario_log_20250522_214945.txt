@@ -1,0 +1,7 @@
+LangGraph Automated Sensitivity Analysis Log (Run ID: 20250522_214945)
+============================================================
+
+Model Path: capfacloc_model.py
+Data Path: data/capfacloc_data.json
+Baseline Objective Value: 366.1
+Number of Parameters: 40

@@ -63,22 +63,7 @@ def build_scenario_log_from_runs(run_logs: List[dict], baseline_obj: float) -> L
 BASE_CONTEXT = """
 You are working with a facility location supply chain optimization problem.
 
-This is the baseline data:
-demands = [20, 25, 30, 18, 22]  # For 5 customers
-capacities = [80, 90, 70, 100, 85]  # For 5 facilities
-fixed_costs = [150, 180, 160, 170, 155]  # Fixed cost for each facility
-transportation_costs = [
-    [10, 12, 15, 20, 18],
-    [14, 11, 13, 16, 19],
-    [13, 17, 12, 14, 15],
-    [12, 15, 10, 18, 16],
-    [11, 13, 14, 15, 17]
-]
-n_customers = 5
-n_facilities = 5
-
-- There are 5 suppliers and 5 customers.
-- Customer demands vary between 10 and 70 units.
+- Customer demands vary between 5 and 36 units.
 - Transport costs vary between 10 and 20.
 - There are 5 facilities to choose from, and each has a fixed cost.
 - Facilities can either be open or closed.
@@ -145,11 +130,12 @@ def generate_new_scenario(scenario_log: list[str], base_context: str = BASE_CONT
 # === ReAct Agent Scenario Planner ===
 
 # Set up the LLM engine
-llm = ChatOpenAI(model="gpt-4o", temperature=0.7)
+llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.7)
 
-# # Load execution log
-# with open("agent_execution_log.json", "r") as f:
-#     run_logs = json.load(f)
+# Load execution log
+log_file_path = "logs/agent_execution_log.json"
+with open(log_file_path, "r") as f:
+    run_logs = json.load(f)
 
 # Create a formatted scenario log
 baseline_obj = 366.10

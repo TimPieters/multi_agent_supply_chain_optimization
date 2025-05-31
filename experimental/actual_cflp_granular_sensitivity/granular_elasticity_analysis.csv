@@ -1,0 +1,41 @@
+parameter_type,parameter_name,index,original_value,perturbed_value,elasticity,objective_change,base_objective,perturbed_objective
+demands,demands_0,0,20.0,20.0,0.0,0.0,366.1,366.1
+demands,demands_1,1,25.0,25.0,0.0,0.0,366.1,366.1
+demands,demands_2,2,30.0,30.0,0.0,0.0,366.1,366.1
+demands,demands_3,3,18.0,18.0,0.0,0.0,366.1,366.1
+demands,demands_4,4,22.0,22.0,0.0,0.0,366.1,366.1
+capacities,capacities_0,0,80.0,80.8,0.0,0.0,366.1,366.1
+capacities,capacities_1,1,90.0,90.9,0.0,0.0,366.1,366.1
+capacities,capacities_2,2,70.0,70.7,-0.006373486297014191,-0.023333333333368955,366.1,366.07666666666665
+capacities,capacities_3,3,100.0,101.0,0.0,0.0,366.1,366.1
+capacities,capacities_4,4,85.0,85.85,0.0,0.0,366.1,366.1
+fixed_costs,fixed_costs_0,0,150.0,151.5,0.40972411909314393,1.5,366.1,367.6
+fixed_costs,fixed_costs_1,1,180.0,181.8,0.0,0.0,366.1,366.1
+fixed_costs,fixed_costs_2,2,160.0,161.6,0.4370390603660264,1.6000000000000227,366.1,367.70000000000005
+fixed_costs,fixed_costs_3,3,170.0,171.7,0.0,0.0,366.1,366.1
+fixed_costs,fixed_costs_4,4,155.0,156.55,0.0,0.0,366.1,366.1
+transportation_costs,transportation_costs_0_0,"(0, 0)",10.0,10.1,0.027314941272882472,0.10000000000002274,366.1,366.20000000000005
+transportation_costs,transportation_costs_0_1,"(0, 1)",12.0,12.120000000000001,0.0,0.0,366.1,366.1
+transportation_costs,transportation_costs_0_2,"(0, 2)",15.0,15.15,0.0,0.0,366.1,366.1
+transportation_costs,transportation_costs_0_3,"(0, 3)",20.0,20.2,0.0,0.0,366.1,366.1
+transportation_costs,transportation_costs_0_4,"(0, 4)",18.0,18.18,0.0,0.0,366.1,366.1
+transportation_costs,transportation_costs_1_0,"(1, 0)",14.0,14.14,0.0,0.0,366.1,366.1
+transportation_costs,transportation_costs_1_1,"(1, 1)",11.0,11.11,0.0,0.0,366.1,366.1
+transportation_costs,transportation_costs_1_2,"(1, 2)",13.0,13.13,0.0355094236547379,0.12999999999999545,366.1,366.23
+transportation_costs,transportation_costs_1_3,"(1, 3)",16.0,16.16,0.0,0.0,366.1,366.1
+transportation_costs,transportation_costs_1_4,"(1, 4)",19.0,19.19,0.0,0.0,366.1,366.1
+transportation_costs,transportation_costs_2_0,"(2, 0)",13.0,13.13,0.003550942365467579,0.012999999999976808,366.1,366.113
+transportation_costs,transportation_costs_2_1,"(2, 1)",17.0,17.17,0.0,0.0,366.1,366.1
+transportation_costs,transportation_costs_2_2,"(2, 2)",12.0,12.120000000000001,0.02950013657470748,0.10800000000000409,366.1,366.208
+transportation_costs,transportation_costs_2_3,"(2, 3)",14.0,14.14,0.0,0.0,366.1,366.1
+transportation_costs,transportation_costs_2_4,"(2, 4)",15.0,15.15,0.0,0.0,366.1,366.1
+transportation_costs,transportation_costs_3_0,"(3, 0)",12.0,12.120000000000001,0.0,0.0,366.1,366.1
+transportation_costs,transportation_costs_3_1,"(3, 1)",15.0,15.15,0.0,0.0,366.1,366.1
+transportation_costs,transportation_costs_3_2,"(3, 2)",10.0,10.1,0.027314941272882472,0.10000000000002274,366.1,366.20000000000005
+transportation_costs,transportation_costs_3_3,"(3, 3)",18.0,18.18,0.0,0.0,366.1,366.1
+transportation_costs,transportation_costs_3_4,"(3, 4)",16.0,16.16,0.0,0.0,366.1,366.1
+transportation_costs,transportation_costs_4_0,"(4, 0)",11.0,11.11,0.030046435400167614,0.11000000000001364,366.1,366.21000000000004
+transportation_costs,transportation_costs_4_1,"(4, 1)",13.0,13.13,0.0,0.0,366.1,366.1
+transportation_costs,transportation_costs_4_2,"(4, 2)",14.0,14.14,0.0,0.0,366.1,366.1
+transportation_costs,transportation_costs_4_3,"(4, 3)",15.0,15.15,0.0,0.0,366.1,366.1
+transportation_costs,transportation_costs_4_4,"(4, 4)",17.0,17.17,0.0,0.0,366.1,366.1

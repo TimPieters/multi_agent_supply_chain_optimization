@@ -1,0 +1,36 @@
+LangGraph Automated Sensitivity Analysis Log (Run ID: 20250528_022926)
+============================================================
+
+Model Path: models/VRP/vrp_model.py
+Data Path: models/VRP/data/vrp_data_10cust_2veh.json
+Baseline Objective Value: 0.0
+Number of Parameters: 0
+
+Iterations Ran: 5
+Total Run Time: 33.32 seconds
+Planner LLM: gpt-4o-mini (Temp: 0.7)
+Coder LLM: gpt-4o (Temp: 0.0)
+
+--- Final Analysis Summary ---
+**1. Summarize Key Findings:**
+
+The sensitivity analysis of the Vehicle Routing Problem (VRP) model reveals that changes in vehicle capacity and the number of available vehicles have a significant impact on model feasibility. Specifically, reducing vehicle capacity and the number of vehicles often led to infeasibility, indicating that the model is highly sensitive to these parameters. Conversely, decreasing customer demands by 50% resulted in a feasible solution with a notable reduction in total cost, highlighting the model's sensitivity to demand levels as well.
+
+**2. Rank Parameter/Change Type Sensitivity:**
+
+1. **Vehicle Capacity:** Reducing vehicle capacity consistently led to infeasibility, demonstrating a critical sensitivity to this parameter.
+2. **Number of Available Vehicles:** Decreasing the number of vehicles from 2 to 1 also resulted in infeasibility, indicating high sensitivity.
+3. **Demand Levels:** Decreasing all customer demands by 50% resulted in a significant cost reduction (ΔObj), showing sensitivity to demand changes.
+
+**3. Identify Critical Scenarios:**
+
+- **Scenario 2:** 'Decrease the number of available vehicles from 2 to 1' was critical as it led to infeasibility, highlighting the model's reliance on having at least two vehicles to meet customer demands.
+- **Scenario 3 and 4:** Both scenarios involved reducing vehicle capacity to 20 and 10, respectively, and resulted in infeasibility, underscoring the importance of adequate vehicle capacity.
+- **Scenario 5:** 'Decrease all customer demands by 50%' was particularly revealing as it resulted in a feasible solution with a significant cost reduction to 296.26, demonstrating the impact of demand levels on total cost.
+
+--- Scenario Log ---
+1. Scenario: 'Increase the vehicle capacity from 50 to 30 to test the feasibility of serving the customer demands with fewer vehicles.' -> Status: Optimal, Cost: 416.89
+2. Scenario: 'Decrease the number of available vehicles from 2 to 1 to test the feasibility of serving all customer demands with significantly reduced capacity.' -> Error: Execution Result: Model Infeasible
+3. Scenario: 'Decrease the vehicle capacity from 50 to 20 to test the feasibility of serving customer demands with significantly reduced capacity.' -> Error: Execution Result: Model Infeasible
+4. Scenario: 'Decrease the vehicle capacity from 50 to 10 to test the feasibility of serving customer demands with critically reduced capacity.' -> Error: Execution Result: Model Infeasible
+5. Scenario: 'Decrease all customer demands by 50% to test the impact on total cost and feasibility with significantly lower demand levels.' -> Status: Optimal, Cost: 296.26

@@ -1,0 +1,54 @@
+LangGraph Automated Sensitivity Analysis Log (Run ID: 20250527_221833)
+============================================================
+
+Model Path: vrp_model.py
+Data Path: data/vrp_data_10cust_2veh.json
+Baseline Objective Value: 366.1
+Number of Parameters: 13
+
+Iterations Ran: 5
+Total Run Time: 50.05 seconds
+Planner LLM: gpt-4o-mini (Temp: 0.7)
+Coder LLM: gpt-4o (Temp: 0.0)
+
+--- Final Analysis Summary ---
+**1. Summarize Key Findings:**
+
+The sensitivity analysis of the Capacitated Facility Location Problem (CFLP) model reveals several key insights:
+
+- **Vehicle Capacity and Number:** Changes in vehicle capacity and the number of vehicles significantly impacted the total cost. Reducing vehicle capacity led to a notable increase in cost, while increasing the number of vehicles consistently decreased costs.
+  
+- **Demand Increases:** Increasing customer demand, particularly for high-demand customers, resulted in significant cost increases. However, one scenario involving a demand increase led to an execution error, indicating potential issues with handling extreme demand changes.
+
+- **Feasibility:** All scenarios, except the one with an execution error, maintained feasibility, suggesting the model is robust to the tested changes within the given parameters.
+
+**2. Rank Parameter/Change Type Sensitivity:**
+
+1. **Demand Levels:** Increasing demand for high-demand customers had a significant impact on costs, with one scenario causing an execution error, indicating potential infeasibility or model limitations.
+   
+2. **Vehicle Capacity:** Reducing vehicle capacity led to a substantial cost increase, highlighting its sensitivity.
+   
+3. **Number of Vehicles:** Increasing the number of vehicles consistently reduced costs, showing a strong inverse relationship with total cost.
+
+**3. Identify Critical Scenarios:**
+
+- **Scenario 1 (Reduce Vehicle Capacity):** This scenario resulted in the largest cost increase (13.9%), highlighting the sensitivity of the model to vehicle capacity constraints.
+
+- **Scenario 3 (Increase Demand of Highest-Demand Customer):** This scenario led to an execution error, indicating a critical point where the model may struggle with feasibility or execution under extreme demand conditions.
+
+- **Scenario 2 and 5 (Increase Number of Vehicles):** Both scenarios showed a significant cost reduction (-9.8%), demonstrating the impact of increasing vehicle availability on reducing total costs.
+
+--- END OF ANALYSIS SUMMARY ---
+
+--- Scenario Log ---
+1. Scenario: 'Reduce the vehicle capacity from 50 to 30 to test the feasibility of serving the existing customer demands with fewer resources.' -> Status: Optimal, Cost: 416.89, ΔObj: 50.79 (13.9%)
+2. Scenario: 'Increase the number of vehicles from 2 to 5 to assess the impact on total cost and feasibility, particularly in light of the increased customer demands.' -> Status: Optimal, Cost: 330.1, ΔObj: -36.0 (-9.8%)
+3. Scenario: 'Increase the demand of the highest-demand customer (currently at 9) to 20 to test the system's capacity limits and assess potential infeasibility or significant cost increases.' -> Error: Execution Error: Execution Error:
+Traceback (most recent call last):
+  File "/home/timpi/Projects/thesis/multi_agent_supply_chain_optimization/utils.py", line 92, in _run_with_exec
+    exec(src_code, locals_dict, locals_dict)
+  File "<string>", line 34, in <module>
+AttributeError: 'dict' object has no attribute 'index'
+
+4. Scenario: 'Increase the demand of the customer with the second-highest demand (currently at 7) to 20 to test the system's capacity and assess potential infeasibility or significant cost increases.' -> Status: Optimal, Cost: 404.51, ΔObj: 38.41 (10.5%)
+5. Scenario: 'Increase the number of vehicles from 2 to 8 to assess the impact on total cost and feasibility while accommodating the existing customer demands.' -> Status: Optimal, Cost: 330.1, ΔObj: -36.0 (-9.8%)

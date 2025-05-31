@@ -3,7 +3,7 @@ import ast
 import json
 import re
 import traceback
-from langchain.agents import create_react_agent,AgentExecutor
+from langchain.agents import create_react_agent, AgentExecutor
 from langchain_openai import ChatOpenAI
 from langchain.prompts import PromptTemplate
 from dotenv import load_dotenv
@@ -16,29 +16,34 @@ import os
 from typing import List
 import json
 from langchain.agents.tools import InvalidTool
-from utils import _replace, _read_source_code, _run_with_exec, _apply_model_modification, modify_and_run_model
+from utils import _read_source_code, modify_and_run_model # Removed _replace, _run_with_exec, _apply_model_modification as they are internal to modify_and_run_model
+from config import MODEL_FILE_PATH, MODEL_DATA_PATH, MODEL_DESCRIPTION_PATH
 
 # Load environment variables
 load_dotenv()
 
-# Placeholder in the source code where constraints will be inserted
-DATA_CODE_STR = "### DATA MANIPULATION CODE HERE ###"
-# Placeholder in the source code where constraints will be inserted
-CONSTRAINT_CODE_STR = "### CONSTRAINT CODE HERE ###"
+# Dynamically load model source code, input data, and model description
+source_code = _read_source_code(MODEL_FILE_PATH)
+input_data = _read_source_code(MODEL_DATA_PATH)
+model_description = _read_source_code(MODEL_DESCRIPTION_PATH)
 
-
-source_code = _read_source_code("multi_agent_supply_chain_optimization/simple_model.py")
-new_source_code = _read_source_code("multi_agent_supply_chain_optimization/capfacloc_model.py")
-original_result = "{'status': 'Optimal', 'raw_status': 1, 'solution': {'Open_0': 1.0, 'Open_1': 0.0, 'Open_2': 1.0, 'Open_3': 0.0, 'Open_4': 0.0, 'Serve_0_0': 1.0, 'Serve_0_1': 0.0, 'Serve_0_2': 0.0, 'Serve_0_3': 0.0, 'Serve_0_4': 0.0, 'Serve_1_0': 0.0, 'Serve_1_1': 0.0, 'Serve_1_2': 1.0, 'Serve_1_3': 0.0, 'Serve_1_4': 0.0, 'Serve_2_0': 0.1, 'Serve_2_1': 0.0, 'Serve_2_2': 0.9, 'Serve_2_3': 0.0, 'Serve_2_4': 0.0, 'Serve_3_0': 0.0, 'Serve_3_1': 0.0, 'Serve_3_2': 1.0, 'Serve_3_3': 0.0, 'Serve_3_4': 0.0, 'Serve_4_0': 1.0, 'Serve_4_1': 0.0, 'Serve_4_2': 0.0, 'Serve_4_3': 0.0, 'Serve_4_4': 0.0}, 'total_cost': 366.1}"
-
+# Get baseline result by running the model without modifications
+# This will use the modify_and_run_model function with an empty modification
+print("Running baseline model to get original result...")
+original_result_dict = modify_and_run_model({}, MODEL_FILE_PATH, MODEL_DATA_PATH)
+original_result = json.dumps(original_result_dict) # Convert dict to string for prompt partial variable
+print(f"Baseline model run complete. Original result: {original_result}")
 
 # === WHAT-IF AGENT ===
 
 # Define a simple prompt to test the connection
 prompt = PromptTemplate(
     input_variables=["tools", "tool_names", "input", "agent_scratchpad"],
-    partial_variables={"source_code": new_source_code,
-                       "original_result": original_result},
+    partial_variables={"source_code": source_code, # Use the dynamically loaded source_code
+                       "original_result": original_result,
+                       "input_data": input_data,
+                       "model_description": model_description # Add model description to context
+                       },
     template="""
     You are an AI assistant for supply chain optimization. You analyze the provided Python optimization model
     and modify it based on the user's questions. You explain solutions from a PuLP Python solver.
@@ -52,11 +57,18 @@ prompt = PromptTemplate(
     You have access to the following tools:
     {tools}
 
+    --- MODEL CONTEXT ---
+    {model_description}
+
     Below is the full source code of the supply chain model:
     ---SOURCE CODE---
     ```python
     {source_code}
     ```
+    ---
+
+    --- Input Data ---
+    {input_data}
     ---
 
     Before the modification, the model had the following results:
@@ -84,20 +96,17 @@ prompt = PromptTemplate(
 
 
 # Define the tool for the agent
+# The func needs to be a lambda to pass additional arguments (model_file_path, model_data_path)
 modify_model_tool = Tool(
     name="update_model",
-    func=modify_and_run_model,
+    func=lambda modification_json: modify_and_run_model(modification_json, MODEL_FILE_PATH, MODEL_DATA_PATH),
     description="""
         "Use this tool to modify the model by adding constraints or data. "
         You must provide the input as a valid JSON object using double quotes for both keys and values. NEVER add ```json ```
         Example:
-        {
-        "ADD CONSTRAINT": "model += lpSum(variables[0, j] for j in range(len(demand))) <= 80, \\"Supply_Limit_Supplier_0\\""
-        }
+        {"ADD CONSTRAINT": "model += lpSum(variables[0, j] for j in range(len(demand))) <= 80, \\"Supply_Limit_Supplier_0\\""}
         or
-        {
-        "ADD DATA": "supply = [200, 300, 300]"
-        }
+        {"ADD DATA": "supply = [200, 300, 300]"}
         Do not use single quotes or Python-style dictionaries.
         The tool updates and executes the model and returns results."
     """
@@ -232,32 +241,34 @@ def extract_last_run_details(log_file=LOG_FILE):
 if __name__ == "__main__":
 
     # Load pre-trained Large Language Model from OpenAI
-    llm = ChatOpenAI(model_name="gpt-4o", temperature=0)
+    llm = ChatOpenAI(model_name="gpt-4o", temperature=0.5)
 
     whatif_agent = create_react_agent(
         llm=llm,
         tools=tools,
-        prompt = prompt
+        prompt=prompt
     )
 
     whatif_agent_executor = AgentExecutor(agent=whatif_agent, tools=tools, return_intermediate_steps=True, verbose=True, handle_parsing_errors=True)
 
     try:
-        #simple_model.py:
-        # response = whatif_agent_executor.invoke({"input": "What happens if supply at supplier 0 is limited to 80?"})
-        # response = whatif_agent_executor.invoke({"input": "What happens if supply at supplier 0 decreases? And what if it's completely zero?"})
-        # response = whatif_agent_executor.invoke({"input": "Limit supplier 0 to 100 and force demand center 2 to receive exactly 90 units."})
-        
-        #capfacloc_model.py:
-        # response = whatif_agent_executor.invoke({"input": "What happens if the capacity of the first facility is limited to 50?"})
-        # response = whatif_agent_executor.invoke({"input": "What happens if the demand for the second customer increases by 15 units, raising it from 25 to 40?"})       
+        # Example usage with dynamic model and data paths
+        # To change the model or data, update MODEL_FILE_PATH and MODEL_DATA_PATH in config.py
+        print(f"Running agent with model: {MODEL_FILE_PATH} and data: {MODEL_DATA_PATH}")
+
+        # Example questions for capfacloc_model.py:
+        response = whatif_agent_executor.invoke({"input": "What happens if the capacity of the first facility is limited to 15?"})
+        # response = whatif_agent_executor.invoke({"input": "What happens if the demand for the second customer increases by 15 units, raising it from 25 to 40?"})
         # response = whatif_agent_executor.invoke({"input": "What happens if the fixed cost of the third facility is increased by 25%?"})
         # response = whatif_agent_executor.invoke({"input": "What happens if the demand for the fourth customer increases by 30 units, raising it from 18 to 48?"})
         # response = whatif_agent_executor.invoke({"input": "What happens if the demand for the first customer increases by 50 units, raising it from 20 to 70?"})
-        response = whatif_agent_executor.invoke({"input": "What happens if the capacity of the first facility is limited to 15?"})
         # response = whatif_agent_executor.invoke({"input": "What happens if the demand for the fifth customer increases by 40 units, raising it from 22 to 62?"})
-        #response = whatif_agent_executor.invoke({"input": "Please perform in depth sensitivity analysis. Calculate the impact of multiple scenarios and then report your results."})
-        #response = whatif_agent_executor.invoke({"input": "What scenarios did we test in the past?"})
+
+        # Example questions for simple_model.py (if MODEL_FILE_PATH is set to simple_model.py in config.py):
+        # response = whatif_agent_executor.invoke({"input": "What happens if supply at supplier 0 is limited to 80?"})
+        # response = whatif_agent_executor.invoke({"input": "What happens if supply at supplier 0 decreases? And what if it's completely zero?"})
+        # response = whatif_agent_executor.invoke({"input": "Limit supplier 0 to 100 and force demand center 2 to receive exactly 90 units."})
+
         print("API Connection Successful! Response:")
         print(response)
         # Optionally, also write the string representation to a text file
@@ -286,21 +297,3 @@ if __name__ == "__main__":
     except Exception as e:
         print("API Connection Failed. Error:")
         print(e)
-
-    # src_code = 'def hello_world():\n    print("Hello, world!")\n\n# Some other code here'
-    # old_code = 'print("Hello, world!")'
-    # new_code = 'print("Bonjour, monde!")\nprint("Hola, mundo!")'
-    # modified_code = _replace(src_code, old_code, new_code)
-    # print(modified_code)
-
-    # agent_data_json = {
-    #     "ADD DATA": "supply = [300, 300, 300]"
-    # }
-
-    # agent_constraint_json = {
-    # "ADD CONSTRAINT": "model += lpSum(variables[0, j] for j in range(len(demand))) <= 100, 'Limit_Supplier_0'"
-    # }
-
-    # source_code = _read_source_code("multi_agent_supply_chain_optimization/simple_model.py")
-    # modified_code = _apply_model_modification(source_code, agent_constraint_json)
-    # result = _run_with_exec(modified_code)

@@ -1,0 +1,781 @@
+parameter_combination,parameter1,parameter2,parameter1_type,parameter2_type,parameter1_index,parameter2_index,S2,S2_conf
+demand_2 x capacity_3,demand_2,capacity_3,demands,capacities,2,3,0.045068689200836565,0.02042201108633205
+demand_1 x capacity_3,demand_1,capacity_3,demands,capacities,1,3,0.0298610269085407,0.017929059757118244
+demand_4 x capacity_3,demand_4,capacity_3,demands,capacities,4,3,0.015392078972539636,0.01837025805948574
+demand_1 x trans_cost_3_3,demand_1,trans_cost_3_3,demands,transportation_costs,1,"(3, 3)",0.006684114893893273,0.015114560922846038
+demand_1 x trans_cost_3_2,demand_1,trans_cost_3_2,demands,transportation_costs,1,"(3, 2)",0.006603581341338341,0.015088945052203775
+demand_1 x trans_cost_4_3,demand_1,trans_cost_4_3,demands,transportation_costs,1,"(4, 3)",0.006547052665859605,0.015142656197277672
+demand_1 x trans_cost_2_2,demand_1,trans_cost_2_2,demands,transportation_costs,1,"(2, 2)",0.006530816419088625,0.015050325342484266
+demand_1 x trans_cost_0_3,demand_1,trans_cost_0_3,demands,transportation_costs,1,"(0, 3)",0.0065280454377683395,0.01504438521360755
+demand_1 x capacity_4,demand_1,capacity_4,demands,capacities,1,4,0.006502066313249001,0.01508723909217412
+demand_1 x trans_cost_2_0,demand_1,trans_cost_2_0,demands,transportation_costs,1,"(2, 0)",0.006483462408158456,0.015114415388120351
+demand_1 x trans_cost_3_0,demand_1,trans_cost_3_0,demands,transportation_costs,1,"(3, 0)",0.0064795653930194924,0.015075930690489852
+demand_1 x trans_cost_0_0,demand_1,trans_cost_0_0,demands,transportation_costs,1,"(0, 0)",0.006475352845941616,0.01506436056325872
+demand_1 x trans_cost_3_1,demand_1,trans_cost_3_1,demands,transportation_costs,1,"(3, 1)",0.006471793448121638,0.01506538808969791
+demand_1 x trans_cost_1_2,demand_1,trans_cost_1_2,demands,transportation_costs,1,"(1, 2)",0.006460234755178001,0.01506386633186469
+demand_1 x trans_cost_0_4,demand_1,trans_cost_0_4,demands,transportation_costs,1,"(0, 4)",0.006450425466651542,0.015078482100911606
+demand_1 x trans_cost_4_2,demand_1,trans_cost_4_2,demands,transportation_costs,1,"(4, 2)",0.006446603952001583,0.01504575593277973
+demand_1 x trans_cost_4_1,demand_1,trans_cost_4_1,demands,transportation_costs,1,"(4, 1)",0.0064392233729663505,0.015097290022022973
+demand_1 x trans_cost_0_2,demand_1,trans_cost_0_2,demands,transportation_costs,1,"(0, 2)",0.006412222845146297,0.015084480089186392
+demand_1 x capacity_0,demand_1,capacity_0,demands,capacities,1,0,0.0064104208555381525,0.01510874142352976
+demand_1 x trans_cost_4_4,demand_1,trans_cost_4_4,demands,transportation_costs,1,"(4, 4)",0.006387789394579265,0.015079993959272989
+demand_1 x trans_cost_1_1,demand_1,trans_cost_1_1,demands,transportation_costs,1,"(1, 1)",0.006372564509866289,0.01511034482172513
+demand_1 x trans_cost_1_4,demand_1,trans_cost_1_4,demands,transportation_costs,1,"(1, 4)",0.006350412942862172,0.015089689999318078
+demand_1 x trans_cost_2_1,demand_1,trans_cost_2_1,demands,transportation_costs,1,"(2, 1)",0.006349715038749824,0.015086228893672194
+demand_1 x capacity_2,demand_1,capacity_2,demands,capacities,1,2,0.006338583718501159,0.015081561877841532
+demand_1 x trans_cost_1_0,demand_1,trans_cost_1_0,demands,transportation_costs,1,"(1, 0)",0.006329878492026221,0.015112307467391686
+demand_1 x trans_cost_0_1,demand_1,trans_cost_0_1,demands,transportation_costs,1,"(0, 1)",0.006326130846584362,0.015066130965445724
+demand_1 x trans_cost_3_4,demand_1,trans_cost_3_4,demands,transportation_costs,1,"(3, 4)",0.006316983943093027,0.015112935494245477
+demand_1 x trans_cost_1_3,demand_1,trans_cost_1_3,demands,transportation_costs,1,"(1, 3)",0.006307511746684721,0.015063164100919959
+demand_1 x trans_cost_4_0,demand_1,trans_cost_4_0,demands,transportation_costs,1,"(4, 0)",0.006306342649516906,0.015042775742947956
+demand_1 x trans_cost_2_4,demand_1,trans_cost_2_4,demands,transportation_costs,1,"(2, 4)",0.00627601012610865,0.01506764388637588
+demand_1 x trans_cost_2_3,demand_1,trans_cost_2_3,demands,transportation_costs,1,"(2, 3)",0.006258328878671509,0.015023270324750562
+demand_3 x capacity_3,demand_3,capacity_3,demands,capacities,3,3,0.006189897827588997,0.017274769155696503
+demand_1 x demand_3,demand_1,demand_3,demands,demands,1,3,0.0058231500304845845,0.016296536385487483
+demand_1 x demand_2,demand_1,demand_2,demands,demands,1,2,0.005643380753316149,0.01563078482794998
+demand_1 x fixed_cost_1,demand_1,fixed_cost_1,demands,fixed_costs,1,1,0.005160446482623051,0.01542981033809061
+demand_1 x fixed_cost_4,demand_1,fixed_cost_4,demands,fixed_costs,1,4,0.004863550735937718,0.015497761576748178
+demand_1 x fixed_cost_3,demand_1,fixed_cost_3,demands,fixed_costs,1,3,0.004575636294785804,0.01627593655838144
+capacity_3 x fixed_cost_3,capacity_3,fixed_cost_3,capacities,fixed_costs,3,3,0.004191192722636804,0.02703361289715107
+fixed_cost_0 x fixed_cost_1,fixed_cost_0,fixed_cost_1,fixed_costs,fixed_costs,0,1,0.004075613865824951,0.010498958538748533
+demand_1 x capacity_1,demand_1,capacity_1,demands,capacities,1,1,0.004050030986010434,0.014833642414944243
+demand_1 x fixed_cost_2,demand_1,fixed_cost_2,demands,fixed_costs,1,2,0.00402303519555134,0.015026031073544263
+fixed_cost_0 x fixed_cost_2,fixed_cost_0,fixed_cost_2,fixed_costs,fixed_costs,0,2,0.003922684598218561,0.010259889814898532
+demand_1 x fixed_cost_0,demand_1,fixed_cost_0,demands,fixed_costs,1,0,0.0039220963386867175,0.015020939742161126
+demand_0 x capacity_3,demand_0,capacity_3,demands,capacities,0,3,0.0033888679453591974,0.017063159211092832
+fixed_cost_0 x fixed_cost_4,fixed_cost_0,fixed_cost_4,fixed_costs,fixed_costs,0,4,0.002902713288841143,0.010677440586730973
+fixed_cost_0 x trans_cost_1_2,fixed_cost_0,trans_cost_1_2,fixed_costs,transportation_costs,0,"(1, 2)",0.0027257841003897215,0.010303236276400968
+fixed_cost_0 x fixed_cost_3,fixed_cost_0,fixed_cost_3,fixed_costs,fixed_costs,0,3,0.002723139348649522,0.010140522609094005
+fixed_cost_0 x trans_cost_4_0,fixed_cost_0,trans_cost_4_0,fixed_costs,transportation_costs,0,"(4, 0)",0.002625853309951709,0.0103145480626343
+fixed_cost_0 x trans_cost_2_0,fixed_cost_0,trans_cost_2_0,fixed_costs,transportation_costs,0,"(2, 0)",0.0026175847631611546,0.010321248274701222
+fixed_cost_0 x trans_cost_1_1,fixed_cost_0,trans_cost_1_1,fixed_costs,transportation_costs,0,"(1, 1)",0.0026175708717787465,0.010328904029969135
+fixed_cost_0 x trans_cost_3_3,fixed_cost_0,trans_cost_3_3,fixed_costs,transportation_costs,0,"(3, 3)",0.002604482190662186,0.010306982399904118
+fixed_cost_0 x trans_cost_1_0,fixed_cost_0,trans_cost_1_0,fixed_costs,transportation_costs,0,"(1, 0)",0.0025990101692619735,0.010352463427620176
+fixed_cost_0 x trans_cost_1_4,fixed_cost_0,trans_cost_1_4,fixed_costs,transportation_costs,0,"(1, 4)",0.002577799581621942,0.010318888768742585
+fixed_cost_0 x trans_cost_2_3,fixed_cost_0,trans_cost_2_3,fixed_costs,transportation_costs,0,"(2, 3)",0.002577009020359675,0.01032526252986128
+fixed_cost_0 x trans_cost_0_0,fixed_cost_0,trans_cost_0_0,fixed_costs,transportation_costs,0,"(0, 0)",0.00256700406185792,0.010333142696942499
+fixed_cost_0 x trans_cost_2_2,fixed_cost_0,trans_cost_2_2,fixed_costs,transportation_costs,0,"(2, 2)",0.0025654174779524783,0.010342039896801283
+fixed_cost_0 x trans_cost_4_1,fixed_cost_0,trans_cost_4_1,fixed_costs,transportation_costs,0,"(4, 1)",0.00255582128410473,0.010320049541653529
+fixed_cost_0 x trans_cost_3_1,fixed_cost_0,trans_cost_3_1,fixed_costs,transportation_costs,0,"(3, 1)",0.002550776243845564,0.010325833593502311
+fixed_cost_0 x trans_cost_2_1,fixed_cost_0,trans_cost_2_1,fixed_costs,transportation_costs,0,"(2, 1)",0.0025374734876300346,0.010312610763232189
+fixed_cost_0 x trans_cost_4_2,fixed_cost_0,trans_cost_4_2,fixed_costs,transportation_costs,0,"(4, 2)",0.0025121368461709713,0.010324036906005208
+fixed_cost_0 x trans_cost_0_3,fixed_cost_0,trans_cost_0_3,fixed_costs,transportation_costs,0,"(0, 3)",0.0025031247896248167,0.010300515932015765
+fixed_cost_0 x trans_cost_4_4,fixed_cost_0,trans_cost_4_4,fixed_costs,transportation_costs,0,"(4, 4)",0.0025003246927943943,0.010292484327480263
+fixed_cost_0 x trans_cost_0_4,fixed_cost_0,trans_cost_0_4,fixed_costs,transportation_costs,0,"(0, 4)",0.0024966516428925915,0.010327404042194217
+fixed_cost_0 x trans_cost_0_2,fixed_cost_0,trans_cost_0_2,fixed_costs,transportation_costs,0,"(0, 2)",0.0024923785449821965,0.010327062547333423
+fixed_cost_0 x trans_cost_3_0,fixed_cost_0,trans_cost_3_0,fixed_costs,transportation_costs,0,"(3, 0)",0.002490655990792933,0.010312657347550427
+fixed_cost_0 x trans_cost_0_1,fixed_cost_0,trans_cost_0_1,fixed_costs,transportation_costs,0,"(0, 1)",0.0024876027255708428,0.010330487080274404
+fixed_cost_0 x trans_cost_3_4,fixed_cost_0,trans_cost_3_4,fixed_costs,transportation_costs,0,"(3, 4)",0.00248006021611563,0.01033164868172499
+fixed_cost_0 x trans_cost_3_2,fixed_cost_0,trans_cost_3_2,fixed_costs,transportation_costs,0,"(3, 2)",0.0024734054844857732,0.010325871026857936
+fixed_cost_0 x trans_cost_1_3,fixed_cost_0,trans_cost_1_3,fixed_costs,transportation_costs,0,"(1, 3)",0.002470142432256415,0.010338354838313666
+fixed_cost_0 x trans_cost_4_3,fixed_cost_0,trans_cost_4_3,fixed_costs,transportation_costs,0,"(4, 3)",0.0024678177188899755,0.010297287081301853
+fixed_cost_0 x trans_cost_2_4,fixed_cost_0,trans_cost_2_4,fixed_costs,transportation_costs,0,"(2, 4)",0.0024617497082999977,0.01032975289015044
+fixed_cost_1 x fixed_cost_2,fixed_cost_1,fixed_cost_2,fixed_costs,fixed_costs,1,2,0.00224925181525798,0.003658799642080096
+fixed_cost_1 x fixed_cost_4,fixed_cost_1,fixed_cost_4,fixed_costs,fixed_costs,1,4,0.001962117185675131,0.0035936411591904914
+fixed_cost_4 x trans_cost_2_2,fixed_cost_4,trans_cost_2_2,fixed_costs,transportation_costs,4,"(2, 2)",0.001780696887241315,0.0068105635808063765
+fixed_cost_4 x trans_cost_0_3,fixed_cost_4,trans_cost_0_3,fixed_costs,transportation_costs,4,"(0, 3)",0.001761809254014931,0.006805819534162221
+fixed_cost_4 x trans_cost_2_4,fixed_cost_4,trans_cost_2_4,fixed_costs,transportation_costs,4,"(2, 4)",0.0017546190591237324,0.006793595208353697
+fixed_cost_4 x trans_cost_0_4,fixed_cost_4,trans_cost_0_4,fixed_costs,transportation_costs,4,"(0, 4)",0.001744794285100877,0.006798275275357716
+fixed_cost_4 x trans_cost_0_1,fixed_cost_4,trans_cost_0_1,fixed_costs,transportation_costs,4,"(0, 1)",0.0017434406577929347,0.006810381612068296
+fixed_cost_4 x trans_cost_4_1,fixed_cost_4,trans_cost_4_1,fixed_costs,transportation_costs,4,"(4, 1)",0.0017207238758751096,0.006807375776068754
+fixed_cost_4 x trans_cost_1_4,fixed_cost_4,trans_cost_1_4,fixed_costs,transportation_costs,4,"(1, 4)",0.0017191325183184471,0.006807293877477742
+fixed_cost_4 x trans_cost_3_1,fixed_cost_4,trans_cost_3_1,fixed_costs,transportation_costs,4,"(3, 1)",0.00171570524011059,0.006809538777247085
+fixed_cost_4 x trans_cost_1_0,fixed_cost_4,trans_cost_1_0,fixed_costs,transportation_costs,4,"(1, 0)",0.00171533274755655,0.006789149259036267
+fixed_cost_4 x trans_cost_2_1,fixed_cost_4,trans_cost_2_1,fixed_costs,transportation_costs,4,"(2, 1)",0.00171055597639633,0.006806720026786237
+fixed_cost_4 x trans_cost_4_2,fixed_cost_4,trans_cost_4_2,fixed_costs,transportation_costs,4,"(4, 2)",0.001707265103101325,0.006809861057898353
+fixed_cost_4 x trans_cost_1_2,fixed_cost_4,trans_cost_1_2,fixed_costs,transportation_costs,4,"(1, 2)",0.0016978779742831118,0.00681651357327656
+fixed_cost_4 x trans_cost_3_0,fixed_cost_4,trans_cost_3_0,fixed_costs,transportation_costs,4,"(3, 0)",0.0016958345524338292,0.006799919397863565
+fixed_cost_4 x trans_cost_3_3,fixed_cost_4,trans_cost_3_3,fixed_costs,transportation_costs,4,"(3, 3)",0.0016912812880378466,0.006814006322435409
+fixed_cost_4 x trans_cost_4_4,fixed_cost_4,trans_cost_4_4,fixed_costs,transportation_costs,4,"(4, 4)",0.0016905001939058,0.006810382170647048
+fixed_cost_4 x trans_cost_0_2,fixed_cost_4,trans_cost_0_2,fixed_costs,transportation_costs,4,"(0, 2)",0.0016862895973036739,0.006818566652842479
+fixed_cost_4 x trans_cost_2_0,fixed_cost_4,trans_cost_2_0,fixed_costs,transportation_costs,4,"(2, 0)",0.0016859615415930368,0.006809275656676987
+fixed_cost_4 x trans_cost_3_2,fixed_cost_4,trans_cost_3_2,fixed_costs,transportation_costs,4,"(3, 2)",0.0016812378027996594,0.006825318720239039
+fixed_cost_4 x trans_cost_1_3,fixed_cost_4,trans_cost_1_3,fixed_costs,transportation_costs,4,"(1, 3)",0.0016794062653469354,0.006783540335271975
+fixed_cost_4 x trans_cost_1_1,fixed_cost_4,trans_cost_1_1,fixed_costs,transportation_costs,4,"(1, 1)",0.00167431016031187,0.006808400277835766
+fixed_cost_4 x trans_cost_2_3,fixed_cost_4,trans_cost_2_3,fixed_costs,transportation_costs,4,"(2, 3)",0.0016689944281217583,0.006789489455098646
+fixed_cost_4 x trans_cost_3_4,fixed_cost_4,trans_cost_3_4,fixed_costs,transportation_costs,4,"(3, 4)",0.0016679835161848581,0.006794396624896609
+fixed_cost_4 x trans_cost_0_0,fixed_cost_4,trans_cost_0_0,fixed_costs,transportation_costs,4,"(0, 0)",0.0016648981026701592,0.006818096549456053
+fixed_cost_4 x trans_cost_4_3,fixed_cost_4,trans_cost_4_3,fixed_costs,transportation_costs,4,"(4, 3)",0.0016373999145730676,0.0067960704691965015
+fixed_cost_4 x trans_cost_4_0,fixed_cost_4,trans_cost_4_0,fixed_costs,transportation_costs,4,"(4, 0)",0.0016163452804402608,0.006841515587431229
+fixed_cost_1 x fixed_cost_3,fixed_cost_1,fixed_cost_3,fixed_costs,fixed_costs,1,3,0.0014088124753070148,0.003464083180186318
+fixed_cost_1 x trans_cost_1_0,fixed_cost_1,trans_cost_1_0,fixed_costs,transportation_costs,1,"(1, 0)",0.0011981817481201943,0.003530982928884615
+fixed_cost_1 x trans_cost_0_3,fixed_cost_1,trans_cost_0_3,fixed_costs,transportation_costs,1,"(0, 3)",0.001198012316212962,0.0035361801635362907
+fixed_cost_1 x trans_cost_1_1,fixed_cost_1,trans_cost_1_1,fixed_costs,transportation_costs,1,"(1, 1)",0.0011889823895574463,0.0035352134497309445
+fixed_cost_1 x trans_cost_2_4,fixed_cost_1,trans_cost_2_4,fixed_costs,transportation_costs,1,"(2, 4)",0.0011819077931756407,0.003540827142615448
+fixed_cost_1 x trans_cost_3_0,fixed_cost_1,trans_cost_3_0,fixed_costs,transportation_costs,1,"(3, 0)",0.0011802710789907492,0.003515160101645531
+fixed_cost_1 x trans_cost_0_0,fixed_cost_1,trans_cost_0_0,fixed_costs,transportation_costs,1,"(0, 0)",0.0011777190848418675,0.003533962607531866
+fixed_cost_1 x trans_cost_1_2,fixed_cost_1,trans_cost_1_2,fixed_costs,transportation_costs,1,"(1, 2)",0.001174871122522741,0.00353216121610112
+fixed_cost_1 x trans_cost_2_1,fixed_cost_1,trans_cost_2_1,fixed_costs,transportation_costs,1,"(2, 1)",0.0011644126372865543,0.0035352584304879676
+fixed_cost_1 x trans_cost_0_2,fixed_cost_1,trans_cost_0_2,fixed_costs,transportation_costs,1,"(0, 2)",0.0011634824740848488,0.0035316016205718987
+fixed_cost_1 x trans_cost_0_1,fixed_cost_1,trans_cost_0_1,fixed_costs,transportation_costs,1,"(0, 1)",0.001161202799214477,0.0035290340571595804
+fixed_cost_1 x trans_cost_3_1,fixed_cost_1,trans_cost_3_1,fixed_costs,transportation_costs,1,"(3, 1)",0.0011601186716460737,0.00353434905193271
+fixed_cost_1 x trans_cost_4_1,fixed_cost_1,trans_cost_4_1,fixed_costs,transportation_costs,1,"(4, 1)",0.001152998011987041,0.0035337153342852347
+fixed_cost_1 x trans_cost_1_3,fixed_cost_1,trans_cost_1_3,fixed_costs,transportation_costs,1,"(1, 3)",0.0011509065585174568,0.0035309476012476792
+fixed_cost_1 x trans_cost_4_4,fixed_cost_1,trans_cost_4_4,fixed_costs,transportation_costs,1,"(4, 4)",0.0011505215623828515,0.0035350622217017492
+fixed_cost_1 x trans_cost_3_3,fixed_cost_1,trans_cost_3_3,fixed_costs,transportation_costs,1,"(3, 3)",0.0011489570885827775,0.0035376589476405125
+fixed_cost_1 x trans_cost_4_0,fixed_cost_1,trans_cost_4_0,fixed_costs,transportation_costs,1,"(4, 0)",0.001147230371122241,0.003534064902004746
+fixed_cost_1 x trans_cost_2_0,fixed_cost_1,trans_cost_2_0,fixed_costs,transportation_costs,1,"(2, 0)",0.0011455943224960524,0.003531987284955705
+fixed_cost_1 x trans_cost_3_2,fixed_cost_1,trans_cost_3_2,fixed_costs,transportation_costs,1,"(3, 2)",0.0011443538438115984,0.003548555648935658
+fixed_cost_1 x trans_cost_1_4,fixed_cost_1,trans_cost_1_4,fixed_costs,transportation_costs,1,"(1, 4)",0.001143734684859816,0.0035353150628200207
+fixed_cost_1 x trans_cost_4_2,fixed_cost_1,trans_cost_4_2,fixed_costs,transportation_costs,1,"(4, 2)",0.0011396885412842085,0.0035348382521717754
+fixed_cost_1 x trans_cost_0_4,fixed_cost_1,trans_cost_0_4,fixed_costs,transportation_costs,1,"(0, 4)",0.0011389815733281088,0.0035374144268144896
+fixed_cost_1 x trans_cost_3_4,fixed_cost_1,trans_cost_3_4,fixed_costs,transportation_costs,1,"(3, 4)",0.0011352904401219315,0.0035358177767596437
+fixed_cost_1 x trans_cost_2_3,fixed_cost_1,trans_cost_2_3,fixed_costs,transportation_costs,1,"(2, 3)",0.0011217438148354737,0.0035343239163284452
+fixed_cost_1 x trans_cost_2_2,fixed_cost_1,trans_cost_2_2,fixed_costs,transportation_costs,1,"(2, 2)",0.0010932004326884837,0.0035352307262478595
+fixed_cost_1 x trans_cost_4_3,fixed_cost_1,trans_cost_4_3,fixed_costs,transportation_costs,1,"(4, 3)",0.0010920401321313376,0.003530647013572712
+trans_cost_0_3 x trans_cost_3_2,trans_cost_0_3,trans_cost_3_2,transportation_costs,transportation_costs,"(0, 3)","(3, 2)",0.0004272881450252395,0.000987502347495277
+trans_cost_0_3 x trans_cost_1_4,trans_cost_0_3,trans_cost_1_4,transportation_costs,transportation_costs,"(0, 3)","(1, 4)",0.0004269375885074327,0.000987095007344557
+trans_cost_0_3 x trans_cost_2_2,trans_cost_0_3,trans_cost_2_2,transportation_costs,transportation_costs,"(0, 3)","(2, 2)",0.00042630804751807674,0.0009864133652837512
+trans_cost_0_3 x trans_cost_3_1,trans_cost_0_3,trans_cost_3_1,transportation_costs,transportation_costs,"(0, 3)","(3, 1)",0.00042619681350284625,0.0009875152822102075
+trans_cost_0_3 x trans_cost_4_4,trans_cost_0_3,trans_cost_4_4,transportation_costs,transportation_costs,"(0, 3)","(4, 4)",0.0004251754846803284,0.000986017682260525
+capacity_1 x capacity_3,capacity_1,capacity_3,capacities,capacities,1,3,0.00042457376565707694,0.00563391290943967
+trans_cost_0_3 x trans_cost_4_0,trans_cost_0_3,trans_cost_4_0,transportation_costs,transportation_costs,"(0, 3)","(4, 0)",0.0004240165185948966,0.0009865901600038362
+trans_cost_0_3 x trans_cost_4_2,trans_cost_0_3,trans_cost_4_2,transportation_costs,transportation_costs,"(0, 3)","(4, 2)",0.00042398477660357764,0.0009871186777440778
+trans_cost_0_3 x trans_cost_1_2,trans_cost_0_3,trans_cost_1_2,transportation_costs,transportation_costs,"(0, 3)","(1, 2)",0.0004231695081645957,0.0009851070826831594
+trans_cost_0_3 x trans_cost_0_4,trans_cost_0_3,trans_cost_0_4,transportation_costs,transportation_costs,"(0, 3)","(0, 4)",0.00042255727403429574,0.0009874035191174816
+trans_cost_0_3 x trans_cost_4_1,trans_cost_0_3,trans_cost_4_1,transportation_costs,transportation_costs,"(0, 3)","(4, 1)",0.00042105101925535694,0.0009872137882748376
+trans_cost_0_3 x trans_cost_1_3,trans_cost_0_3,trans_cost_1_3,transportation_costs,transportation_costs,"(0, 3)","(1, 3)",0.00042049857346302354,0.000985452310851271
+trans_cost_0_3 x trans_cost_2_1,trans_cost_0_3,trans_cost_2_1,transportation_costs,transportation_costs,"(0, 3)","(2, 1)",0.000419726338207014,0.000987083976822126
+trans_cost_0_3 x trans_cost_3_4,trans_cost_0_3,trans_cost_3_4,transportation_costs,transportation_costs,"(0, 3)","(3, 4)",0.00041946230188107445,0.000986122321055181
+trans_cost_0_3 x trans_cost_3_3,trans_cost_0_3,trans_cost_3_3,transportation_costs,transportation_costs,"(0, 3)","(3, 3)",0.0004194460685744486,0.0009867764119702068
+trans_cost_0_3 x trans_cost_2_4,trans_cost_0_3,trans_cost_2_4,transportation_costs,transportation_costs,"(0, 3)","(2, 4)",0.00041889520912410515,0.0009867434346318984
+trans_cost_0_3 x trans_cost_1_0,trans_cost_0_3,trans_cost_1_0,transportation_costs,transportation_costs,"(0, 3)","(1, 0)",0.00041715702129372647,0.0009864026569828856
+trans_cost_0_3 x trans_cost_2_0,trans_cost_0_3,trans_cost_2_0,transportation_costs,transportation_costs,"(0, 3)","(2, 0)",0.0004171038317689194,0.0009872077139163786
+trans_cost_0_3 x trans_cost_3_0,trans_cost_0_3,trans_cost_3_0,transportation_costs,transportation_costs,"(0, 3)","(3, 0)",0.0004168115179872475,0.0009872832141710447
+trans_cost_0_3 x trans_cost_2_3,trans_cost_0_3,trans_cost_2_3,transportation_costs,transportation_costs,"(0, 3)","(2, 3)",0.000412467893627058,0.0009876826080538492
+trans_cost_0_3 x trans_cost_1_1,trans_cost_0_3,trans_cost_1_1,transportation_costs,transportation_costs,"(0, 3)","(1, 1)",0.0004120720426367216,0.0009875952186877742
+trans_cost_0_3 x trans_cost_4_3,trans_cost_0_3,trans_cost_4_3,transportation_costs,transportation_costs,"(0, 3)","(4, 3)",0.00040940136832105816,0.0009842960578903951
+trans_cost_3_2 x trans_cost_3_3,trans_cost_3_2,trans_cost_3_3,transportation_costs,transportation_costs,"(3, 2)","(3, 3)",0.0003313120148028791,0.0005296046368875122
+trans_cost_3_2 x trans_cost_4_3,trans_cost_3_2,trans_cost_4_3,transportation_costs,transportation_costs,"(3, 2)","(4, 3)",0.0003239651977797264,0.0005299101015026574
+trans_cost_3_2 x trans_cost_4_2,trans_cost_3_2,trans_cost_4_2,transportation_costs,transportation_costs,"(3, 2)","(4, 2)",0.0003217594428332949,0.0005301366106851929
+trans_cost_3_2 x trans_cost_4_1,trans_cost_3_2,trans_cost_4_1,transportation_costs,transportation_costs,"(3, 2)","(4, 1)",0.0003199287392992385,0.0005304680768911539
+trans_cost_3_2 x trans_cost_4_4,trans_cost_3_2,trans_cost_4_4,transportation_costs,transportation_costs,"(3, 2)","(4, 4)",0.00031908176833875875,0.0005301616991024281
+trans_cost_3_2 x trans_cost_4_0,trans_cost_3_2,trans_cost_4_0,transportation_costs,transportation_costs,"(3, 2)","(4, 0)",0.00031848901824559414,0.0005298519232046071
+trans_cost_3_2 x trans_cost_3_4,trans_cost_3_2,trans_cost_3_4,transportation_costs,transportation_costs,"(3, 2)","(3, 4)",0.00031723913743919574,0.0005309641544641248
+trans_cost_1_0 x trans_cost_1_3,trans_cost_1_0,trans_cost_1_3,transportation_costs,transportation_costs,"(1, 0)","(1, 3)",0.00022936717078776182,0.0007115321721726268
+trans_cost_1_2 x trans_cost_1_3,trans_cost_1_2,trans_cost_1_3,transportation_costs,transportation_costs,"(1, 2)","(1, 3)",0.00022645034894985892,0.0006702353608529358
+trans_cost_1_0 x trans_cost_1_2,trans_cost_1_0,trans_cost_1_2,transportation_costs,transportation_costs,"(1, 0)","(1, 2)",0.00022160237196345195,0.0007122740007549126
+trans_cost_1_2 x trans_cost_2_4,trans_cost_1_2,trans_cost_2_4,transportation_costs,transportation_costs,"(1, 2)","(2, 4)",0.00021746984732527925,0.000671991468434275
+trans_cost_1_2 x trans_cost_4_1,trans_cost_1_2,trans_cost_4_1,transportation_costs,transportation_costs,"(1, 2)","(4, 1)",0.00021537367981996653,0.0006691736515399345
+trans_cost_1_2 x trans_cost_4_4,trans_cost_1_2,trans_cost_4_4,transportation_costs,transportation_costs,"(1, 2)","(4, 4)",0.00021536779967800472,0.0006689284795812293
+trans_cost_1_0 x trans_cost_2_3,trans_cost_1_0,trans_cost_2_3,transportation_costs,transportation_costs,"(1, 0)","(2, 3)",0.00021478146403576474,0.0007133021488487754
+trans_cost_1_0 x trans_cost_3_4,trans_cost_1_0,trans_cost_3_4,transportation_costs,transportation_costs,"(1, 0)","(3, 4)",0.00021418993754169737,0.0007129001690680078
+trans_cost_1_2 x trans_cost_3_1,trans_cost_1_2,trans_cost_3_1,transportation_costs,transportation_costs,"(1, 2)","(3, 1)",0.00021408412529876555,0.000668584652128908
+trans_cost_1_0 x trans_cost_4_0,trans_cost_1_0,trans_cost_4_0,transportation_costs,transportation_costs,"(1, 0)","(4, 0)",0.00021318814474365853,0.0007104756193564559
+trans_cost_1_2 x trans_cost_2_1,trans_cost_1_2,trans_cost_2_1,transportation_costs,transportation_costs,"(1, 2)","(2, 1)",0.0002124332659137855,0.0006692069130551417
+trans_cost_1_2 x trans_cost_4_2,trans_cost_1_2,trans_cost_4_2,transportation_costs,transportation_costs,"(1, 2)","(4, 2)",0.00021241324876256271,0.000669457103935889
+trans_cost_1_2 x trans_cost_2_3,trans_cost_1_2,trans_cost_2_3,transportation_costs,transportation_costs,"(1, 2)","(2, 3)",0.00021218810654639867,0.0006668849599186841
+trans_cost_1_2 x trans_cost_4_3,trans_cost_1_2,trans_cost_4_3,transportation_costs,transportation_costs,"(1, 2)","(4, 3)",0.0002118747366311765,0.0006663411649048253
+trans_cost_1_2 x trans_cost_4_0,trans_cost_1_2,trans_cost_4_0,transportation_costs,transportation_costs,"(1, 2)","(4, 0)",0.00021166429715783558,0.0006678988862125406
+trans_cost_1_2 x trans_cost_3_2,trans_cost_1_2,trans_cost_3_2,transportation_costs,transportation_costs,"(1, 2)","(3, 2)",0.00021160345401654434,0.0006692531795180461
+trans_cost_1_0 x trans_cost_3_1,trans_cost_1_0,trans_cost_3_1,transportation_costs,transportation_costs,"(1, 0)","(3, 1)",0.00021140972524447,0.0007131147254207024
+trans_cost_1_0 x trans_cost_2_4,trans_cost_1_0,trans_cost_2_4,transportation_costs,transportation_costs,"(1, 0)","(2, 4)",0.00021119410192026427,0.000711047484491533
+trans_cost_1_0 x trans_cost_3_3,trans_cost_1_0,trans_cost_3_3,transportation_costs,transportation_costs,"(1, 0)","(3, 3)",0.00021061373062494258,0.0007109318148383723
+trans_cost_1_0 x trans_cost_2_0,trans_cost_1_0,trans_cost_2_0,transportation_costs,transportation_costs,"(1, 0)","(2, 0)",0.0002105657740814725,0.0007142769358685797
+trans_cost_1_0 x trans_cost_2_2,trans_cost_1_0,trans_cost_2_2,transportation_costs,transportation_costs,"(1, 0)","(2, 2)",0.0002104257872862386,0.0007138906576974002
+trans_cost_1_2 x trans_cost_3_4,trans_cost_1_2,trans_cost_3_4,transportation_costs,transportation_costs,"(1, 2)","(3, 4)",0.00021040031143042633,0.0006682784244913943
+trans_cost_1_2 x trans_cost_3_3,trans_cost_1_2,trans_cost_3_3,transportation_costs,transportation_costs,"(1, 2)","(3, 3)",0.00021024423460632412,0.0006703679909127212
+trans_cost_1_2 x trans_cost_3_0,trans_cost_1_2,trans_cost_3_0,transportation_costs,transportation_costs,"(1, 2)","(3, 0)",0.00021005125986140637,0.0006712854951609332
+trans_cost_1_0 x trans_cost_4_2,trans_cost_1_0,trans_cost_4_2,transportation_costs,transportation_costs,"(1, 0)","(4, 2)",0.0002091273096951089,0.0007129354505457489
+trans_cost_1_2 x trans_cost_2_0,trans_cost_1_2,trans_cost_2_0,transportation_costs,transportation_costs,"(1, 2)","(2, 0)",0.00020894811084686647,0.0006691097099837244
+trans_cost_1_2 x trans_cost_2_2,trans_cost_1_2,trans_cost_2_2,transportation_costs,transportation_costs,"(1, 2)","(2, 2)",0.0002085901814190934,0.0006698851225521988
+trans_cost_1_0 x trans_cost_4_4,trans_cost_1_0,trans_cost_4_4,transportation_costs,transportation_costs,"(1, 0)","(4, 4)",0.00020827527228109842,0.0007129498693271603
+trans_cost_1_0 x trans_cost_3_2,trans_cost_1_0,trans_cost_3_2,transportation_costs,transportation_costs,"(1, 0)","(3, 2)",0.00020824887420664717,0.0007112317890342593
+trans_cost_1_0 x trans_cost_3_0,trans_cost_1_0,trans_cost_3_0,transportation_costs,transportation_costs,"(1, 0)","(3, 0)",0.00020776951718935277,0.0007109544548822248
+trans_cost_1_0 x trans_cost_4_1,trans_cost_1_0,trans_cost_4_1,transportation_costs,transportation_costs,"(1, 0)","(4, 1)",0.00020772525036775178,0.0007134895380638902
+trans_cost_1_0 x trans_cost_1_4,trans_cost_1_0,trans_cost_1_4,transportation_costs,transportation_costs,"(1, 0)","(1, 4)",0.00020677760329802376,0.0007135668464658317
+trans_cost_1_0 x trans_cost_2_1,trans_cost_1_0,trans_cost_2_1,transportation_costs,transportation_costs,"(1, 0)","(2, 1)",0.00020574369930030618,0.0007132129657175639
+trans_cost_1_2 x trans_cost_1_4,trans_cost_1_2,trans_cost_1_4,transportation_costs,transportation_costs,"(1, 2)","(1, 4)",0.0002044487682412005,0.0006701689582471463
+trans_cost_1_0 x trans_cost_4_3,trans_cost_1_0,trans_cost_4_3,transportation_costs,transportation_costs,"(1, 0)","(4, 3)",0.0002023702968065514,0.0007125135668562399
+trans_cost_1_0 x trans_cost_1_1,trans_cost_1_0,trans_cost_1_1,transportation_costs,transportation_costs,"(1, 0)","(1, 1)",0.00020193152166889453,0.000712871892753829
+trans_cost_0_0 x trans_cost_0_3,trans_cost_0_0,trans_cost_0_3,transportation_costs,transportation_costs,"(0, 0)","(0, 3)",0.00018133854464890225,0.0007675164343905859
+trans_cost_0_0 x trans_cost_4_3,trans_cost_0_0,trans_cost_4_3,transportation_costs,transportation_costs,"(0, 0)","(4, 3)",0.00017782958121941955,0.0007681173517556735
+trans_cost_0_4 x trans_cost_1_0,trans_cost_0_4,trans_cost_1_0,transportation_costs,transportation_costs,"(0, 4)","(1, 0)",0.00017588405478142987,0.00032465337033475353
+trans_cost_0_4 x trans_cost_3_0,trans_cost_0_4,trans_cost_3_0,transportation_costs,transportation_costs,"(0, 4)","(3, 0)",0.00017580397167014851,0.00032555220044542594
+trans_cost_0_0 x trans_cost_3_3,trans_cost_0_0,trans_cost_3_3,transportation_costs,transportation_costs,"(0, 0)","(3, 3)",0.00017571813854930967,0.0007709892703769654
+trans_cost_0_0 x trans_cost_1_2,trans_cost_0_0,trans_cost_1_2,transportation_costs,transportation_costs,"(0, 0)","(1, 2)",0.00017536919819110028,0.0007667275519904271
+trans_cost_0_0 x trans_cost_1_0,trans_cost_0_0,trans_cost_1_0,transportation_costs,transportation_costs,"(0, 0)","(1, 0)",0.000175346243364355,0.0007671838849113162
+trans_cost_0_4 x trans_cost_1_2,trans_cost_0_4,trans_cost_1_2,transportation_costs,transportation_costs,"(0, 4)","(1, 2)",0.00017418844655730565,0.0003256169932768074
+trans_cost_0_0 x trans_cost_0_1,trans_cost_0_0,trans_cost_0_1,transportation_costs,transportation_costs,"(0, 0)","(0, 1)",0.0001738154332151074,0.0007682728520219854
+trans_cost_0_0 x trans_cost_4_2,trans_cost_0_0,trans_cost_4_2,transportation_costs,transportation_costs,"(0, 0)","(4, 2)",0.00017377468287738812,0.0007682956086023944
+trans_cost_0_0 x trans_cost_4_4,trans_cost_0_0,trans_cost_4_4,transportation_costs,transportation_costs,"(0, 0)","(4, 4)",0.00017377080405507744,0.0007697573735019005
+trans_cost_0_4 x trans_cost_2_3,trans_cost_0_4,trans_cost_2_3,transportation_costs,transportation_costs,"(0, 4)","(2, 3)",0.00017376593240184683,0.00032619303543603346
+trans_cost_0_0 x trans_cost_0_2,trans_cost_0_0,trans_cost_0_2,transportation_costs,transportation_costs,"(0, 0)","(0, 2)",0.00017375083338356845,0.0007697186086034518
+trans_cost_0_0 x trans_cost_2_3,trans_cost_0_0,trans_cost_2_3,transportation_costs,transportation_costs,"(0, 0)","(2, 3)",0.00017307939856854357,0.0007689446215371901
+trans_cost_0_0 x trans_cost_3_1,trans_cost_0_0,trans_cost_3_1,transportation_costs,transportation_costs,"(0, 0)","(3, 1)",0.00017299063638366832,0.0007673127405746114
+trans_cost_0_0 x trans_cost_3_4,trans_cost_0_0,trans_cost_3_4,transportation_costs,transportation_costs,"(0, 0)","(3, 4)",0.00017267817483708638,0.0007691555968169684
+trans_cost_0_0 x trans_cost_0_4,trans_cost_0_0,trans_cost_0_4,transportation_costs,transportation_costs,"(0, 0)","(0, 4)",0.00017238483514526155,0.0007684303339068802
+trans_cost_0_4 x trans_cost_4_0,trans_cost_0_4,trans_cost_4_0,transportation_costs,transportation_costs,"(0, 4)","(4, 0)",0.00017234044218582826,0.00032582287074477476
+trans_cost_0_4 x trans_cost_3_2,trans_cost_0_4,trans_cost_3_2,transportation_costs,transportation_costs,"(0, 4)","(3, 2)",0.0001722439790866746,0.00032546408986292583
+trans_cost_0_0 x trans_cost_3_0,trans_cost_0_0,trans_cost_3_0,transportation_costs,transportation_costs,"(0, 0)","(3, 0)",0.00017170380941644375,0.000768162907406773
+trans_cost_0_4 x trans_cost_3_3,trans_cost_0_4,trans_cost_3_3,transportation_costs,transportation_costs,"(0, 4)","(3, 3)",0.00017147867028400931,0.00032591162283296583
+trans_cost_0_0 x trans_cost_4_0,trans_cost_0_0,trans_cost_4_0,transportation_costs,transportation_costs,"(0, 0)","(4, 0)",0.00017143234665312098,0.0007708243703103755
+trans_cost_0_4 x trans_cost_4_1,trans_cost_0_4,trans_cost_4_1,transportation_costs,transportation_costs,"(0, 4)","(4, 1)",0.00017114553224913695,0.000325431658193115
+trans_cost_0_4 x trans_cost_1_3,trans_cost_0_4,trans_cost_1_3,transportation_costs,transportation_costs,"(0, 4)","(1, 3)",0.00017108201068482003,0.00032662655234274755
+trans_cost_0_0 x trans_cost_2_1,trans_cost_0_0,trans_cost_2_1,transportation_costs,transportation_costs,"(0, 0)","(2, 1)",0.00017081469509638424,0.0007686544736642524
+trans_cost_0_0 x trans_cost_3_2,trans_cost_0_0,trans_cost_3_2,transportation_costs,transportation_costs,"(0, 0)","(3, 2)",0.00017001113848365932,0.0007684346203827985
+trans_cost_0_4 x trans_cost_1_1,trans_cost_0_4,trans_cost_1_1,transportation_costs,transportation_costs,"(0, 4)","(1, 1)",0.00016978819642232899,0.00032548252456313407
+trans_cost_0_0 x trans_cost_2_0,trans_cost_0_0,trans_cost_2_0,transportation_costs,transportation_costs,"(0, 0)","(2, 0)",0.00016966400812437816,0.0007683275370320394
+trans_cost_0_0 x trans_cost_1_4,trans_cost_0_0,trans_cost_1_4,transportation_costs,transportation_costs,"(0, 0)","(1, 4)",0.00016961170064034868,0.0007699870037029238
+trans_cost_0_4 x trans_cost_1_4,trans_cost_0_4,trans_cost_1_4,transportation_costs,transportation_costs,"(0, 4)","(1, 4)",0.00016957270083893446,0.00032565043830315373
+trans_cost_0_4 x trans_cost_4_2,trans_cost_0_4,trans_cost_4_2,transportation_costs,transportation_costs,"(0, 4)","(4, 2)",0.00016868959121349716,0.0003257858027078756
+trans_cost_0_4 x trans_cost_2_2,trans_cost_0_4,trans_cost_2_2,transportation_costs,transportation_costs,"(0, 4)","(2, 2)",0.00016859871716217917,0.0003255139623678685
+trans_cost_0_4 x trans_cost_2_4,trans_cost_0_4,trans_cost_2_4,transportation_costs,transportation_costs,"(0, 4)","(2, 4)",0.0001683838447356274,0.00032627205657185057
+trans_cost_0_4 x trans_cost_3_1,trans_cost_0_4,trans_cost_3_1,transportation_costs,transportation_costs,"(0, 4)","(3, 1)",0.00016828393692511632,0.00032581965670663523
+trans_cost_0_4 x trans_cost_2_0,trans_cost_0_4,trans_cost_2_0,transportation_costs,transportation_costs,"(0, 4)","(2, 0)",0.0001681535835441554,0.00032598727288975536
+trans_cost_0_4 x trans_cost_3_4,trans_cost_0_4,trans_cost_3_4,transportation_costs,transportation_costs,"(0, 4)","(3, 4)",0.00016808865759655354,0.0003262177970798877
+trans_cost_0_4 x trans_cost_2_1,trans_cost_0_4,trans_cost_2_1,transportation_costs,transportation_costs,"(0, 4)","(2, 1)",0.00016776404031489307,0.00032564593934408353
+trans_cost_0_4 x trans_cost_4_4,trans_cost_0_4,trans_cost_4_4,transportation_costs,transportation_costs,"(0, 4)","(4, 4)",0.00016759184003947461,0.00032606553842902045
+trans_cost_0_4 x trans_cost_4_3,trans_cost_0_4,trans_cost_4_3,transportation_costs,transportation_costs,"(0, 4)","(4, 3)",0.00016626723586919847,0.0003257017062056677
+trans_cost_0_0 x trans_cost_1_1,trans_cost_0_0,trans_cost_1_1,transportation_costs,transportation_costs,"(0, 0)","(1, 1)",0.0001648360074242886,0.0007680988704441851
+trans_cost_0_0 x trans_cost_4_1,trans_cost_0_0,trans_cost_4_1,transportation_costs,transportation_costs,"(0, 0)","(4, 1)",0.000163592077888595,0.0007683593739751122
+trans_cost_0_0 x trans_cost_2_4,trans_cost_0_0,trans_cost_2_4,transportation_costs,transportation_costs,"(0, 0)","(2, 4)",0.0001601618559394822,0.0007671093723038598
+trans_cost_0_0 x trans_cost_1_3,trans_cost_0_0,trans_cost_1_3,transportation_costs,transportation_costs,"(0, 0)","(1, 3)",0.00015697867828169784,0.0007701757399751658
+trans_cost_0_0 x trans_cost_2_2,trans_cost_0_0,trans_cost_2_2,transportation_costs,transportation_costs,"(0, 0)","(2, 2)",0.0001544334540127461,0.0007699387216920145
+capacity_4 x trans_cost_2_3,capacity_4,trans_cost_2_3,capacities,transportation_costs,4,"(2, 3)",0.0001477851842794962,0.0014349945976776983
+trans_cost_4_1 x trans_cost_4_3,trans_cost_4_1,trans_cost_4_3,transportation_costs,transportation_costs,"(4, 1)","(4, 3)",0.00013816144543394394,0.0003472429858767748
+trans_cost_4_1 x trans_cost_4_2,trans_cost_4_1,trans_cost_4_2,transportation_costs,transportation_costs,"(4, 1)","(4, 2)",0.00013704069327324326,0.00034670503559232466
+trans_cost_4_1 x trans_cost_4_4,trans_cost_4_1,trans_cost_4_4,transportation_costs,transportation_costs,"(4, 1)","(4, 4)",0.00013538652123444266,0.00034663126000673047
+capacity_4 x trans_cost_4_3,capacity_4,trans_cost_4_3,capacities,transportation_costs,4,"(4, 3)",0.00012327856503105845,0.001428255709157021
+capacity_4 x trans_cost_1_0,capacity_4,trans_cost_1_0,capacities,transportation_costs,4,"(1, 0)",0.00012198660893346675,0.0014284035284611314
+capacity_4 x trans_cost_3_4,capacity_4,trans_cost_3_4,capacities,transportation_costs,4,"(3, 4)",0.00012169439818093521,0.0014296043359281363
+capacity_4 x trans_cost_4_2,capacity_4,trans_cost_4_2,capacities,transportation_costs,4,"(4, 2)",0.00012008419818501293,0.0014308446044004222
+capacity_4 x trans_cost_1_4,capacity_4,trans_cost_1_4,capacities,transportation_costs,4,"(1, 4)",0.00011858743153104253,0.0014304172453476248
+capacity_4 x trans_cost_0_4,capacity_4,trans_cost_0_4,capacities,transportation_costs,4,"(0, 4)",0.00011851843548602814,0.0014305417150199346
+capacity_4 x trans_cost_2_0,capacity_4,trans_cost_2_0,capacities,transportation_costs,4,"(2, 0)",0.00011842369563128196,0.0014295862877599225
+capacity_4 x trans_cost_4_1,capacity_4,trans_cost_4_1,capacities,transportation_costs,4,"(4, 1)",0.0001183138240476982,0.0014303364095568788
+capacity_4 x trans_cost_0_2,capacity_4,trans_cost_0_2,capacities,transportation_costs,4,"(0, 2)",0.0001179724853709178,0.0014304370316259977
+capacity_4 x trans_cost_2_1,capacity_4,trans_cost_2_1,capacities,transportation_costs,4,"(2, 1)",0.00011797001877736125,0.0014304364503862016
+capacity_4 x trans_cost_0_1,capacity_4,trans_cost_0_1,capacities,transportation_costs,4,"(0, 1)",0.00011794371664916329,0.001430441030813664
+capacity_4 x trans_cost_3_1,capacity_4,trans_cost_3_1,capacities,transportation_costs,4,"(3, 1)",0.0001179360769736759,0.0014304432496666543
+capacity_4 x trans_cost_3_0,capacity_4,trans_cost_3_0,capacities,transportation_costs,4,"(3, 0)",0.00011687046826206763,0.001428375757542567
+capacity_4 x trans_cost_1_1,capacity_4,trans_cost_1_1,capacities,transportation_costs,4,"(1, 1)",0.00011663234679089643,0.0014307931620010468
+capacity_4 x trans_cost_1_3,capacity_4,trans_cost_1_3,capacities,transportation_costs,4,"(1, 3)",0.00011637690418823227,0.0014432584494857988
+capacity_4 x trans_cost_1_2,capacity_4,trans_cost_1_2,capacities,transportation_costs,4,"(1, 2)",0.00011586252702308415,0.0014300164730685107
+capacity_4 x trans_cost_4_4,capacity_4,trans_cost_4_4,capacities,transportation_costs,4,"(4, 4)",0.00011581025297326876,0.0014298777884880058
+capacity_4 x trans_cost_4_0,capacity_4,trans_cost_4_0,capacities,transportation_costs,4,"(4, 0)",0.00011578866211417466,0.0014281370951955362
+capacity_4 x trans_cost_3_2,capacity_4,trans_cost_3_2,capacities,transportation_costs,4,"(3, 2)",0.00011537204622191359,0.0014321434404305296
+capacity_4 x trans_cost_0_0,capacity_4,trans_cost_0_0,capacities,transportation_costs,4,"(0, 0)",0.00011440532675438973,0.001429960750345623
+capacity_4 x trans_cost_3_3,capacity_4,trans_cost_3_3,capacities,transportation_costs,4,"(3, 3)",0.00011335104056621839,0.0014198948029872653
+capacity_4 x trans_cost_0_3,capacity_4,trans_cost_0_3,capacities,transportation_costs,4,"(0, 3)",0.00011254354053860416,0.0014214197928014436
+capacity_4 x fixed_cost_1,capacity_4,fixed_cost_1,capacities,fixed_costs,4,1,0.00011176210256358832,0.0014319967588281607
+trans_cost_2_1 x trans_cost_4_3,trans_cost_2_1,trans_cost_4_3,transportation_costs,transportation_costs,"(2, 1)","(4, 3)",0.00011028440125527048,0.0001682110862458701
+trans_cost_2_1 x trans_cost_2_2,trans_cost_2_1,trans_cost_2_2,transportation_costs,transportation_costs,"(2, 1)","(2, 2)",0.00010867852947021121,0.00016816229420843178
+trans_cost_2_1 x trans_cost_3_1,trans_cost_2_1,trans_cost_3_1,transportation_costs,transportation_costs,"(2, 1)","(3, 1)",0.00010866247844006213,0.00016805625631239834
+capacity_4 x trans_cost_2_2,capacity_4,trans_cost_2_2,capacities,transportation_costs,4,"(2, 2)",0.00010841877280787639,0.0014313534830896052
+trans_cost_2_1 x trans_cost_3_4,trans_cost_2_1,trans_cost_3_4,transportation_costs,transportation_costs,"(2, 1)","(3, 4)",0.000108125541267605,0.00016758769596147974
+trans_cost_2_1 x trans_cost_3_3,trans_cost_2_1,trans_cost_3_3,transportation_costs,transportation_costs,"(2, 1)","(3, 3)",0.00010791974947254202,0.00016766378566165455
+trans_cost_2_1 x trans_cost_4_1,trans_cost_2_1,trans_cost_4_1,transportation_costs,transportation_costs,"(2, 1)","(4, 1)",0.00010782811895805746,0.00016819148173768765
+trans_cost_2_1 x trans_cost_4_0,trans_cost_2_1,trans_cost_4_0,transportation_costs,transportation_costs,"(2, 1)","(4, 0)",0.00010762207338284947,0.0001685610459588037
+trans_cost_2_1 x trans_cost_3_2,trans_cost_2_1,trans_cost_3_2,transportation_costs,transportation_costs,"(2, 1)","(3, 2)",0.00010756679742047063,0.0001684242906366824
+trans_cost_2_1 x trans_cost_4_2,trans_cost_2_1,trans_cost_4_2,transportation_costs,transportation_costs,"(2, 1)","(4, 2)",0.00010702002403626987,0.0001680006510556799
+trans_cost_2_1 x trans_cost_4_4,trans_cost_2_1,trans_cost_4_4,transportation_costs,transportation_costs,"(2, 1)","(4, 4)",0.00010602184193157923,0.00016841419043410312
+trans_cost_2_1 x trans_cost_3_0,trans_cost_2_1,trans_cost_3_0,transportation_costs,transportation_costs,"(2, 1)","(3, 0)",0.00010522091122496808,0.0001679147994136256
+trans_cost_2_1 x trans_cost_2_4,trans_cost_2_1,trans_cost_2_4,transportation_costs,transportation_costs,"(2, 1)","(2, 4)",0.0001044446411657863,0.0001678528417490443
+trans_cost_2_1 x trans_cost_2_3,trans_cost_2_1,trans_cost_2_3,transportation_costs,transportation_costs,"(2, 1)","(2, 3)",0.00010397674818714986,0.00016864545773142076
+capacity_4 x trans_cost_2_4,capacity_4,trans_cost_2_4,capacities,transportation_costs,4,"(2, 4)",0.00010175293421328072,0.0014323463113216207
+trans_cost_4_2 x trans_cost_4_3,trans_cost_4_2,trans_cost_4_3,transportation_costs,transportation_costs,"(4, 2)","(4, 3)",8.839642619534093e-05,0.00024779124291072514
+trans_cost_4_2 x trans_cost_4_4,trans_cost_4_2,trans_cost_4_4,transportation_costs,transportation_costs,"(4, 2)","(4, 4)",8.67407259952104e-05,0.0002483574962710974
+trans_cost_0_1 x trans_cost_2_2,trans_cost_0_1,trans_cost_2_2,transportation_costs,transportation_costs,"(0, 1)","(2, 2)",4.4377555944203595e-05,0.00034280642039349955
+trans_cost_0_1 x trans_cost_4_3,trans_cost_0_1,trans_cost_4_3,transportation_costs,transportation_costs,"(0, 1)","(4, 3)",3.9774712235390365e-05,0.0003434792799350069
+trans_cost_0_1 x trans_cost_3_2,trans_cost_0_1,trans_cost_3_2,transportation_costs,transportation_costs,"(0, 1)","(3, 2)",3.92249471292232e-05,0.00034266501803914307
+trans_cost_0_1 x trans_cost_3_3,trans_cost_0_1,trans_cost_3_3,transportation_costs,transportation_costs,"(0, 1)","(3, 3)",3.9194516963587137e-05,0.00034342977237611995
+trans_cost_0_1 x trans_cost_4_1,trans_cost_0_1,trans_cost_4_1,transportation_costs,transportation_costs,"(0, 1)","(4, 1)",3.83127595123264e-05,0.00034285310083205923
+trans_cost_0_1 x trans_cost_4_0,trans_cost_0_1,trans_cost_4_0,transportation_costs,transportation_costs,"(0, 1)","(4, 0)",3.806052222831883e-05,0.0003439410380094103
+trans_cost_0_1 x trans_cost_0_3,trans_cost_0_1,trans_cost_0_3,transportation_costs,transportation_costs,"(0, 1)","(0, 3)",3.769882708205347e-05,0.0003430236346593379
+trans_cost_0_1 x trans_cost_4_2,trans_cost_0_1,trans_cost_4_2,transportation_costs,transportation_costs,"(0, 1)","(4, 2)",3.716826211708577e-05,0.0003430785518732059
+trans_cost_0_1 x trans_cost_0_2,trans_cost_0_1,trans_cost_0_2,transportation_costs,transportation_costs,"(0, 1)","(0, 2)",3.677096897342334e-05,0.0003423844203810811
+trans_cost_0_1 x trans_cost_0_4,trans_cost_0_1,trans_cost_0_4,transportation_costs,transportation_costs,"(0, 1)","(0, 4)",3.67665089123666e-05,0.00034251263424934445
+trans_cost_0_1 x trans_cost_3_4,trans_cost_0_1,trans_cost_3_4,transportation_costs,transportation_costs,"(0, 1)","(3, 4)",3.661135344438425e-05,0.0003433233429656891
+trans_cost_0_1 x trans_cost_4_4,trans_cost_0_1,trans_cost_4_4,transportation_costs,transportation_costs,"(0, 1)","(4, 4)",3.629959994795674e-05,0.0003433088334661226
+trans_cost_0_1 x trans_cost_1_1,trans_cost_0_1,trans_cost_1_1,transportation_costs,transportation_costs,"(0, 1)","(1, 1)",3.625524471297394e-05,0.000342506594366843
+trans_cost_0_1 x trans_cost_2_1,trans_cost_0_1,trans_cost_2_1,transportation_costs,transportation_costs,"(0, 1)","(2, 1)",3.615387756077971e-05,0.00034273827162379684
+trans_cost_0_1 x trans_cost_1_2,trans_cost_0_1,trans_cost_1_2,transportation_costs,transportation_costs,"(0, 1)","(1, 2)",3.58876435657951e-05,0.0003427050179958657
+trans_cost_0_1 x trans_cost_2_0,trans_cost_0_1,trans_cost_2_0,transportation_costs,transportation_costs,"(0, 1)","(2, 0)",3.587640671204838e-05,0.0003432120771512916
+trans_cost_0_1 x trans_cost_1_4,trans_cost_0_1,trans_cost_1_4,transportation_costs,transportation_costs,"(0, 1)","(1, 4)",3.576331424270334e-05,0.00034338799427857035
+trans_cost_0_1 x trans_cost_3_1,trans_cost_0_1,trans_cost_3_1,transportation_costs,transportation_costs,"(0, 1)","(3, 1)",3.519398004863758e-05,0.00034277818793180745
+trans_cost_0_1 x trans_cost_2_4,trans_cost_0_1,trans_cost_2_4,transportation_costs,transportation_costs,"(0, 1)","(2, 4)",3.5069209814492046e-05,0.00034285985099463624
+trans_cost_0_1 x trans_cost_1_3,trans_cost_0_1,trans_cost_1_3,transportation_costs,transportation_costs,"(0, 1)","(1, 3)",3.443240560824701e-05,0.000342361749690386
+trans_cost_0_1 x trans_cost_3_0,trans_cost_0_1,trans_cost_3_0,transportation_costs,transportation_costs,"(0, 1)","(3, 0)",3.357844546543347e-05,0.0003431952409349624
+trans_cost_0_1 x trans_cost_1_0,trans_cost_0_1,trans_cost_1_0,transportation_costs,transportation_costs,"(0, 1)","(1, 0)",3.31836077694539e-05,0.0003425537549304053
+trans_cost_0_1 x trans_cost_2_3,trans_cost_0_1,trans_cost_2_3,transportation_costs,transportation_costs,"(0, 1)","(2, 3)",3.2380998539391294e-05,0.00034306934146227186
+capacity_2 x capacity_3,capacity_2,capacity_3,capacities,capacities,2,3,3.200054091884175e-05,0.00048275570680794705
+trans_cost_1_3 x trans_cost_4_3,trans_cost_1_3,trans_cost_4_3,transportation_costs,transportation_costs,"(1, 3)","(4, 3)",2.819011992871793e-05,0.0007117139269480212
+trans_cost_1_3 x trans_cost_4_0,trans_cost_1_3,trans_cost_4_0,transportation_costs,transportation_costs,"(1, 3)","(4, 0)",2.3403749919700685e-05,0.0007140668349358424
+trans_cost_1_3 x trans_cost_2_4,trans_cost_1_3,trans_cost_2_4,transportation_costs,transportation_costs,"(1, 3)","(2, 4)",1.9506097665034777e-05,0.0007141956479299297
+trans_cost_1_3 x trans_cost_3_2,trans_cost_1_3,trans_cost_3_2,transportation_costs,transportation_costs,"(1, 3)","(3, 2)",1.8411363005858307e-05,0.0007124075398981658
+trans_cost_1_3 x trans_cost_3_0,trans_cost_1_3,trans_cost_3_0,transportation_costs,transportation_costs,"(1, 3)","(3, 0)",1.7959454032857882e-05,0.0007123979946374289
+trans_cost_1_3 x trans_cost_1_4,trans_cost_1_3,trans_cost_1_4,transportation_costs,transportation_costs,"(1, 3)","(1, 4)",1.7899454505513716e-05,0.0007133024563225612
+trans_cost_1_3 x trans_cost_4_4,trans_cost_1_3,trans_cost_4_4,transportation_costs,transportation_costs,"(1, 3)","(4, 4)",1.7040843377602496e-05,0.0007131161991804872
+trans_cost_1_3 x trans_cost_3_1,trans_cost_1_3,trans_cost_3_1,transportation_costs,transportation_costs,"(1, 3)","(3, 1)",1.610776674219598e-05,0.0007131112173656438
+trans_cost_1_3 x trans_cost_3_4,trans_cost_1_3,trans_cost_3_4,transportation_costs,transportation_costs,"(1, 3)","(3, 4)",1.5904435883359262e-05,0.0007140411563480432
+trans_cost_1_3 x trans_cost_2_1,trans_cost_1_3,trans_cost_2_1,transportation_costs,transportation_costs,"(1, 3)","(2, 1)",1.4416682640790761e-05,0.000713339040577824
+trans_cost_2_2 x trans_cost_4_1,trans_cost_2_2,trans_cost_4_1,transportation_costs,transportation_costs,"(2, 2)","(4, 1)",1.3570306903280398e-05,0.0005234677100481791
+trans_cost_1_3 x trans_cost_4_1,trans_cost_1_3,trans_cost_4_1,transportation_costs,transportation_costs,"(1, 3)","(4, 1)",1.2957813176942007e-05,0.0007130620345094634
+trans_cost_1_3 x trans_cost_2_3,trans_cost_1_3,trans_cost_2_3,transportation_costs,transportation_costs,"(1, 3)","(2, 3)",1.2409903577483163e-05,0.0007158159433289153
+trans_cost_1_3 x trans_cost_2_0,trans_cost_1_3,trans_cost_2_0,transportation_costs,transportation_costs,"(1, 3)","(2, 0)",1.2075000906315791e-05,0.00071129091101112
+trans_cost_2_2 x trans_cost_2_3,trans_cost_2_2,trans_cost_2_3,transportation_costs,transportation_costs,"(2, 2)","(2, 3)",1.1712537883767541e-05,0.0005225924008144122
+trans_cost_1_3 x trans_cost_2_2,trans_cost_1_3,trans_cost_2_2,transportation_costs,transportation_costs,"(1, 3)","(2, 2)",1.1704965833066653e-05,0.0007105083365366436
+trans_cost_2_2 x trans_cost_4_2,trans_cost_2_2,trans_cost_4_2,transportation_costs,transportation_costs,"(2, 2)","(4, 2)",1.1466348566890458e-05,0.0005238034178172339
+trans_cost_2_2 x trans_cost_4_0,trans_cost_2_2,trans_cost_4_0,transportation_costs,transportation_costs,"(2, 2)","(4, 0)",1.1286398327244886e-05,0.0005232885153750824
+trans_cost_2_2 x trans_cost_3_4,trans_cost_2_2,trans_cost_3_4,transportation_costs,transportation_costs,"(2, 2)","(3, 4)",1.0745158683444497e-05,0.0005227252987552037
+trans_cost_1_3 x trans_cost_3_3,trans_cost_1_3,trans_cost_3_3,transportation_costs,transportation_costs,"(1, 3)","(3, 3)",1.0601883305213914e-05,0.0007128955012599465
+trans_cost_1_3 x trans_cost_4_2,trans_cost_1_3,trans_cost_4_2,transportation_costs,transportation_costs,"(1, 3)","(4, 2)",1.0142189105975086e-05,0.0007125920857993351
+trans_cost_2_2 x trans_cost_3_0,trans_cost_2_2,trans_cost_3_0,transportation_costs,transportation_costs,"(2, 2)","(3, 0)",9.66382185698403e-06,0.0005224769772750728
+trans_cost_2_2 x trans_cost_4_4,trans_cost_2_2,trans_cost_4_4,transportation_costs,transportation_costs,"(2, 2)","(4, 4)",9.621783552626423e-06,0.0005230289109758624
+trans_cost_2_2 x trans_cost_2_4,trans_cost_2_2,trans_cost_2_4,transportation_costs,transportation_costs,"(2, 2)","(2, 4)",8.924367857295133e-06,0.0005215684970435056
+trans_cost_2_2 x trans_cost_3_3,trans_cost_2_2,trans_cost_3_3,transportation_costs,transportation_costs,"(2, 2)","(3, 3)",8.250674122727296e-06,0.0005241579967545777
+trans_cost_2_2 x trans_cost_3_1,trans_cost_2_2,trans_cost_3_1,transportation_costs,transportation_costs,"(2, 2)","(3, 1)",7.950009579705183e-06,0.0005228477275772756
+trans_cost_3_0 x trans_cost_3_3,trans_cost_3_0,trans_cost_3_3,transportation_costs,transportation_costs,"(3, 0)","(3, 3)",7.144731771968323e-06,0.0005833705677116024
+trans_cost_3_0 x trans_cost_3_2,trans_cost_3_0,trans_cost_3_2,transportation_costs,transportation_costs,"(3, 0)","(3, 2)",5.11832928061051e-06,0.0005794782738275675
+trans_cost_2_2 x trans_cost_4_3,trans_cost_2_2,trans_cost_4_3,transportation_costs,transportation_costs,"(2, 2)","(4, 3)",4.8055822212616866e-06,0.000522220664486722
+trans_cost_3_0 x trans_cost_3_4,trans_cost_3_0,trans_cost_3_4,transportation_costs,transportation_costs,"(3, 0)","(3, 4)",4.525246747555441e-06,0.000579849918646673
+capacity_4 x fixed_cost_0,capacity_4,fixed_cost_0,capacities,fixed_costs,4,0,2.4347133062846416e-06,0.001533876888828381
+trans_cost_3_0 x trans_cost_4_1,trans_cost_3_0,trans_cost_4_1,transportation_costs,transportation_costs,"(3, 0)","(4, 1)",2.320747405970994e-06,0.0005813955004514473
+trans_cost_3_0 x trans_cost_4_0,trans_cost_3_0,trans_cost_4_0,transportation_costs,transportation_costs,"(3, 0)","(4, 0)",1.4763179554438586e-06,0.0005798005722169912
+trans_cost_3_0 x trans_cost_4_4,trans_cost_3_0,trans_cost_4_4,transportation_costs,transportation_costs,"(3, 0)","(4, 4)",1.0858650603193915e-07,0.0005797592588806653
+trans_cost_3_0 x trans_cost_3_1,trans_cost_3_0,trans_cost_3_1,transportation_costs,transportation_costs,"(3, 0)","(3, 1)",-1.7356157526521234e-07,0.0005798376667946256
+trans_cost_3_0 x trans_cost_4_2,trans_cost_3_0,trans_cost_4_2,transportation_costs,transportation_costs,"(3, 0)","(4, 2)",-4.082900372906866e-07,0.0005803002385541443
+trans_cost_3_0 x trans_cost_4_3,trans_cost_3_0,trans_cost_4_3,transportation_costs,transportation_costs,"(3, 0)","(4, 3)",-1.042868528844745e-06,0.0005795143218520735
+trans_cost_2_2 x trans_cost_3_2,trans_cost_2_2,trans_cost_3_2,transportation_costs,transportation_costs,"(2, 2)","(3, 2)",-8.152953541580533e-06,0.0005229288861276349
+trans_cost_3_3 x trans_cost_4_0,trans_cost_3_3,trans_cost_4_0,transportation_costs,transportation_costs,"(3, 3)","(4, 0)",-2.4725680031801613e-05,0.0007463639536750537
+trans_cost_3_3 x trans_cost_4_4,trans_cost_3_3,trans_cost_4_4,transportation_costs,transportation_costs,"(3, 3)","(4, 4)",-2.6104640002392655e-05,0.0007491746300032246
+trans_cost_3_3 x trans_cost_3_4,trans_cost_3_3,trans_cost_3_4,transportation_costs,transportation_costs,"(3, 3)","(3, 4)",-2.76343509563476e-05,0.0007495037596753102
+trans_cost_3_3 x trans_cost_4_3,trans_cost_3_3,trans_cost_4_3,transportation_costs,transportation_costs,"(3, 3)","(4, 3)",-2.925380060319249e-05,0.0007499703577940328
+trans_cost_3_3 x trans_cost_4_1,trans_cost_3_3,trans_cost_4_1,transportation_costs,transportation_costs,"(3, 3)","(4, 1)",-3.0000440978871905e-05,0.0007499300629710518
+trans_cost_3_3 x trans_cost_4_2,trans_cost_3_3,trans_cost_4_2,transportation_costs,transportation_costs,"(3, 3)","(4, 2)",-3.146801406861329e-05,0.0007492685557454231
+capacity_2 x fixed_cost_0,capacity_2,fixed_cost_0,capacities,fixed_costs,2,0,-3.691866070362759e-05,0.0004142119773135588
+trans_cost_1_4 x trans_cost_3_0,trans_cost_1_4,trans_cost_3_0,transportation_costs,transportation_costs,"(1, 4)","(3, 0)",-5.348923668151838e-05,0.0003174215226662662
+trans_cost_1_4 x trans_cost_2_0,trans_cost_1_4,trans_cost_2_0,transportation_costs,transportation_costs,"(1, 4)","(2, 0)",-5.53956850439321e-05,0.00031848128703447335
+trans_cost_1_4 x trans_cost_3_3,trans_cost_1_4,trans_cost_3_3,transportation_costs,transportation_costs,"(1, 4)","(3, 3)",-5.631728037122015e-05,0.0003177217224348211
+trans_cost_1_4 x trans_cost_2_3,trans_cost_1_4,trans_cost_2_3,transportation_costs,transportation_costs,"(1, 4)","(2, 3)",-5.719165508702293e-05,0.00031672001981367
+trans_cost_1_4 x trans_cost_4_3,trans_cost_1_4,trans_cost_4_3,transportation_costs,transportation_costs,"(1, 4)","(4, 3)",-5.728956897976437e-05,0.00031770980944765295
+trans_cost_1_4 x trans_cost_4_2,trans_cost_1_4,trans_cost_4_2,transportation_costs,transportation_costs,"(1, 4)","(4, 2)",-5.738889386953927e-05,0.0003175179322083157
+trans_cost_1_4 x trans_cost_2_1,trans_cost_1_4,trans_cost_2_1,transportation_costs,transportation_costs,"(1, 4)","(2, 1)",-5.783554240976981e-05,0.00031773005380490683
+trans_cost_1_4 x trans_cost_4_1,trans_cost_1_4,trans_cost_4_1,transportation_costs,transportation_costs,"(1, 4)","(4, 1)",-5.788428437302417e-05,0.0003174219413221731
+trans_cost_1_4 x trans_cost_3_2,trans_cost_1_4,trans_cost_3_2,transportation_costs,transportation_costs,"(1, 4)","(3, 2)",-5.828321509373361e-05,0.0003175746143663782
+trans_cost_1_4 x trans_cost_2_2,trans_cost_1_4,trans_cost_2_2,transportation_costs,transportation_costs,"(1, 4)","(2, 2)",-5.8386931870082245e-05,0.0003189818454937731
+trans_cost_1_4 x trans_cost_3_1,trans_cost_1_4,trans_cost_3_1,transportation_costs,transportation_costs,"(1, 4)","(3, 1)",-5.840965324607983e-05,0.00031744978303891363
+trans_cost_1_4 x trans_cost_4_4,trans_cost_1_4,trans_cost_4_4,transportation_costs,transportation_costs,"(1, 4)","(4, 4)",-5.932967381555873e-05,0.00031763433870932883
+trans_cost_1_4 x trans_cost_3_4,trans_cost_1_4,trans_cost_3_4,transportation_costs,transportation_costs,"(1, 4)","(3, 4)",-6.038370892528751e-05,0.0003176761014524871
+trans_cost_1_4 x trans_cost_2_4,trans_cost_1_4,trans_cost_2_4,transportation_costs,transportation_costs,"(1, 4)","(2, 4)",-6.228313657327854e-05,0.00031790410960896664
+trans_cost_1_4 x trans_cost_4_0,trans_cost_1_4,trans_cost_4_0,transportation_costs,transportation_costs,"(1, 4)","(4, 0)",-6.252152526957106e-05,0.00031835657843028636
+trans_cost_2_0 x trans_cost_2_2,trans_cost_2_0,trans_cost_2_2,transportation_costs,transportation_costs,"(2, 0)","(2, 2)",-6.687280550207897e-05,0.00047707519339988956
+trans_cost_2_0 x trans_cost_2_4,trans_cost_2_0,trans_cost_2_4,transportation_costs,transportation_costs,"(2, 0)","(2, 4)",-7.016973586698521e-05,0.00047581223524929974
+trans_cost_2_0 x trans_cost_4_2,trans_cost_2_0,trans_cost_4_2,transportation_costs,transportation_costs,"(2, 0)","(4, 2)",-7.083381536765957e-05,0.0004748874390387009
+trans_cost_2_0 x trans_cost_2_1,trans_cost_2_0,trans_cost_2_1,transportation_costs,transportation_costs,"(2, 0)","(2, 1)",-7.124006219749374e-05,0.0004753413593885214
+trans_cost_2_0 x trans_cost_3_2,trans_cost_2_0,trans_cost_3_2,transportation_costs,transportation_costs,"(2, 0)","(3, 2)",-7.141764638423937e-05,0.00047420765010201994
+trans_cost_2_0 x trans_cost_3_0,trans_cost_2_0,trans_cost_3_0,transportation_costs,transportation_costs,"(2, 0)","(3, 0)",-7.264870608346702e-05,0.0004751024669343102
+trans_cost_2_0 x trans_cost_4_1,trans_cost_2_0,trans_cost_4_1,transportation_costs,transportation_costs,"(2, 0)","(4, 1)",-7.298024099672556e-05,0.00047576189923641656
+trans_cost_2_0 x trans_cost_3_1,trans_cost_2_0,trans_cost_3_1,transportation_costs,transportation_costs,"(2, 0)","(3, 1)",-7.328064779062064e-05,0.00047448042453756515
+trans_cost_2_0 x trans_cost_4_4,trans_cost_2_0,trans_cost_4_4,transportation_costs,transportation_costs,"(2, 0)","(4, 4)",-7.388803072121941e-05,0.0004758566437519571
+trans_cost_2_0 x trans_cost_4_0,trans_cost_2_0,trans_cost_4_0,transportation_costs,transportation_costs,"(2, 0)","(4, 0)",-7.400242781501799e-05,0.0004746589394157216
+trans_cost_2_0 x trans_cost_3_4,trans_cost_2_0,trans_cost_3_4,transportation_costs,transportation_costs,"(2, 0)","(3, 4)",-7.458441392257524e-05,0.00047523837231789614
+trans_cost_2_3 x trans_cost_3_0,trans_cost_2_3,trans_cost_3_0,transportation_costs,transportation_costs,"(2, 3)","(3, 0)",-7.549174359674372e-05,0.0006970901941203587
+trans_cost_2_0 x trans_cost_4_3,trans_cost_2_0,trans_cost_4_3,transportation_costs,transportation_costs,"(2, 0)","(4, 3)",-7.606503088097985e-05,0.0004732681393288399
+trans_cost_2_0 x trans_cost_3_3,trans_cost_2_0,trans_cost_3_3,transportation_costs,transportation_costs,"(2, 0)","(3, 3)",-7.881149113573449e-05,0.0004744530550919386
+trans_cost_2_0 x trans_cost_2_3,trans_cost_2_0,trans_cost_2_3,transportation_costs,transportation_costs,"(2, 0)","(2, 3)",-7.991663135924417e-05,0.0004742866611667248
+trans_cost_3_1 x trans_cost_3_3,trans_cost_3_1,trans_cost_3_3,transportation_costs,transportation_costs,"(3, 1)","(3, 3)",-8.08577153612434e-05,0.00026972352245590545
+trans_cost_2_3 x trans_cost_3_1,trans_cost_2_3,trans_cost_3_1,transportation_costs,transportation_costs,"(2, 3)","(3, 1)",-8.086339570474117e-05,0.000695690281650877
+trans_cost_2_3 x trans_cost_4_1,trans_cost_2_3,trans_cost_4_1,transportation_costs,transportation_costs,"(2, 3)","(4, 1)",-8.178164433443209e-05,0.0006966086139720029
+trans_cost_2_3 x trans_cost_4_0,trans_cost_2_3,trans_cost_4_0,transportation_costs,transportation_costs,"(2, 3)","(4, 0)",-8.448100258413258e-05,0.0006940163154389398
+trans_cost_2_3 x trans_cost_3_4,trans_cost_2_3,trans_cost_3_4,transportation_costs,transportation_costs,"(2, 3)","(3, 4)",-8.471920281610332e-05,0.0006961258560593959
+trans_cost_2_3 x trans_cost_2_4,trans_cost_2_3,trans_cost_2_4,transportation_costs,transportation_costs,"(2, 3)","(2, 4)",-8.486942729798956e-05,0.0006949554866624236
+trans_cost_3_1 x trans_cost_4_4,trans_cost_3_1,trans_cost_4_4,transportation_costs,transportation_costs,"(3, 1)","(4, 4)",-8.570836200676868e-05,0.00027061000831574936
+trans_cost_3_1 x trans_cost_4_3,trans_cost_3_1,trans_cost_4_3,transportation_costs,transportation_costs,"(3, 1)","(4, 3)",-8.597116169501616e-05,0.00027046480767399967
+trans_cost_3_1 x trans_cost_4_1,trans_cost_3_1,trans_cost_4_1,transportation_costs,transportation_costs,"(3, 1)","(4, 1)",-8.639467831260373e-05,0.0002700216825614593
+trans_cost_3_1 x trans_cost_4_2,trans_cost_3_1,trans_cost_4_2,transportation_costs,transportation_costs,"(3, 1)","(4, 2)",-8.653499706059309e-05,0.0002701650881565063
+trans_cost_3_1 x trans_cost_3_4,trans_cost_3_1,trans_cost_3_4,transportation_costs,transportation_costs,"(3, 1)","(3, 4)",-8.654408691607525e-05,0.0002705621146736602
+trans_cost_3_1 x trans_cost_3_2,trans_cost_3_1,trans_cost_3_2,transportation_costs,transportation_costs,"(3, 1)","(3, 2)",-8.677425625357304e-05,0.0002704389302154343
+trans_cost_2_3 x trans_cost_4_4,trans_cost_2_3,trans_cost_4_4,transportation_costs,transportation_costs,"(2, 3)","(4, 4)",-8.737191795214481e-05,0.0006960822384598549
+trans_cost_2_3 x trans_cost_4_2,trans_cost_2_3,trans_cost_4_2,transportation_costs,transportation_costs,"(2, 3)","(4, 2)",-8.798257869465899e-05,0.000697007640288061
+capacity_2 x fixed_cost_2,capacity_2,fixed_cost_2,capacities,fixed_costs,2,2,-8.832943288845235e-05,0.000373727852645522
+trans_cost_2_3 x trans_cost_3_2,trans_cost_2_3,trans_cost_3_2,transportation_costs,transportation_costs,"(2, 3)","(3, 2)",-8.852901915113473e-05,0.0006964140205778899
+trans_cost_3_1 x trans_cost_4_0,trans_cost_3_1,trans_cost_4_0,transportation_costs,transportation_costs,"(3, 1)","(4, 0)",-8.85902188097868e-05,0.0002697230520639407
+trans_cost_2_3 x trans_cost_4_3,trans_cost_2_3,trans_cost_4_3,transportation_costs,transportation_costs,"(2, 3)","(4, 3)",-8.901801872859453e-05,0.000695551166628802
+trans_cost_2_3 x trans_cost_3_3,trans_cost_2_3,trans_cost_3_3,transportation_costs,transportation_costs,"(2, 3)","(3, 3)",-9.424528866631385e-05,0.0006970531240916497
+capacity_0 x fixed_cost_0,capacity_0,fixed_cost_0,capacities,fixed_costs,0,0,-9.706124700248342e-05,0.0006212056752462516
+capacity_4 x fixed_cost_3,capacity_4,fixed_cost_3,capacities,fixed_costs,4,3,-0.00010537960152617182,0.0013143719425334967
+trans_cost_1_1 x trans_cost_1_3,trans_cost_1_1,trans_cost_1_3,transportation_costs,transportation_costs,"(1, 1)","(1, 3)",-0.00012032062311047054,0.0003330626327222873
+trans_cost_1_1 x trans_cost_3_4,trans_cost_1_1,trans_cost_3_4,transportation_costs,transportation_costs,"(1, 1)","(3, 4)",-0.00012695383293142548,0.00033329522856071614
+trans_cost_1_1 x trans_cost_3_0,trans_cost_1_1,trans_cost_3_0,transportation_costs,transportation_costs,"(1, 1)","(3, 0)",-0.00012843802470720666,0.0003333952780819339
+trans_cost_1_1 x trans_cost_4_1,trans_cost_1_1,trans_cost_4_1,transportation_costs,transportation_costs,"(1, 1)","(4, 1)",-0.00012856468229263782,0.0003337172791250046
+trans_cost_1_1 x trans_cost_3_3,trans_cost_1_1,trans_cost_3_3,transportation_costs,transportation_costs,"(1, 1)","(3, 3)",-0.00012863793526986348,0.0003333465679995155
+trans_cost_1_1 x trans_cost_4_0,trans_cost_1_1,trans_cost_4_0,transportation_costs,transportation_costs,"(1, 1)","(4, 0)",-0.00012865888089978283,0.00033234633771034506
+trans_cost_1_1 x trans_cost_4_4,trans_cost_1_1,trans_cost_4_4,transportation_costs,transportation_costs,"(1, 1)","(4, 4)",-0.00012868490927748447,0.0003344868108666003
+trans_cost_1_1 x trans_cost_2_0,trans_cost_1_1,trans_cost_2_0,transportation_costs,transportation_costs,"(1, 1)","(2, 0)",-0.00012882395352323346,0.00033329279324164696
+trans_cost_1_1 x trans_cost_1_4,trans_cost_1_1,trans_cost_1_4,transportation_costs,transportation_costs,"(1, 1)","(1, 4)",-0.00012896351899608082,0.0003340792714453553
+trans_cost_1_1 x trans_cost_2_3,trans_cost_1_1,trans_cost_2_3,transportation_costs,transportation_costs,"(1, 1)","(2, 3)",-0.00012912439653603187,0.00033368982535949274
+trans_cost_1_1 x trans_cost_4_2,trans_cost_1_1,trans_cost_4_2,transportation_costs,transportation_costs,"(1, 1)","(4, 2)",-0.00012919622851484964,0.00033384604147798825
+trans_cost_1_1 x trans_cost_3_1,trans_cost_1_1,trans_cost_3_1,transportation_costs,transportation_costs,"(1, 1)","(3, 1)",-0.00012932889123414492,0.000333886906057735
+trans_cost_1_1 x trans_cost_4_3,trans_cost_1_1,trans_cost_4_3,transportation_costs,transportation_costs,"(1, 1)","(4, 3)",-0.00012958431161302398,0.0003339901071181696
+trans_cost_1_1 x trans_cost_2_1,trans_cost_1_1,trans_cost_2_1,transportation_costs,transportation_costs,"(1, 1)","(2, 1)",-0.0001296970501090862,0.00033396284197655893
+trans_cost_1_1 x trans_cost_3_2,trans_cost_1_1,trans_cost_3_2,transportation_costs,transportation_costs,"(1, 1)","(3, 2)",-0.00012979637673291087,0.00033378750923085697
+trans_cost_1_1 x trans_cost_2_2,trans_cost_1_1,trans_cost_2_2,transportation_costs,transportation_costs,"(1, 1)","(2, 2)",-0.0001314348396162187,0.0003341555243357085
+trans_cost_1_1 x trans_cost_1_2,trans_cost_1_1,trans_cost_1_2,transportation_costs,transportation_costs,"(1, 1)","(1, 2)",-0.00013150572453217375,0.00033478103672142357
+trans_cost_1_1 x trans_cost_2_4,trans_cost_1_1,trans_cost_2_4,transportation_costs,transportation_costs,"(1, 1)","(2, 4)",-0.00013221419683047178,0.0003339161804751076
+trans_cost_0_2 x trans_cost_1_3,trans_cost_0_2,trans_cost_1_3,transportation_costs,transportation_costs,"(0, 2)","(1, 3)",-0.00013329822813009924,0.0003654041376885755
+trans_cost_0_2 x trans_cost_4_4,trans_cost_0_2,trans_cost_4_4,transportation_costs,transportation_costs,"(0, 2)","(4, 4)",-0.00013584837017459333,0.0003657946945677249
+trans_cost_0_2 x trans_cost_0_3,trans_cost_0_2,trans_cost_0_3,transportation_costs,transportation_costs,"(0, 2)","(0, 3)",-0.00013600781521132667,0.0003647122834789365
+trans_cost_0_2 x trans_cost_3_4,trans_cost_0_2,trans_cost_3_4,transportation_costs,transportation_costs,"(0, 2)","(3, 4)",-0.0001361863333590919,0.0003648021151053956
+trans_cost_0_2 x trans_cost_3_1,trans_cost_0_2,trans_cost_3_1,transportation_costs,transportation_costs,"(0, 2)","(3, 1)",-0.00013657292169571425,0.00036568762571364096
+trans_cost_0_2 x trans_cost_1_2,trans_cost_0_2,trans_cost_1_2,transportation_costs,transportation_costs,"(0, 2)","(1, 2)",-0.00013689098063643954,0.00036540630312955366
+trans_cost_0_2 x trans_cost_4_1,trans_cost_0_2,trans_cost_4_1,transportation_costs,transportation_costs,"(0, 2)","(4, 1)",-0.00013732648521878364,0.0003653540986233086
+trans_cost_0_2 x trans_cost_4_2,trans_cost_0_2,trans_cost_4_2,transportation_costs,transportation_costs,"(0, 2)","(4, 2)",-0.0001378598965384609,0.00036534202661222084
+trans_cost_0_2 x trans_cost_1_4,trans_cost_0_2,trans_cost_1_4,transportation_costs,transportation_costs,"(0, 2)","(1, 4)",-0.0001382184823168708,0.0003657173343783865
+trans_cost_0_2 x trans_cost_4_3,trans_cost_0_2,trans_cost_4_3,transportation_costs,transportation_costs,"(0, 2)","(4, 3)",-0.00013855647632637387,0.0003650457972039757
+trans_cost_0_2 x trans_cost_3_2,trans_cost_0_2,trans_cost_3_2,transportation_costs,transportation_costs,"(0, 2)","(3, 2)",-0.00013861806688459364,0.00036629282912756554
+trans_cost_0_2 x trans_cost_1_1,trans_cost_0_2,trans_cost_1_1,transportation_costs,transportation_costs,"(0, 2)","(1, 1)",-0.00013901523459372168,0.0003655083175837288
+trans_cost_0_2 x trans_cost_2_2,trans_cost_0_2,trans_cost_2_2,transportation_costs,transportation_costs,"(0, 2)","(2, 2)",-0.00013925169076573504,0.0003643585713532084
+trans_cost_0_2 x trans_cost_3_3,trans_cost_0_2,trans_cost_3_3,transportation_costs,transportation_costs,"(0, 2)","(3, 3)",-0.00013927839133627643,0.0003660499398124736
+trans_cost_0_2 x trans_cost_0_4,trans_cost_0_2,trans_cost_0_4,transportation_costs,transportation_costs,"(0, 2)","(0, 4)",-0.00013935212074306805,0.0003648359616152558
+trans_cost_0_2 x trans_cost_2_1,trans_cost_0_2,trans_cost_2_1,transportation_costs,transportation_costs,"(0, 2)","(2, 1)",-0.00013943031741194063,0.00036530917982019446
+trans_cost_0_2 x trans_cost_4_0,trans_cost_0_2,trans_cost_4_0,transportation_costs,transportation_costs,"(0, 2)","(4, 0)",-0.00013947344912833526,0.0003644848224338068
+trans_cost_0_2 x trans_cost_1_0,trans_cost_0_2,trans_cost_1_0,transportation_costs,transportation_costs,"(0, 2)","(1, 0)",-0.00014071830572563157,0.00036598113024389795
+trans_cost_0_2 x trans_cost_2_4,trans_cost_0_2,trans_cost_2_4,transportation_costs,transportation_costs,"(0, 2)","(2, 4)",-0.00014117469941100664,0.0003665633309597823
+trans_cost_0_2 x trans_cost_2_3,trans_cost_0_2,trans_cost_2_3,transportation_costs,transportation_costs,"(0, 2)","(2, 3)",-0.00014226002928796448,0.0003649332129013343
+trans_cost_0_2 x trans_cost_3_0,trans_cost_0_2,trans_cost_3_0,transportation_costs,transportation_costs,"(0, 2)","(3, 0)",-0.00014263707929845586,0.0003653627038959605
+trans_cost_0_2 x trans_cost_2_0,trans_cost_0_2,trans_cost_2_0,transportation_costs,transportation_costs,"(0, 2)","(2, 0)",-0.00014342794512025743,0.00036497634016177574
+capacity_2 x fixed_cost_1,capacity_2,fixed_cost_1,capacities,fixed_costs,2,1,-0.00014566413634854985,0.0004056975854634332
+capacity_2 x trans_cost_2_2,capacity_2,trans_cost_2_2,capacities,transportation_costs,2,"(2, 2)",-0.0001472697015629879,0.00040538797778411187
+capacity_2 x trans_cost_4_0,capacity_2,trans_cost_4_0,capacities,transportation_costs,2,"(4, 0)",-0.00014742567988884202,0.00040904811775930975
+capacity_0 x fixed_cost_2,capacity_0,fixed_cost_2,capacities,fixed_costs,0,2,-0.0001483645135773523,0.0006038036086842701
+capacity_2 x fixed_cost_3,capacity_2,fixed_cost_3,capacities,fixed_costs,2,3,-0.00014920874297757666,0.0004148649459389501
+capacity_2 x trans_cost_0_0,capacity_2,trans_cost_0_0,capacities,transportation_costs,2,"(0, 0)",-0.0001497023698187467,0.00040531073341949254
+capacity_2 x trans_cost_0_2,capacity_2,trans_cost_0_2,capacities,transportation_costs,2,"(0, 2)",-0.0001498180947835286,0.00040756426220974417
+capacity_2 x capacity_4,capacity_2,capacity_4,capacities,capacities,2,4,-0.000150057728092812,0.0004070722356032657
+capacity_2 x trans_cost_4_3,capacity_2,trans_cost_4_3,capacities,transportation_costs,2,"(4, 3)",-0.0001503010684123314,0.0004061380953024824
+capacity_2 x trans_cost_4_2,capacity_2,trans_cost_4_2,capacities,transportation_costs,2,"(4, 2)",-0.00015115921364579238,0.0004076673349489109
+capacity_2 x trans_cost_4_1,capacity_2,trans_cost_4_1,capacities,transportation_costs,2,"(4, 1)",-0.0001513237212777301,0.00040734607699289947
+capacity_2 x trans_cost_3_0,capacity_2,trans_cost_3_0,capacities,transportation_costs,2,"(3, 0)",-0.00015138224708627308,0.00040721277151979375
+capacity_2 x trans_cost_3_1,capacity_2,trans_cost_3_1,capacities,transportation_costs,2,"(3, 1)",-0.0001519060572361844,0.0004075389729993626
+capacity_2 x trans_cost_4_4,capacity_2,trans_cost_4_4,capacities,transportation_costs,2,"(4, 4)",-0.0001530927127190524,0.00040800778040564993
+capacity_2 x trans_cost_3_3,capacity_2,trans_cost_3_3,capacities,transportation_costs,2,"(3, 3)",-0.0001532523729707817,0.0004073139679389525
+capacity_2 x trans_cost_2_0,capacity_2,trans_cost_2_0,capacities,transportation_costs,2,"(2, 0)",-0.00015353541963030406,0.00040767271729407194
+capacity_2 x trans_cost_0_1,capacity_2,trans_cost_0_1,capacities,transportation_costs,2,"(0, 1)",-0.00015383721944707646,0.0004077452325643259
+capacity_2 x trans_cost_1_4,capacity_2,trans_cost_1_4,capacities,transportation_costs,2,"(1, 4)",-0.00015392429819425054,0.000406678121779695
+capacity_2 x trans_cost_3_4,capacity_2,trans_cost_3_4,capacities,transportation_costs,2,"(3, 4)",-0.00015413033387238264,0.0004072781814132453
+capacity_2 x trans_cost_2_1,capacity_2,trans_cost_2_1,capacities,transportation_costs,2,"(2, 1)",-0.00015438625312123955,0.00040741311598266273
+capacity_2 x trans_cost_1_1,capacity_2,trans_cost_1_1,capacities,transportation_costs,2,"(1, 1)",-0.00015504815557899546,0.00040751657030364114
+capacity_2 x trans_cost_1_2,capacity_2,trans_cost_1_2,capacities,transportation_costs,2,"(1, 2)",-0.00015517806643171826,0.0004076606867037111
+capacity_2 x trans_cost_3_2,capacity_2,trans_cost_3_2,capacities,transportation_costs,2,"(3, 2)",-0.00015536100227664238,0.0004057498035607685
+capacity_2 x trans_cost_1_3,capacity_2,trans_cost_1_3,capacities,transportation_costs,2,"(1, 3)",-0.00015592707521893935,0.0004069421626821224
+capacity_2 x trans_cost_2_3,capacity_2,trans_cost_2_3,capacities,transportation_costs,2,"(2, 3)",-0.00015641921078768202,0.00040731208477240004
+capacity_2 x trans_cost_2_4,capacity_2,trans_cost_2_4,capacities,transportation_costs,2,"(2, 4)",-0.00015703569966964994,0.0004039787355300887
+capacity_2 x trans_cost_0_4,capacity_2,trans_cost_0_4,capacities,transportation_costs,2,"(0, 4)",-0.00015711588786540692,0.0004063863701737626
+capacity_2 x trans_cost_1_0,capacity_2,trans_cost_1_0,capacities,transportation_costs,2,"(1, 0)",-0.00015836073236550442,0.00040442103449292015
+capacity_2 x trans_cost_0_3,capacity_2,trans_cost_0_3,capacities,transportation_costs,2,"(0, 3)",-0.00015953331139601824,0.0004080246901107602
+capacity_0 x capacity_3,capacity_0,capacity_3,capacities,capacities,0,3,-0.00016096593208492216,0.0005981408266851072
+capacity_2 x fixed_cost_4,capacity_2,fixed_cost_4,capacities,fixed_costs,2,4,-0.0001629729305183021,0.0004025132090329268
+capacity_0 x capacity_2,capacity_0,capacity_2,capacities,capacities,0,2,-0.00019537478723973426,0.0006220184999387136
+capacity_4 x fixed_cost_4,capacity_4,fixed_cost_4,capacities,fixed_costs,4,4,-0.0002056752481695151,0.0014210708766810736
+capacity_0 x trans_cost_2_4,capacity_0,trans_cost_2_4,capacities,transportation_costs,0,"(2, 4)",-0.00022407130575432,0.0006126427672216254
+capacity_0 x capacity_4,capacity_0,capacity_4,capacities,capacities,0,4,-0.00022538712460459852,0.0006150418039528172
+capacity_0 x trans_cost_4_2,capacity_0,trans_cost_4_2,capacities,transportation_costs,0,"(4, 2)",-0.00022585222586096366,0.0006134032507226189
+capacity_0 x trans_cost_0_4,capacity_0,trans_cost_0_4,capacities,transportation_costs,0,"(0, 4)",-0.00022922647079423123,0.0006138880627331845
+capacity_0 x trans_cost_0_1,capacity_0,trans_cost_0_1,capacities,transportation_costs,0,"(0, 1)",-0.00022995620052204717,0.0006129150105049176
+capacity_0 x trans_cost_4_1,capacity_0,trans_cost_4_1,capacities,transportation_costs,0,"(4, 1)",-0.00023062521240128152,0.0006132983652587756
+capacity_0 x trans_cost_0_2,capacity_0,trans_cost_0_2,capacities,transportation_costs,0,"(0, 2)",-0.0002306805811031442,0.0006130527219107625
+capacity_0 x trans_cost_3_3,capacity_0,trans_cost_3_3,capacities,transportation_costs,0,"(3, 3)",-0.0002312971600884072,0.0006123972655620126
+capacity_0 x trans_cost_1_0,capacity_0,trans_cost_1_0,capacities,transportation_costs,0,"(1, 0)",-0.00023143485864801768,0.0006125657072014046
+capacity_0 x trans_cost_1_4,capacity_0,trans_cost_1_4,capacities,transportation_costs,0,"(1, 4)",-0.00023155196150357053,0.0006130286597923256
+capacity_0 x trans_cost_3_2,capacity_0,trans_cost_3_2,capacities,transportation_costs,0,"(3, 2)",-0.0002319742970764346,0.0006140908251154547
+capacity_0 x trans_cost_2_0,capacity_0,trans_cost_2_0,capacities,transportation_costs,0,"(2, 0)",-0.0002323124276884953,0.000614591175173989
+capacity_0 x trans_cost_0_0,capacity_0,trans_cost_0_0,capacities,transportation_costs,0,"(0, 0)",-0.00023251784520183065,0.0006136006484606677
+capacity_0 x trans_cost_4_3,capacity_0,trans_cost_4_3,capacities,transportation_costs,0,"(4, 3)",-0.0002325577952000426,0.0006162003059802306
+capacity_0 x trans_cost_2_1,capacity_0,trans_cost_2_1,capacities,transportation_costs,0,"(2, 1)",-0.0002330871546145149,0.0006137919541025138
+capacity_0 x trans_cost_1_2,capacity_0,trans_cost_1_2,capacities,transportation_costs,0,"(1, 2)",-0.0002332808907345808,0.0006129849057482437
+capacity_0 x trans_cost_3_4,capacity_0,trans_cost_3_4,capacities,transportation_costs,0,"(3, 4)",-0.00023337515317959482,0.000613174220195146
+capacity_0 x trans_cost_2_3,capacity_0,trans_cost_2_3,capacities,transportation_costs,0,"(2, 3)",-0.00023370561736005266,0.0006127345486501633
+capacity_0 x trans_cost_3_1,capacity_0,trans_cost_3_1,capacities,transportation_costs,0,"(3, 1)",-0.0002338128664185304,0.0006137408628891171
+capacity_0 x trans_cost_1_1,capacity_0,trans_cost_1_1,capacities,transportation_costs,0,"(1, 1)",-0.00023399503754594747,0.0006134993915414809
+capacity_0 x trans_cost_0_3,capacity_0,trans_cost_0_3,capacities,transportation_costs,0,"(0, 3)",-0.00023405975534246783,0.000612735599828476
+capacity_0 x trans_cost_2_2,capacity_0,trans_cost_2_2,capacities,transportation_costs,0,"(2, 2)",-0.00023422121308225947,0.0006134469340130041
+capacity_0 x trans_cost_4_4,capacity_0,trans_cost_4_4,capacities,transportation_costs,0,"(4, 4)",-0.00023540604428419604,0.0006124779587428598
+capacity_0 x fixed_cost_3,capacity_0,fixed_cost_3,capacities,fixed_costs,0,3,-0.00023574264589745764,0.0006202983445687065
+capacity_0 x trans_cost_3_0,capacity_0,trans_cost_3_0,capacities,transportation_costs,0,"(3, 0)",-0.0002366235664214913,0.0006122477519282936
+capacity_0 x trans_cost_1_3,capacity_0,trans_cost_1_3,capacities,transportation_costs,0,"(1, 3)",-0.0002375261672611435,0.0006132157047004744
+capacity_0 x trans_cost_4_0,capacity_0,trans_cost_4_0,capacities,transportation_costs,0,"(4, 0)",-0.0002397784483002494,0.0006135636909379743
+demand_1 x demand_4,demand_1,demand_4,demands,demands,1,4,-0.00024020089588057403,0.014885016294006424
+capacity_0 x fixed_cost_1,capacity_0,fixed_cost_1,capacities,fixed_costs,0,1,-0.00024316793651333116,0.0006100163795982242
+capacity_4 x fixed_cost_2,capacity_4,fixed_cost_2,capacities,fixed_costs,4,2,-0.000245985824113254,0.0014733928719145742
+trans_cost_4_0 x trans_cost_4_1,trans_cost_4_0,trans_cost_4_1,transportation_costs,transportation_costs,"(4, 0)","(4, 1)",-0.00024821260993080686,0.0006872897092588884
+trans_cost_4_0 x trans_cost_4_2,trans_cost_4_0,trans_cost_4_2,transportation_costs,transportation_costs,"(4, 0)","(4, 2)",-0.00025159089130324713,0.0006867468474294467
+trans_cost_4_0 x trans_cost_4_3,trans_cost_4_0,trans_cost_4_3,transportation_costs,transportation_costs,"(4, 0)","(4, 3)",-0.0002516079387629956,0.0006847267361827814
+trans_cost_4_0 x trans_cost_4_4,trans_cost_4_0,trans_cost_4_4,transportation_costs,transportation_costs,"(4, 0)","(4, 4)",-0.00025275084360919535,0.0006862831088977956
+capacity_0 x capacity_1,capacity_0,capacity_1,capacities,capacities,0,1,-0.0002948407420593556,0.0006139117741561831
+capacity_0 x fixed_cost_4,capacity_0,fixed_cost_4,capacities,fixed_costs,0,4,-0.0003080771783108109,0.0005945493272087633
+trans_cost_3_4 x trans_cost_4_0,trans_cost_3_4,trans_cost_4_0,transportation_costs,transportation_costs,"(3, 4)","(4, 0)",-0.00032702051436808694,0.0002689592000718013
+trans_cost_3_4 x trans_cost_4_3,trans_cost_3_4,trans_cost_4_3,transportation_costs,transportation_costs,"(3, 4)","(4, 3)",-0.00032747806599282717,0.0002694247788228358
+trans_cost_3_4 x trans_cost_4_1,trans_cost_3_4,trans_cost_4_1,transportation_costs,transportation_costs,"(3, 4)","(4, 1)",-0.0003282806408550754,0.00026967503840674164
+trans_cost_3_4 x trans_cost_4_2,trans_cost_3_4,trans_cost_4_2,transportation_costs,transportation_costs,"(3, 4)","(4, 2)",-0.00032946374973954237,0.00026935939817765653
+trans_cost_3_4 x trans_cost_4_4,trans_cost_3_4,trans_cost_4_4,transportation_costs,transportation_costs,"(3, 4)","(4, 4)",-0.0003319819975123305,0.0002693257812832953
+trans_cost_4_3 x trans_cost_4_4,trans_cost_4_3,trans_cost_4_4,transportation_costs,transportation_costs,"(4, 3)","(4, 4)",-0.00033922913227332676,0.0006926502307127754
+trans_cost_2_4 x trans_cost_4_2,trans_cost_2_4,trans_cost_4_2,transportation_costs,transportation_costs,"(2, 4)","(4, 2)",-0.0003925761979050222,0.0005576691335456476
+trans_cost_2_4 x trans_cost_3_4,trans_cost_2_4,trans_cost_3_4,transportation_costs,transportation_costs,"(2, 4)","(3, 4)",-0.00039733945843476397,0.0005569449336936377
+trans_cost_2_4 x trans_cost_4_0,trans_cost_2_4,trans_cost_4_0,transportation_costs,transportation_costs,"(2, 4)","(4, 0)",-0.0003977890089523681,0.0005567052312238312
+trans_cost_2_4 x trans_cost_4_1,trans_cost_2_4,trans_cost_4_1,transportation_costs,transportation_costs,"(2, 4)","(4, 1)",-0.00039954326731090316,0.0005569012594717841
+trans_cost_2_4 x trans_cost_3_2,trans_cost_2_4,trans_cost_3_2,transportation_costs,transportation_costs,"(2, 4)","(3, 2)",-0.00040029433428861327,0.0005577505369191497
+trans_cost_2_4 x trans_cost_4_4,trans_cost_2_4,trans_cost_4_4,transportation_costs,transportation_costs,"(2, 4)","(4, 4)",-0.00040033939797597833,0.0005564687776213755
+trans_cost_2_4 x trans_cost_3_1,trans_cost_2_4,trans_cost_3_1,transportation_costs,transportation_costs,"(2, 4)","(3, 1)",-0.0004008365834018903,0.0005562269225074424
+trans_cost_2_4 x trans_cost_4_3,trans_cost_2_4,trans_cost_4_3,transportation_costs,transportation_costs,"(2, 4)","(4, 3)",-0.00040355834001557205,0.000555706551512985
+trans_cost_2_4 x trans_cost_3_0,trans_cost_2_4,trans_cost_3_0,transportation_costs,transportation_costs,"(2, 4)","(3, 0)",-0.0004101821727524089,0.0005558976093770424
+trans_cost_2_4 x trans_cost_3_3,trans_cost_2_4,trans_cost_3_3,transportation_costs,transportation_costs,"(2, 4)","(3, 3)",-0.00041343988844022805,0.0005565301395467898
+fixed_cost_3 x fixed_cost_4,fixed_cost_3,fixed_cost_4,fixed_costs,fixed_costs,3,4,-0.000679399293437348,0.00759668432723716
+demand_2 x demand_4,demand_2,demand_4,demands,demands,2,4,-0.001193141683206167,0.016874859417070686
+capacity_3 x fixed_cost_0,capacity_3,fixed_cost_0,capacities,fixed_costs,3,0,-0.0014925944296739768,0.026712578486133093
+demand_2 x demand_3,demand_2,demand_3,demands,demands,2,3,-0.0015430369616379978,0.018817973849717052
+fixed_cost_2 x fixed_cost_4,fixed_cost_2,fixed_cost_4,fixed_costs,fixed_costs,2,4,-0.001596180043323677,0.007652787799612627
+capacity_3 x fixed_cost_4,capacity_3,fixed_cost_4,capacities,fixed_costs,3,4,-0.0016460014314547584,0.02673716338369281
+capacity_1 x fixed_cost_4,capacity_1,fixed_cost_4,capacities,fixed_costs,1,4,-0.0023589755491809604,0.006220379818318694
+fixed_cost_3 x trans_cost_2_4,fixed_cost_3,trans_cost_2_4,fixed_costs,transportation_costs,3,"(2, 4)",-0.00263995198363131,0.007483541161160603
+fixed_cost_3 x trans_cost_0_3,fixed_cost_3,trans_cost_0_3,fixed_costs,transportation_costs,3,"(0, 3)",-0.002659784010244872,0.007493767861603889
+fixed_cost_3 x trans_cost_1_2,fixed_cost_3,trans_cost_1_2,fixed_costs,transportation_costs,3,"(1, 2)",-0.0026654930302697547,0.007491890171753656
+fixed_cost_3 x trans_cost_0_0,fixed_cost_3,trans_cost_0_0,fixed_costs,transportation_costs,3,"(0, 0)",-0.002686483751106138,0.0075013483775523
+fixed_cost_3 x trans_cost_4_3,fixed_cost_3,trans_cost_4_3,fixed_costs,transportation_costs,3,"(4, 3)",-0.002711905536202979,0.00749028551514376
+fixed_cost_3 x trans_cost_2_0,fixed_cost_3,trans_cost_2_0,fixed_costs,transportation_costs,3,"(2, 0)",-0.0027253220589862873,0.007500584285788168
+fixed_cost_3 x trans_cost_2_3,fixed_cost_3,trans_cost_2_3,fixed_costs,transportation_costs,3,"(2, 3)",-0.002740878700695447,0.0074741069309273295
+fixed_cost_3 x trans_cost_1_0,fixed_cost_3,trans_cost_1_0,fixed_costs,transportation_costs,3,"(1, 0)",-0.002743962093954289,0.00750724196561878
+fixed_cost_3 x trans_cost_4_0,fixed_cost_3,trans_cost_4_0,fixed_costs,transportation_costs,3,"(4, 0)",-0.0027463881892483438,0.00746002603897041
+fixed_cost_3 x trans_cost_3_2,fixed_cost_3,trans_cost_3_2,fixed_costs,transportation_costs,3,"(3, 2)",-0.0027477054025207897,0.007489632368820726
+fixed_cost_3 x trans_cost_4_2,fixed_cost_3,trans_cost_4_2,fixed_costs,transportation_costs,3,"(4, 2)",-0.00275174330858918,0.007486351052710567
+fixed_cost_3 x trans_cost_2_2,fixed_cost_3,trans_cost_2_2,fixed_costs,transportation_costs,3,"(2, 2)",-0.002759851435961797,0.0074750348681246895
+fixed_cost_3 x trans_cost_0_2,fixed_cost_3,trans_cost_0_2,fixed_costs,transportation_costs,3,"(0, 2)",-0.002761401663252198,0.00749122926945178
+fixed_cost_3 x trans_cost_2_1,fixed_cost_3,trans_cost_2_1,fixed_costs,transportation_costs,3,"(2, 1)",-0.0027650281284919325,0.007488257744639773
+fixed_cost_3 x trans_cost_1_4,fixed_cost_3,trans_cost_1_4,fixed_costs,transportation_costs,3,"(1, 4)",-0.0027716916236748806,0.007493352866731002
+fixed_cost_3 x trans_cost_3_4,fixed_cost_3,trans_cost_3_4,fixed_costs,transportation_costs,3,"(3, 4)",-0.0027826469197916853,0.0074955978981123255
+fixed_cost_3 x trans_cost_3_1,fixed_cost_3,trans_cost_3_1,fixed_costs,transportation_costs,3,"(3, 1)",-0.002784155281133095,0.007485588988491537
+capacity_1 x trans_cost_3_3,capacity_1,trans_cost_3_3,capacities,transportation_costs,1,"(3, 3)",-0.0027923510274823968,0.006260637905558777
+fixed_cost_3 x trans_cost_4_1,fixed_cost_3,trans_cost_4_1,fixed_costs,transportation_costs,3,"(4, 1)",-0.002795072924714189,0.0074920777933160715
+fixed_cost_3 x trans_cost_4_4,fixed_cost_3,trans_cost_4_4,fixed_costs,transportation_costs,3,"(4, 4)",-0.002798075688147063,0.007482071300163879
+fixed_cost_3 x trans_cost_0_1,fixed_cost_3,trans_cost_0_1,fixed_costs,transportation_costs,3,"(0, 1)",-0.00279824718274971,0.00749791182880765
+fixed_cost_3 x trans_cost_3_3,fixed_cost_3,trans_cost_3_3,fixed_costs,transportation_costs,3,"(3, 3)",-0.0028031695139718936,0.007483736259566025
+fixed_cost_3 x trans_cost_1_1,fixed_cost_3,trans_cost_1_1,fixed_costs,transportation_costs,3,"(1, 1)",-0.0028044082547111593,0.007491720888858728
+fixed_cost_3 x trans_cost_0_4,fixed_cost_3,trans_cost_0_4,fixed_costs,transportation_costs,3,"(0, 4)",-0.002811256448983228,0.007498337648653572
+capacity_1 x trans_cost_0_0,capacity_1,trans_cost_0_0,capacities,transportation_costs,1,"(0, 0)",-0.002817206579807711,0.006311724847267324
+fixed_cost_3 x trans_cost_3_0,fixed_cost_3,trans_cost_3_0,fixed_costs,transportation_costs,3,"(3, 0)",-0.0028225743049582323,0.007488501434365868
+capacity_1 x trans_cost_4_0,capacity_1,trans_cost_4_0,capacities,transportation_costs,1,"(4, 0)",-0.002825521507925917,0.006268699091835947
+capacity_1 x trans_cost_2_3,capacity_1,trans_cost_2_3,capacities,transportation_costs,1,"(2, 3)",-0.0028268854358887608,0.006298307761647309
+fixed_cost_3 x trans_cost_1_3,fixed_cost_3,trans_cost_1_3,fixed_costs,transportation_costs,3,"(1, 3)",-0.0028308313248434198,0.0074901751811688845
+capacity_1 x trans_cost_3_4,capacity_1,trans_cost_3_4,capacities,transportation_costs,1,"(3, 4)",-0.0028445839471724884,0.006270882542648884
+capacity_1 x trans_cost_1_3,capacity_1,trans_cost_1_3,capacities,transportation_costs,1,"(1, 3)",-0.002851629898344434,0.006264532503113418
+capacity_1 x trans_cost_1_0,capacity_1,trans_cost_1_0,capacities,transportation_costs,1,"(1, 0)",-0.0028603629584748594,0.006256286360578462
+capacity_1 x trans_cost_4_1,capacity_1,trans_cost_4_1,capacities,transportation_costs,1,"(4, 1)",-0.002864252558207857,0.006278847425427174
+capacity_1 x trans_cost_4_4,capacity_1,trans_cost_4_4,capacities,transportation_costs,1,"(4, 4)",-0.0028701520220278,0.0062747818739452114
+capacity_1 x trans_cost_0_1,capacity_1,trans_cost_0_1,capacities,transportation_costs,1,"(0, 1)",-0.002874981907308741,0.006267556716577506
+capacity_1 x trans_cost_2_0,capacity_1,trans_cost_2_0,capacities,transportation_costs,1,"(2, 0)",-0.002882696436310217,0.00627076620752142
+capacity_1 x trans_cost_3_2,capacity_1,trans_cost_3_2,capacities,transportation_costs,1,"(3, 2)",-0.002892496476127852,0.006278545590377789
+capacity_1 x trans_cost_2_4,capacity_1,trans_cost_2_4,capacities,transportation_costs,1,"(2, 4)",-0.0028936458009292372,0.006270861651458293
+capacity_1 x trans_cost_0_3,capacity_1,trans_cost_0_3,capacities,transportation_costs,1,"(0, 3)",-0.0029100396172246443,0.006273543852577605
+capacity_3 x trans_cost_3_3,capacity_3,trans_cost_3_3,capacities,transportation_costs,3,"(3, 3)",-0.0029129456340211825,0.026174184924511214
+capacity_1 x trans_cost_2_2,capacity_1,trans_cost_2_2,capacities,transportation_costs,1,"(2, 2)",-0.0029174161493068567,0.0062605975323006
+capacity_1 x trans_cost_1_1,capacity_1,trans_cost_1_1,capacities,transportation_costs,1,"(1, 1)",-0.0029200103013269493,0.006263818258867317
+capacity_1 x trans_cost_2_1,capacity_1,trans_cost_2_1,capacities,transportation_costs,1,"(2, 1)",-0.00292159919532391,0.006285997709489072
+capacity_1 x trans_cost_0_4,capacity_1,trans_cost_0_4,capacities,transportation_costs,1,"(0, 4)",-0.0029286677651399655,0.0062774256730726875
+capacity_1 x capacity_2,capacity_1,capacity_2,capacities,capacities,1,2,-0.002932580774352847,0.006283498656917041
+capacity_1 x trans_cost_3_1,capacity_1,trans_cost_3_1,capacities,transportation_costs,1,"(3, 1)",-0.0029343029404612538,0.006275530111662531
+capacity_1 x trans_cost_4_2,capacity_1,trans_cost_4_2,capacities,transportation_costs,1,"(4, 2)",-0.0029355745895414793,0.006272204924084875
+capacity_1 x trans_cost_1_2,capacity_1,trans_cost_1_2,capacities,transportation_costs,1,"(1, 2)",-0.0029377025600320164,0.00625714865455209
+capacity_1 x fixed_cost_0,capacity_1,fixed_cost_0,capacities,fixed_costs,1,0,-0.0029424790467244416,0.0060561362529579854
+capacity_1 x trans_cost_1_4,capacity_1,trans_cost_1_4,capacities,transportation_costs,1,"(1, 4)",-0.0029482798754899265,0.0062748872830629375
+capacity_1 x fixed_cost_1,capacity_1,fixed_cost_1,capacities,fixed_costs,1,1,-0.0029709630651310933,0.006199437616096857
+capacity_1 x trans_cost_0_2,capacity_1,trans_cost_0_2,capacities,transportation_costs,1,"(0, 2)",-0.00297404256407787,0.0062822387506342664
+capacity_1 x trans_cost_4_3,capacity_1,trans_cost_4_3,capacities,transportation_costs,1,"(4, 3)",-0.0029799107086371135,0.006243943370062036
+capacity_1 x trans_cost_3_0,capacity_1,trans_cost_3_0,capacities,transportation_costs,1,"(3, 0)",-0.0029865871478281917,0.006273946964917516
+capacity_3 x trans_cost_0_3,capacity_3,trans_cost_0_3,capacities,transportation_costs,3,"(0, 3)",-0.003000253039477099,0.02591030383333326
+capacity_3 x trans_cost_3_2,capacity_3,trans_cost_3_2,capacities,transportation_costs,3,"(3, 2)",-0.0030176678205733427,0.02598799304056929
+capacity_3 x trans_cost_3_0,capacity_3,trans_cost_3_0,capacities,transportation_costs,3,"(3, 0)",-0.003074214999500386,0.02605390681500807
+capacity_3 x trans_cost_1_4,capacity_3,trans_cost_1_4,capacities,transportation_costs,3,"(1, 4)",-0.0030954576897135686,0.02594208599566392
+capacity_3 x trans_cost_0_4,capacity_3,trans_cost_0_4,capacities,transportation_costs,3,"(0, 4)",-0.003125061505567764,0.02595815904660739
+capacity_3 x trans_cost_0_0,capacity_3,trans_cost_0_0,capacities,transportation_costs,3,"(0, 0)",-0.00316824129983742,0.02603025616192658
+capacity_3 x trans_cost_4_2,capacity_3,trans_cost_4_2,capacities,transportation_costs,3,"(4, 2)",-0.0031910362217628736,0.025996085587859062
+capacity_3 x trans_cost_1_2,capacity_3,trans_cost_1_2,capacities,transportation_costs,3,"(1, 2)",-0.003211766712948675,0.02594954628375233
+capacity_3 x trans_cost_0_1,capacity_3,trans_cost_0_1,capacities,transportation_costs,3,"(0, 1)",-0.003257691031978776,0.02599510349466567
+capacity_3 x trans_cost_2_2,capacity_3,trans_cost_2_2,capacities,transportation_costs,3,"(2, 2)",-0.003259179841127299,0.026009920517834913
+capacity_3 x trans_cost_0_2,capacity_3,trans_cost_0_2,capacities,transportation_costs,3,"(0, 2)",-0.0032604362454470345,0.02598352033983261
+capacity_3 x trans_cost_1_3,capacity_3,trans_cost_1_3,capacities,transportation_costs,3,"(1, 3)",-0.0032662689094154116,0.02593266598257194
+capacity_3 x capacity_4,capacity_3,capacity_4,capacities,capacities,3,4,-0.0032665206171953163,0.02598272433222401
+capacity_3 x trans_cost_2_0,capacity_3,trans_cost_2_0,capacities,transportation_costs,3,"(2, 0)",-0.0032723593021498324,0.02597505104394998
+capacity_3 x trans_cost_2_3,capacity_3,trans_cost_2_3,capacities,transportation_costs,3,"(2, 3)",-0.0032727657887427646,0.026026533030091226
+capacity_3 x trans_cost_4_1,capacity_3,trans_cost_4_1,capacities,transportation_costs,3,"(4, 1)",-0.003298725032772269,0.025980959630808258
+capacity_3 x trans_cost_2_1,capacity_3,trans_cost_2_1,capacities,transportation_costs,3,"(2, 1)",-0.003314103799357257,0.025978436579175767
+capacity_3 x trans_cost_3_1,capacity_3,trans_cost_3_1,capacities,transportation_costs,3,"(3, 1)",-0.003325453279971145,0.02601162457724621
+capacity_3 x trans_cost_1_1,capacity_3,trans_cost_1_1,capacities,transportation_costs,3,"(1, 1)",-0.003327120346575021,0.02600711744972165
+capacity_3 x trans_cost_3_4,capacity_3,trans_cost_3_4,capacities,transportation_costs,3,"(3, 4)",-0.0033751346934427374,0.025998927662727288
+capacity_3 x trans_cost_2_4,capacity_3,trans_cost_2_4,capacities,transportation_costs,3,"(2, 4)",-0.003407898467191004,0.026060462848713144
+capacity_3 x fixed_cost_2,capacity_3,fixed_cost_2,capacities,fixed_costs,3,2,-0.0034432712357254994,0.026651492399716425
+capacity_3 x trans_cost_4_4,capacity_3,trans_cost_4_4,capacities,transportation_costs,3,"(4, 4)",-0.0034784324605434077,0.025984796521934514
+capacity_1 x capacity_4,capacity_1,capacity_4,capacities,capacities,1,4,-0.0035308500397995806,0.006400037623418213
+capacity_3 x trans_cost_1_0,capacity_3,trans_cost_1_0,capacities,transportation_costs,3,"(1, 0)",-0.0036255927173797406,0.02592710217790246
+capacity_3 x trans_cost_4_3,capacity_3,trans_cost_4_3,capacities,transportation_costs,3,"(4, 3)",-0.0038211471607608708,0.025937299462934698
+capacity_1 x fixed_cost_2,capacity_1,fixed_cost_2,capacities,fixed_costs,1,2,-0.003914358037434111,0.006195136136203387
+capacity_1 x fixed_cost_3,capacity_1,fixed_cost_3,capacities,fixed_costs,1,3,-0.004120742557374806,0.006259139927703063
+capacity_3 x trans_cost_4_0,capacity_3,trans_cost_4_0,capacities,transportation_costs,3,"(4, 0)",-0.004123636584539673,0.02601443287052787
+fixed_cost_2 x fixed_cost_3,fixed_cost_2,fixed_cost_3,fixed_costs,fixed_costs,2,3,-0.00417436005947024,0.007251208495384571
+demand_3 x capacity_1,demand_3,capacity_1,demands,capacities,3,1,-0.004242617672637096,0.013016903641642557
+capacity_3 x fixed_cost_1,capacity_3,fixed_cost_1,capacities,fixed_costs,3,1,-0.004254071357917396,0.026123651594990735
+demand_3 x demand_4,demand_3,demand_4,demands,demands,3,4,-0.0045266016641471035,0.012608374612484262
+demand_2 x capacity_1,demand_2,capacity_1,demands,capacities,2,1,-0.005247980424080178,0.01702281853217638
+fixed_cost_2 x trans_cost_3_2,fixed_cost_2,trans_cost_3_2,fixed_costs,transportation_costs,2,"(3, 2)",-0.0052813565021113075,0.007461763143085399
+fixed_cost_2 x trans_cost_1_3,fixed_cost_2,trans_cost_1_3,fixed_costs,transportation_costs,2,"(1, 3)",-0.00528448619961734,0.0074913885059858356
+fixed_cost_2 x trans_cost_4_2,fixed_cost_2,trans_cost_4_2,fixed_costs,transportation_costs,2,"(4, 2)",-0.005285173320255445,0.007478010986816119
+fixed_cost_2 x trans_cost_2_4,fixed_cost_2,trans_cost_2_4,fixed_costs,transportation_costs,2,"(2, 4)",-0.005285554205326847,0.007453495174982386
+fixed_cost_2 x trans_cost_2_2,fixed_cost_2,trans_cost_2_2,fixed_costs,transportation_costs,2,"(2, 2)",-0.005302631638580626,0.0074794509185915235
+fixed_cost_2 x trans_cost_3_0,fixed_cost_2,trans_cost_3_0,fixed_costs,transportation_costs,2,"(3, 0)",-0.005321681223155519,0.007478942903159106
+fixed_cost_2 x trans_cost_2_1,fixed_cost_2,trans_cost_2_1,fixed_costs,transportation_costs,2,"(2, 1)",-0.005333030621942671,0.007474115354530947
+fixed_cost_2 x trans_cost_0_4,fixed_cost_2,trans_cost_0_4,fixed_costs,transportation_costs,2,"(0, 4)",-0.005340362806754814,0.007473101494961174
+fixed_cost_2 x trans_cost_0_2,fixed_cost_2,trans_cost_0_2,fixed_costs,transportation_costs,2,"(0, 2)",-0.0053422505465622865,0.007470167706210462
+fixed_cost_2 x trans_cost_1_0,fixed_cost_2,trans_cost_1_0,fixed_costs,transportation_costs,2,"(1, 0)",-0.005342419742222845,0.007472242518545219
+fixed_cost_2 x trans_cost_3_4,fixed_cost_2,trans_cost_3_4,fixed_costs,transportation_costs,2,"(3, 4)",-0.005343018774019841,0.007453348127138803
+fixed_cost_2 x trans_cost_3_3,fixed_cost_2,trans_cost_3_3,fixed_costs,transportation_costs,2,"(3, 3)",-0.005350763986573692,0.00747342656961477
+fixed_cost_2 x trans_cost_2_3,fixed_cost_2,trans_cost_2_3,fixed_costs,transportation_costs,2,"(2, 3)",-0.0053517183958681856,0.00745213288715704
+fixed_cost_2 x trans_cost_4_1,fixed_cost_2,trans_cost_4_1,fixed_costs,transportation_costs,2,"(4, 1)",-0.005360990564130262,0.007465674178781102
+fixed_cost_2 x trans_cost_1_4,fixed_cost_2,trans_cost_1_4,fixed_costs,transportation_costs,2,"(1, 4)",-0.005363849161488689,0.007469647184055257
+fixed_cost_2 x trans_cost_1_1,fixed_cost_2,trans_cost_1_1,fixed_costs,transportation_costs,2,"(1, 1)",-0.005366110081299377,0.0074737954522048474
+fixed_cost_2 x trans_cost_0_0,fixed_cost_2,trans_cost_0_0,fixed_costs,transportation_costs,2,"(0, 0)",-0.005368829310482526,0.0074624046337725255
+fixed_cost_2 x trans_cost_3_1,fixed_cost_2,trans_cost_3_1,fixed_costs,transportation_costs,2,"(3, 1)",-0.005369057396330037,0.007476717980444266
+fixed_cost_2 x trans_cost_4_4,fixed_cost_2,trans_cost_4_4,fixed_costs,transportation_costs,2,"(4, 4)",-0.005372542886551654,0.007465996332437906
+fixed_cost_2 x trans_cost_0_3,fixed_cost_2,trans_cost_0_3,fixed_costs,transportation_costs,2,"(0, 3)",-0.005381123242690615,0.0074704814745096835
+fixed_cost_2 x trans_cost_1_2,fixed_cost_2,trans_cost_1_2,fixed_costs,transportation_costs,2,"(1, 2)",-0.005382386739141304,0.007466696272680025
+fixed_cost_2 x trans_cost_4_3,fixed_cost_2,trans_cost_4_3,fixed_costs,transportation_costs,2,"(4, 3)",-0.005383730769130891,0.007440039452923619
+fixed_cost_2 x trans_cost_2_0,fixed_cost_2,trans_cost_2_0,fixed_costs,transportation_costs,2,"(2, 0)",-0.00540102836802223,0.007465571497004706
+fixed_cost_2 x trans_cost_0_1,fixed_cost_2,trans_cost_0_1,fixed_costs,transportation_costs,2,"(0, 1)",-0.005437396433219148,0.0074513660159341525
+fixed_cost_2 x trans_cost_4_0,fixed_cost_2,trans_cost_4_0,fixed_costs,transportation_costs,2,"(4, 0)",-0.005460772581251889,0.007461041282475432
+demand_3 x trans_cost_0_3,demand_3,trans_cost_0_3,demands,transportation_costs,3,"(0, 3)",-0.005880757558343458,0.012328490220608742
+demand_3 x trans_cost_3_2,demand_3,trans_cost_3_2,demands,transportation_costs,3,"(3, 2)",-0.005919557721146099,0.012326780649051548
+demand_3 x trans_cost_3_0,demand_3,trans_cost_3_0,demands,transportation_costs,3,"(3, 0)",-0.005921411877156346,0.012333969495660521
+demand_2 x trans_cost_0_0,demand_2,trans_cost_0_0,demands,transportation_costs,2,"(0, 0)",-0.005948265218590122,0.017117243656160845
+demand_3 x trans_cost_1_2,demand_3,trans_cost_1_2,demands,transportation_costs,3,"(1, 2)",-0.005956559306783159,0.0123508389190513
+demand_2 x trans_cost_0_3,demand_2,trans_cost_0_3,demands,transportation_costs,2,"(0, 3)",-0.005961317301031713,0.017119776251272013
+demand_3 x capacity_4,demand_3,capacity_4,demands,capacities,3,4,-0.005966398554687994,0.012302091274560974
+demand_2 x trans_cost_1_2,demand_2,trans_cost_1_2,demands,transportation_costs,2,"(1, 2)",-0.005981976014146626,0.017111197663501988
+demand_2 x trans_cost_4_0,demand_2,trans_cost_4_0,demands,transportation_costs,2,"(4, 0)",-0.005984567097835867,0.01712766981517451
+demand_2 x trans_cost_2_2,demand_2,trans_cost_2_2,demands,transportation_costs,2,"(2, 2)",-0.005995490760623721,0.017106175748154106
+demand_3 x trans_cost_1_0,demand_3,trans_cost_1_0,demands,transportation_costs,3,"(1, 0)",-0.0059984304001461965,0.012426714123797068
+demand_2 x trans_cost_4_1,demand_2,trans_cost_4_1,demands,transportation_costs,2,"(4, 1)",-0.00600308563191304,0.017146940593057592
+demand_3 x trans_cost_0_0,demand_3,trans_cost_0_0,demands,transportation_costs,3,"(0, 0)",-0.00601205495173917,0.01233045304450228
+demand_3 x trans_cost_1_4,demand_3,trans_cost_1_4,demands,transportation_costs,3,"(1, 4)",-0.00601210353522961,0.012337128805088428
+demand_2 x trans_cost_1_0,demand_2,trans_cost_1_0,demands,transportation_costs,2,"(1, 0)",-0.006014762332624721,0.01711672832968268
+demand_2 x trans_cost_0_4,demand_2,trans_cost_0_4,demands,transportation_costs,2,"(0, 4)",-0.00601815928889226,0.01710744022224823
+demand_3 x trans_cost_2_0,demand_3,trans_cost_2_0,demands,transportation_costs,3,"(2, 0)",-0.0060243750400239176,0.01235083411721899
+demand_3 x capacity_2,demand_3,capacity_2,demands,capacities,3,2,-0.006029913773956644,0.012346875262312316
+demand_2 x trans_cost_3_3,demand_2,trans_cost_3_3,demands,transportation_costs,2,"(3, 3)",-0.00603318010442289,0.01712414004105762
+demand_3 x trans_cost_1_1,demand_3,trans_cost_1_1,demands,transportation_costs,3,"(1, 1)",-0.006034709932924733,0.012345570166447254
+demand_3 x trans_cost_3_1,demand_3,trans_cost_3_1,demands,transportation_costs,3,"(3, 1)",-0.00603960086409818,0.012357054272063768
+demand_3 x trans_cost_0_1,demand_3,trans_cost_0_1,demands,transportation_costs,3,"(0, 1)",-0.0060477692753496915,0.0123537036868182
+demand_3 x trans_cost_3_3,demand_3,trans_cost_3_3,demands,transportation_costs,3,"(3, 3)",-0.006048148375966348,0.012313503450486082
+demand_3 x trans_cost_4_1,demand_3,trans_cost_4_1,demands,transportation_costs,3,"(4, 1)",-0.0060562184984202195,0.012325512078008081
+demand_2 x trans_cost_3_0,demand_2,trans_cost_3_0,demands,transportation_costs,2,"(3, 0)",-0.006066151667617272,0.017082872059842717
+demand_2 x trans_cost_1_1,demand_2,trans_cost_1_1,demands,transportation_costs,2,"(1, 1)",-0.006066624974153126,0.017112483042052876
+demand_3 x trans_cost_2_2,demand_3,trans_cost_2_2,demands,transportation_costs,3,"(2, 2)",-0.0060793522999581,0.01235208729446092
+demand_2 x trans_cost_3_2,demand_2,trans_cost_3_2,demands,transportation_costs,2,"(3, 2)",-0.006085965716530454,0.017062676519378102
+demand_3 x trans_cost_1_3,demand_3,trans_cost_1_3,demands,transportation_costs,3,"(1, 3)",-0.006086406678898305,0.012343196117292623
+demand_3 x trans_cost_0_4,demand_3,trans_cost_0_4,demands,transportation_costs,3,"(0, 4)",-0.006090014067172764,0.012364013895009691
+demand_2 x trans_cost_3_1,demand_2,trans_cost_3_1,demands,transportation_costs,2,"(3, 1)",-0.0060942331585333185,0.017099866578127797
+demand_3 x capacity_0,demand_3,capacity_0,demands,capacities,3,0,-0.006096683802438656,0.01232302078847084
+demand_3 x trans_cost_2_1,demand_3,trans_cost_2_1,demands,transportation_costs,3,"(2, 1)",-0.00609822379859093,0.012338858334164001
+demand_3 x trans_cost_4_2,demand_3,trans_cost_4_2,demands,transportation_costs,3,"(4, 2)",-0.006100209887257455,0.012354513115482196
+demand_3 x trans_cost_4_0,demand_3,trans_cost_4_0,demands,transportation_costs,3,"(4, 0)",-0.006117583825782075,0.012338965075940586
+demand_3 x trans_cost_0_2,demand_3,trans_cost_0_2,demands,transportation_costs,3,"(0, 2)",-0.00612023972353384,0.0123240549655627
+demand_3 x trans_cost_2_4,demand_3,trans_cost_2_4,demands,transportation_costs,3,"(2, 4)",-0.006121163681461478,0.012252274446023349
+demand_2 x trans_cost_0_1,demand_2,trans_cost_0_1,demands,transportation_costs,2,"(0, 1)",-0.006140910455623246,0.017111352735019132
+demand_3 x trans_cost_3_4,demand_3,trans_cost_3_4,demands,transportation_costs,3,"(3, 4)",-0.006148335553382327,0.012337374117003298
+demand_2 x trans_cost_2_1,demand_2,trans_cost_2_1,demands,transportation_costs,2,"(2, 1)",-0.006164055692358836,0.017116530500810898
+demand_2 x trans_cost_3_4,demand_2,trans_cost_3_4,demands,transportation_costs,2,"(3, 4)",-0.0061657797492896665,0.017118559048785197
+demand_3 x trans_cost_4_4,demand_3,trans_cost_4_4,demands,transportation_costs,3,"(4, 4)",-0.006171908294790574,0.012353441819222679
+demand_2 x trans_cost_2_0,demand_2,trans_cost_2_0,demands,transportation_costs,2,"(2, 0)",-0.006178831939186742,0.01708715090866704
+demand_2 x capacity_2,demand_2,capacity_2,demands,capacities,2,2,-0.006184757789521871,0.017123255906753312
+demand_2 x trans_cost_1_3,demand_2,trans_cost_1_3,demands,transportation_costs,2,"(1, 3)",-0.006195164280953571,0.017137444994510025
+demand_2 x capacity_0,demand_2,capacity_0,demands,capacities,2,0,-0.006200401252148916,0.017122157586048563
+demand_2 x trans_cost_4_2,demand_2,trans_cost_4_2,demands,transportation_costs,2,"(4, 2)",-0.006207851253056164,0.017099026452703163
+demand_2 x trans_cost_4_4,demand_2,trans_cost_4_4,demands,transportation_costs,2,"(4, 4)",-0.006214390707485499,0.017100988905057447
+demand_3 x trans_cost_4_3,demand_3,trans_cost_4_3,demands,transportation_costs,3,"(4, 3)",-0.006221390626361437,0.012284937864630993
+demand_2 x trans_cost_0_2,demand_2,trans_cost_0_2,demands,transportation_costs,2,"(0, 2)",-0.006221633254670138,0.017151904133944552
+demand_2 x trans_cost_1_4,demand_2,trans_cost_1_4,demands,transportation_costs,2,"(1, 4)",-0.006229377100440267,0.017092539438690643
+demand_3 x trans_cost_2_3,demand_3,trans_cost_2_3,demands,transportation_costs,3,"(2, 3)",-0.006236391618547403,0.012362282270085189
+demand_2 x trans_cost_2_3,demand_2,trans_cost_2_3,demands,transportation_costs,2,"(2, 3)",-0.0062381634883279125,0.01712672709747783
+demand_2 x trans_cost_2_4,demand_2,trans_cost_2_4,demands,transportation_costs,2,"(2, 4)",-0.006303587682377338,0.01713370116629468
+demand_2 x trans_cost_4_3,demand_2,trans_cost_4_3,demands,transportation_costs,2,"(4, 3)",-0.006312894517751362,0.017103982461346746
+demand_2 x fixed_cost_3,demand_2,fixed_cost_3,demands,fixed_costs,2,3,-0.006567618509195652,0.01670266877765198
+demand_2 x fixed_cost_1,demand_2,fixed_cost_1,demands,fixed_costs,2,1,-0.006611590779573192,0.016980604318824206
+demand_3 x fixed_cost_2,demand_3,fixed_cost_2,demands,fixed_costs,3,2,-0.006620343612646087,0.011978848041083727
+demand_2 x capacity_4,demand_2,capacity_4,demands,capacities,2,4,-0.006742958919316504,0.01707467565078682
+demand_3 x fixed_cost_3,demand_3,fixed_cost_3,demands,fixed_costs,3,3,-0.00683980341854693,0.012625301560480978
+demand_3 x fixed_cost_4,demand_3,fixed_cost_4,demands,fixed_costs,3,4,-0.007188237990307159,0.01243349407315491
+demand_3 x fixed_cost_1,demand_3,fixed_cost_1,demands,fixed_costs,3,1,-0.007213304652161616,0.012281961190535384
+demand_2 x fixed_cost_0,demand_2,fixed_cost_0,demands,fixed_costs,2,0,-0.007516942321761616,0.017131769107664268
+demand_2 x fixed_cost_4,demand_2,fixed_cost_4,demands,fixed_costs,2,4,-0.007528491304393443,0.016845659603949577
+demand_3 x fixed_cost_0,demand_3,fixed_cost_0,demands,fixed_costs,3,0,-0.0077710996098935,0.011624005861073202
+demand_4 x fixed_cost_2,demand_4,fixed_cost_2,demands,fixed_costs,4,2,-0.007832242932709302,0.014321567946515118
+demand_4 x fixed_cost_0,demand_4,fixed_cost_0,demands,fixed_costs,4,0,-0.008120679623584148,0.014907376675536526
+demand_2 x fixed_cost_2,demand_2,fixed_cost_2,demands,fixed_costs,2,2,-0.008162661637809966,0.01649367474683729
+demand_4 x trans_cost_2_0,demand_4,trans_cost_2_0,demands,transportation_costs,4,"(2, 0)",-0.009010387370119508,0.014472530841683059
+demand_4 x trans_cost_3_3,demand_4,trans_cost_3_3,demands,transportation_costs,4,"(3, 3)",-0.009081772304246446,0.01451248442329752
+demand_4 x capacity_0,demand_4,capacity_0,demands,capacities,4,0,-0.00911989765705399,0.014511097769042214
+demand_4 x trans_cost_0_3,demand_4,trans_cost_0_3,demands,transportation_costs,4,"(0, 3)",-0.009119974017507464,0.014447045039009091
+demand_4 x trans_cost_3_2,demand_4,trans_cost_3_2,demands,transportation_costs,4,"(3, 2)",-0.009126767751492198,0.01449428281971271
+demand_4 x trans_cost_2_4,demand_4,trans_cost_2_4,demands,transportation_costs,4,"(2, 4)",-0.009147113584597553,0.014491411080787619
+demand_4 x trans_cost_0_0,demand_4,trans_cost_0_0,demands,transportation_costs,4,"(0, 0)",-0.009156760676426432,0.014483250213652798
+demand_4 x capacity_2,demand_4,capacity_2,demands,capacities,4,2,-0.009180812694278954,0.014476292838642858
+demand_4 x trans_cost_4_3,demand_4,trans_cost_4_3,demands,transportation_costs,4,"(4, 3)",-0.009184632447915784,0.014457368911921389
+demand_4 x trans_cost_1_1,demand_4,trans_cost_1_1,demands,transportation_costs,4,"(1, 1)",-0.009187095039891256,0.014488600885492094
+demand_4 x trans_cost_0_1,demand_4,trans_cost_0_1,demands,transportation_costs,4,"(0, 1)",-0.009248370922225168,0.014504282575892447
+demand_4 x trans_cost_4_4,demand_4,trans_cost_4_4,demands,transportation_costs,4,"(4, 4)",-0.009253767911701937,0.014482203152920462
+demand_4 x trans_cost_3_0,demand_4,trans_cost_3_0,demands,transportation_costs,4,"(3, 0)",-0.00926170226148724,0.014529312445132557
+demand_4 x trans_cost_4_0,demand_4,trans_cost_4_0,demands,transportation_costs,4,"(4, 0)",-0.009268297196711107,0.014519987836091845
+demand_4 x trans_cost_0_2,demand_4,trans_cost_0_2,demands,transportation_costs,4,"(0, 2)",-0.00928337247201929,0.014477359292895767
+demand_4 x trans_cost_1_4,demand_4,trans_cost_1_4,demands,transportation_costs,4,"(1, 4)",-0.009284148775268015,0.014500481909553846
+demand_4 x trans_cost_2_3,demand_4,trans_cost_2_3,demands,transportation_costs,4,"(2, 3)",-0.00928497394385845,0.014386086331430141
+demand_4 x trans_cost_0_4,demand_4,trans_cost_0_4,demands,transportation_costs,4,"(0, 4)",-0.009286712260751073,0.014471540087614468
+demand_4 x trans_cost_3_1,demand_4,trans_cost_3_1,demands,transportation_costs,4,"(3, 1)",-0.009287131647762027,0.014488568496031752
+demand_4 x trans_cost_4_1,demand_4,trans_cost_4_1,demands,transportation_costs,4,"(4, 1)",-0.009288276355524896,0.014491472076727295
+demand_4 x capacity_4,demand_4,capacity_4,demands,capacities,4,4,-0.009298906568193327,0.014476781311371228
+demand_4 x trans_cost_2_2,demand_4,trans_cost_2_2,demands,transportation_costs,4,"(2, 2)",-0.00931496548702058,0.014477678140728282
+demand_4 x trans_cost_4_2,demand_4,trans_cost_4_2,demands,transportation_costs,4,"(4, 2)",-0.009323696414527788,0.014461918204133511
+demand_4 x trans_cost_2_1,demand_4,trans_cost_2_1,demands,transportation_costs,4,"(2, 1)",-0.009328042529097875,0.014480397820020731
+demand_4 x trans_cost_1_3,demand_4,trans_cost_1_3,demands,transportation_costs,4,"(1, 3)",-0.00935912871670181,0.014489717188623737
+demand_4 x trans_cost_1_2,demand_4,trans_cost_1_2,demands,transportation_costs,4,"(1, 2)",-0.009364680347210502,0.014501589756014488
+demand_4 x trans_cost_3_4,demand_4,trans_cost_3_4,demands,transportation_costs,4,"(3, 4)",-0.009423254108762269,0.014485864024361562
+demand_4 x trans_cost_1_0,demand_4,trans_cost_1_0,demands,transportation_costs,4,"(1, 0)",-0.009440506816923086,0.014489270316081469
+demand_4 x fixed_cost_1,demand_4,fixed_cost_1,demands,fixed_costs,4,1,-0.009739855160205386,0.014516095315685653
+demand_4 x capacity_1,demand_4,capacity_1,demands,capacities,4,1,-0.010581128163196141,0.0146170892246186
+demand_4 x fixed_cost_4,demand_4,fixed_cost_4,demands,fixed_costs,4,4,-0.010862135372400213,0.014423514637350157
+demand_4 x fixed_cost_3,demand_4,fixed_cost_3,demands,fixed_costs,4,3,-0.011473491757912836,0.014820684053988113
+demand_0 x demand_2,demand_0,demand_2,demands,demands,0,2,-0.011529539104400497,0.014393879661170821
+demand_0 x demand_3,demand_0,demand_3,demands,demands,0,3,-0.01798360567352541,0.01344055257042565
+demand_0 x demand_1,demand_0,demand_1,demands,demands,0,1,-0.01895844675262917,0.013266624751990686
+demand_0 x trans_cost_2_3,demand_0,trans_cost_2_3,demands,transportation_costs,0,"(2, 3)",-0.019209366217193383,0.01188786092149489
+demand_0 x trans_cost_3_2,demand_0,trans_cost_3_2,demands,transportation_costs,0,"(3, 2)",-0.019220775059113133,0.011866165622492097
+demand_0 x capacity_0,demand_0,capacity_0,demands,capacities,0,0,-0.019308338992840308,0.011893603906974812
+demand_0 x trans_cost_0_3,demand_0,trans_cost_0_3,demands,transportation_costs,0,"(0, 3)",-0.019336276897466982,0.011920667563644533
+demand_0 x trans_cost_3_3,demand_0,trans_cost_3_3,demands,transportation_costs,0,"(3, 3)",-0.019345214173429024,0.011857354774041873
+demand_0 x trans_cost_3_0,demand_0,trans_cost_3_0,demands,transportation_costs,0,"(3, 0)",-0.01941849551021889,0.01185446625594552
+demand_0 x trans_cost_4_0,demand_0,trans_cost_4_0,demands,transportation_costs,0,"(4, 0)",-0.019457239004685992,0.011916081396586212
+demand_0 x trans_cost_0_2,demand_0,trans_cost_0_2,demands,transportation_costs,0,"(0, 2)",-0.019466058531978317,0.011932371547598642
+demand_0 x trans_cost_1_1,demand_0,trans_cost_1_1,demands,transportation_costs,0,"(1, 1)",-0.019481763945735624,0.011922984633393852
+demand_0 x trans_cost_0_0,demand_0,trans_cost_0_0,demands,transportation_costs,0,"(0, 0)",-0.019495577682248043,0.011959708854602555
+demand_0 x trans_cost_1_2,demand_0,trans_cost_1_2,demands,transportation_costs,0,"(1, 2)",-0.019513379868170543,0.011884562728892056
+demand_0 x trans_cost_3_1,demand_0,trans_cost_3_1,demands,transportation_costs,0,"(3, 1)",-0.019549471227893984,0.011896424391261236
+demand_0 x trans_cost_0_4,demand_0,trans_cost_0_4,demands,transportation_costs,0,"(0, 4)",-0.019564045877597275,0.01190071717821125
+demand_0 x trans_cost_1_4,demand_0,trans_cost_1_4,demands,transportation_costs,0,"(1, 4)",-0.0195648088518306,0.011892550676361613
+demand_0 x trans_cost_0_1,demand_0,trans_cost_0_1,demands,transportation_costs,0,"(0, 1)",-0.019567810660329588,0.011898327705778436
+demand_0 x capacity_4,demand_0,capacity_4,demands,capacities,0,4,-0.01957381655820159,0.011903572127320176
+demand_0 x trans_cost_2_0,demand_0,trans_cost_2_0,demands,transportation_costs,0,"(2, 0)",-0.019578561061801877,0.01191663656480539
+demand_0 x trans_cost_2_1,demand_0,trans_cost_2_1,demands,transportation_costs,0,"(2, 1)",-0.01958702627963271,0.011904012857570851
+demand_0 x trans_cost_4_1,demand_0,trans_cost_4_1,demands,transportation_costs,0,"(4, 1)",-0.019598460405556194,0.011872256688379487
+demand_0 x trans_cost_3_4,demand_0,trans_cost_3_4,demands,transportation_costs,0,"(3, 4)",-0.019628326337421308,0.01188707754517547
+demand_0 x trans_cost_4_2,demand_0,trans_cost_4_2,demands,transportation_costs,0,"(4, 2)",-0.01963067184747905,0.01191897307073913
+demand_0 x trans_cost_4_3,demand_0,trans_cost_4_3,demands,transportation_costs,0,"(4, 3)",-0.019634113086033043,0.01186620087246908
+demand_0 x fixed_cost_1,demand_0,fixed_cost_1,demands,fixed_costs,0,1,-0.019638244202559895,0.011979224954517734
+demand_0 x capacity_2,demand_0,capacity_2,demands,capacities,0,2,-0.019640020121624913,0.011900455542140745
+demand_0 x capacity_1,demand_0,capacity_1,demands,capacities,0,1,-0.019673764440261705,0.011810546573133943
+demand_0 x trans_cost_4_4,demand_0,trans_cost_4_4,demands,transportation_costs,0,"(4, 4)",-0.019679302025029998,0.011899766759455314
+demand_0 x trans_cost_2_4,demand_0,trans_cost_2_4,demands,transportation_costs,0,"(2, 4)",-0.019683871669657085,0.01190027617786478
+demand_0 x trans_cost_2_2,demand_0,trans_cost_2_2,demands,transportation_costs,0,"(2, 2)",-0.019704457526946065,0.011898095590695617
+demand_0 x trans_cost_1_0,demand_0,trans_cost_1_0,demands,transportation_costs,0,"(1, 0)",-0.01977941730870336,0.011941148648458166
+demand_0 x trans_cost_1_3,demand_0,trans_cost_1_3,demands,transportation_costs,0,"(1, 3)",-0.01996987906023177,0.01192012502381301
+demand_0 x fixed_cost_2,demand_0,fixed_cost_2,demands,fixed_costs,0,2,-0.020288247897975276,0.011622067444181452
+demand_0 x fixed_cost_4,demand_0,fixed_cost_4,demands,fixed_costs,0,4,-0.021290974821632006,0.012077102936793037
+demand_0 x demand_4,demand_0,demand_4,demands,demands,0,4,-0.021333042783918454,0.01294926577250125
+demand_0 x fixed_cost_0,demand_0,fixed_cost_0,demands,fixed_costs,0,0,-0.021348824305665537,0.012677866420779851
+demand_0 x fixed_cost_3,demand_0,fixed_cost_3,demands,fixed_costs,0,3,-0.021683089467482097,0.012209745007422687

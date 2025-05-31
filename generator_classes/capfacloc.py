@@ -1,4 +1,5 @@
 from pulp import LpProblem, LpMinimize, LpVariable, lpSum, LpBinary, LpContinuous, LpStatus, value
+import pulp
 import numpy as np
 import pandas as pd
 import time
@@ -59,7 +60,7 @@ def solve_model(model):
     """
     Solves the given model and returns the solver status and objective value.
     """
-    status = model.solve()
+    status = model.solve(pulp.PULP_CBC_CMD(msg=False))  # Use CBC solver with no output
     status_str = LpStatus[status]
     obj_value = None
     if status_str == "Optimal":
@@ -251,6 +252,6 @@ if __name__ == '__main__':
     
     # Save all scenario logs (including baseline) to CSV
     df = pd.DataFrame(scenario_logs)
-    csv_filename = "perturbation_analysis_results.csv"
+    csv_filename = "logs/perturbation_analysis_results.csv"
     df.to_csv(csv_filename, index=False)
     print(f"\nScenario logs saved to '{csv_filename}'")

@@ -1,0 +1,48 @@
+LangGraph Automated Sensitivity Analysis Log (Run ID: 20250528_003211)
+============================================================
+
+Model Path: models/VRP/vrp_model.py
+Data Path: models/VRP/data/vrp_data_10cust_2veh.json
+Baseline Objective Value: 0.0
+Number of Parameters: 0
+
+Iterations Ran: 5
+Total Run Time: 56.79 seconds
+Planner LLM: gpt-4o-mini (Temp: 0.7)
+Coder LLM: gpt-4o (Temp: 0.0)
+
+--- Final Analysis Summary ---
+**1. Summarize Key Findings:**
+
+The sensitivity analysis of the Vehicle Routing Problem (VRP) model reveals several insights:
+
+- **Vehicle Capacity Reduction:** Decreasing vehicle capacity from 50 to 30 resulted in a significant increase in total cost, indicating that vehicle capacity is a critical factor in maintaining cost efficiency. However, the model remained feasible, suggesting some flexibility in capacity constraints.
+  
+- **Increase in Number of Vehicles:** Increasing the number of vehicles from 2 to 5 led to the lowest total cost among the scenarios, highlighting that having more vehicles available can significantly enhance cost efficiency and feasibility in meeting customer demands.
+
+- **Demand Increases:** Various scenarios tested increased customer demands, which consistently resulted in higher total costs. However, none of these scenarios led to infeasibility, indicating that the model can accommodate demand fluctuations to a certain extent, albeit at a higher cost.
+
+Overall, changes in vehicle capacity and the number of vehicles had the most pronounced impact on cost, while demand increases affected cost but did not compromise feasibility.
+
+**2. Rank Parameter/Change Type Sensitivity:**
+
+1. **Number of Vehicles:** Increasing the number of vehicles had the most significant impact on reducing total cost, demonstrating high sensitivity to this parameter.
+   
+2. **Vehicle Capacity:** Reducing vehicle capacity significantly increased total cost, showing that capacity constraints are highly sensitive and critical for cost management.
+
+3. **Demand Levels:** While increasing demand consistently raised costs, the impact was less pronounced compared to changes in vehicle capacity and number of vehicles. The model remained feasible under all demand increase scenarios.
+
+**3. Identify Critical Scenarios:**
+
+- **Scenario 2:** Increasing the number of vehicles from 2 to 5 was particularly revealing as it resulted in the lowest total cost (330.1), demonstrating the substantial impact of vehicle availability on cost efficiency.
+
+- **Scenario 1:** Decreasing vehicle capacity from 50 to 30 led to a significant cost increase (416.89), highlighting the sensitivity of the model to capacity constraints.
+
+These scenarios underscore the importance of vehicle-related parameters in optimizing the VRP model's cost and feasibility.
+
+--- Scenario Log ---
+1. Scenario: 'Decrease the vehicle capacity from 50 to 30 to test for potential infeasibility and significantly increase the total cost due to constraints on fulfilling customer demand.' -> Status: Optimal, Cost: 416.89
+2. Scenario: 'Increase the number of vehicles from 2 to 5 to assess the potential for reduced total cost and improved feasibility in serving all customer demands efficiently.' -> Status: Optimal, Cost: 330.1
+3. Scenario: 'Increase the demand for customers 2 and 5 from 7 and 9 to 15 and 20, respectively, to test the model's feasibility under significantly higher demand and its impact on total cost.' -> Status: Optimal, Cost: 382.11
+4. Scenario: 'Increase the demand for customers 1 and 4 from 3 and 9 to 12 and 25, respectively, to test model feasibility under drastically higher demand and its impact on total cost.' -> Status: Optimal, Cost: 387.01
+5. Scenario: 'Increase the demand for customers 3 and 6 from 7 and 3 to 20 and 15, respectively, to test the model's feasibility under significantly higher demand and its potential impact on total cost.' -> Status: Optimal, Cost: 387.01

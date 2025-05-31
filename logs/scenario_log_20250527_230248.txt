@@ -1,0 +1,58 @@
+LangGraph Automated Sensitivity Analysis Log (Run ID: 20250527_230248)
+============================================================
+
+Model Path: vrp_model.py
+Data Path: data/vrp_data_10cust_2veh.json
+Baseline Objective Value: 330.1
+Number of Parameters: 34
+
+Iterations Ran: 5
+Total Run Time: 67.79 seconds
+Planner LLM: gpt-4o-mini (Temp: 0.7)
+Coder LLM: gpt-4o (Temp: 0.0)
+
+--- Final Analysis Summary ---
+**1. Summarize Key Findings:**
+
+The sensitivity analysis of the Vehicle Routing Problem (VRP) model reveals several key insights:
+
+- **Demand Increases:** Increasing customer demands, either globally or for specific high-demand customers, consistently led to significant increases in total cost. This is evident in scenarios where demand was increased by 50% or 100%, resulting in cost increases of 22.5%.
+
+- **Vehicle Capacity Reductions:** Reducing vehicle capacity from 50 to 30 resulted in a substantial increase in total cost (26.3%), indicating that vehicle capacity is a critical constraint in the model.
+
+- **Vehicle Capacity Increases:** Conversely, increasing vehicle capacity while reducing demand led to a decrease in total cost (-10.3%), demonstrating the model's sensitivity to capacity changes.
+
+- **Number of Vehicles:** Increasing the number of vehicles helped accommodate increased demand without causing infeasibility, although it did not significantly alter the cost compared to demand increases alone.
+
+- **Model Feasibility:** The scenario involving an increase in the number of customer locations led to an execution error, suggesting potential issues with handling larger problem sizes or specific coding errors rather than model infeasibility.
+
+**2. Rank Parameter/Change Type Sensitivity:**
+
+1. **Demand Levels:** Changes in demand, particularly increases, had the most significant impact on total cost, with increases leading to substantial cost hikes.
+   
+2. **Vehicle Capacity:** Reductions in vehicle capacity resulted in the highest percentage increase in cost, highlighting its critical role in maintaining cost efficiency.
+
+3. **Number of Vehicles:** While increasing the number of vehicles did not drastically change costs, it played a crucial role in maintaining feasibility under increased demand conditions.
+
+4. **Model Execution/Constraints:** The scenario involving an increase in customer locations resulted in an execution error, indicating potential sensitivity to problem size or coding constraints.
+
+**3. Identify Critical Scenarios:**
+
+- **Scenario 1:** Reducing vehicle capacity from 50 to 30 was particularly revealing, as it caused the largest cost increase (26.3%), underscoring the importance of vehicle capacity in the model.
+
+- **Scenario 3:** Attempting to increase the number of customer locations led to an execution error, highlighting potential limitations in handling larger datasets or specific coding issues.
+
+These scenarios provide valuable insights into the model's sensitivity to changes in demand, vehicle capacity, and problem size.
+
+--- Scenario Log ---
+1. Scenario: 'Reduce the vehicle capacity from 50 to 30 to test feasibility and potentially increase total cost significantly due to the need for additional vehicles to meet customer demands.' -> Status: Optimal, Cost: 416.89, ΔObj: 86.79 (26.3%)
+2. Scenario: 'Increase the total demand of all customers by 50%, which is expected to exceed the current vehicle capacity and potentially lead to infeasibility in servicing all customers with the available vehicles.' -> Status: Optimal, Cost: 404.51, ΔObj: 74.41 (22.5%)
+3. Scenario: 'Increase the number of customer locations from 11 to 15, introducing new customers with high demand (e.g., 10 units each), which is likely to exceed the combined vehicle capacity and lead to infeasibility in servicing all customers with the available vehicles.' -> Error: Execution Error: Execution Error:
+Traceback (most recent call last):
+  File "/home/timpi/Projects/thesis/multi_agent_supply_chain_optimization/utils.py", line 92, in _run_with_exec
+    exec(src_code, locals_dict, locals_dict)
+  File "<string>", line 32, in <module>
+AttributeError: 'dict' object has no attribute 'extend'
+
+4. Scenario: 'Increase the number of vehicles from 2 to 4 while simultaneously increasing the demand of specific high-demand customers (e.g., customer indices 2, 4, and 10) by 100% to test the model’s ability to handle increased demand with additional capacity and assess the impact on total cost and feasibility.' -> Status: Optimal, Cost: 404.51, ΔObj: 74.41 (22.5%)
+5. Scenario: 'Increase the vehicle capacity from 50 to 70 while simultaneously decreasing the demand of all customers by 50%, which is expected to test the model's ability to adapt to capacity increases and assess the impact on total cost and feasibility.' -> Status: Optimal, Cost: 296.26, ΔObj: -33.84 (-10.3%)

@@ -1,0 +1,45 @@
+LangGraph Automated Sensitivity Analysis Log (Run ID: 20250522_215337)
+============================================================
+
+Model Path: capfacloc_model.py
+Data Path: data/capfacloc_data.json
+Baseline Objective Value: 366.1
+Number of Parameters: 40
+Iterations Run: 5
+Total Run Time: 26.09 seconds
+Planner LLM: gpt-4o-mini (Temp: 0.7)
+Coder LLM: gpt-4o (Temp: 0.0)
+
+--- Final Analysis Summary ---
+**1. Summarize Key Findings:**
+
+The sensitivity analysis of the Capacitated Facility Location Problem (CFLP) model reveals that changes in facility capacities and fixed costs have the most significant impact on total costs. Specifically, increasing fixed costs and decreasing facility capacities both resulted in substantial increases in total costs. Notably, decreasing facility capacities by 50% led to the highest percentage increase in costs. Changes in transportation costs and customer demands also affected costs, but to a lesser extent. Despite these changes, all scenarios remained feasible, indicating a robust model capable of handling significant parameter variations without becoming infeasible.
+
+**2. Rank Parameter/Change Type Sensitivity:**
+
+1. **Facility Capacities:**
+   - Decreasing capacities by 50% resulted in the highest cost increase (ΔObj: 43.8%).
+   - Decreasing capacities by 30% had a smaller impact (ΔObj: 1.9%).
+
+2. **Fixed Costs:**
+   - Increasing fixed costs by 50% led to a significant cost increase (ΔObj: 42.2%).
+
+3. **Customer Demands:**
+   - Increasing demands by 50% caused a moderate cost increase (ΔObj: 4.9%).
+
+4. **Transportation Costs:**
+   - Increasing transportation costs by 30% resulted in a smaller cost increase (ΔObj: 4.1%).
+
+**3. Identify Critical Scenarios:**
+
+- **Scenario 4 (Decrease Capacities by 50%):** This scenario was particularly revealing as it caused the largest cost increase (ΔObj: 43.8%), highlighting the critical importance of facility capacities in maintaining cost efficiency.
+- **Scenario 1 (Increase Fixed Costs by 50%):** This scenario also showed a significant impact on costs (ΔObj: 42.2%), emphasizing the sensitivity of the model to changes in fixed costs.
+
+Overall, the analysis indicates that facility capacities and fixed costs are the most sensitive parameters in the CFLP model, with substantial changes leading to significant cost increases.
+
+--- Scenario Log ---
+1. Scenario: 'Increase the fixed costs of all facilities by 50%, which may lead to a significant increase in total costs and potentially make some previously optimal facility selections infeasible.' -> Status: Optimal, Cost: 520.5, ΔObj: 154.4 (42.2%)
+2. Scenario: 'Decrease the capacities of all facilities by 30%, which may lead to increased costs due to unmet customer demands and potentially result in infeasibility for service delivery.' -> Status: Optimal, Cost: 372.89, ΔObj: 6.79 (1.9%)
+3. Scenario: 'Scenario: 'Increase the transportation costs between all facilities and customers by 30%, which may significantly raise overall logistics expenses and could lead to some previously feasible facility selections becoming infeasible due to higher delivery costs.'' -> Status: Optimal, Cost: 381.1, ΔObj: 15.0 (4.1%)
+4. Scenario: 'Scenario: 'Decrease the capacities of all facilities by 50%, which may drastically increase costs due to unmet customer demands and significantly raise the likelihood of infeasibility in fulfilling customer orders.'' -> Status: Optimal, Cost: 526.47, ΔObj: 160.37 (43.8%)
+5. Scenario: 'Scenario: 'Increase the customer demands by 50%, which may lead to substantial increases in total costs due to unmet demands and significantly raise the likelihood of infeasibility in fulfilling orders.'' -> Status: Optimal, Cost: 384.21, ΔObj: 18.11 (4.9%)

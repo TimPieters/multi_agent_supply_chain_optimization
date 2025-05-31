@@ -1,0 +1,44 @@
+LangGraph Automated Sensitivity Analysis Log (Run ID: 20250522_231610)
+============================================================
+
+Model Path: capfacloc_model.py
+Data Path: data/capfacloc_data_10cust_10fac.json
+Baseline Objective Value: 366.1
+Number of Parameters: 130
+Iterations Ran: 5
+Total Run Time: 24.56 seconds
+Planner LLM: gpt-4o-mini (Temp: 0.7)
+Coder LLM: gpt-4o (Temp: 0.0)
+
+--- Final Analysis Summary ---
+**1. Summarize Key Findings:**
+
+The sensitivity analysis of the Capacitated Facility Location Problem (CFLP) model reveals that changes in fixed costs, facility capacities, and transportation costs have significant impacts on the total cost. Notably, all scenarios remained feasible, indicating the model's robustness to the tested changes. However, the magnitude of cost changes varied considerably across different scenarios. 
+
+- **Fixed Costs:** Increasing the fixed costs of all facilities by 50% resulted in the highest percentage increase in total cost (60.9%).
+- **Facility Capacities:** Reducing the capacities of all facilities by 30% also led to a substantial cost increase (57.7%).
+- **Transportation Costs:** A 40% increase in transportation costs caused a significant cost rise (31.2%).
+- **Demand Levels:** Increasing the demand of the highest-demand customer by 50% had a moderate impact on costs (21.6%).
+- **Specific Facility Capacities:** Decreasing the capacities of the two highest-capacity facilities by 50% resulted in a moderate cost increase (24.0%).
+
+**2. Rank Parameter/Change Type Sensitivity:**
+
+1. **Fixed Costs:** The increase in fixed costs had the most significant impact on total cost, with a 60.9% increase.
+2. **Facility Capacities (Overall):** A 30% reduction in all facility capacities resulted in a 57.7% increase in costs.
+3. **Transportation Costs:** A 40% increase in transportation costs led to a 31.2% increase in costs.
+4. **Specific Facility Capacities:** Reducing the capacities of the two highest-capacity facilities by 50% caused a 24.0% increase in costs.
+5. **Demand Levels:** Increasing the demand of the highest-demand customer by 50% resulted in a 21.6% increase in costs.
+
+**3. Identify Critical Scenarios:**
+
+- **Scenario 1 (Fixed Costs Increase):** This scenario was particularly revealing as it caused the largest percentage increase in total cost (60.9%), highlighting the sensitivity of the model to changes in fixed costs.
+- **Scenario 2 (Overall Capacity Reduction):** This scenario also showed a significant impact on costs (57.7%), indicating the critical role of facility capacities in maintaining cost efficiency.
+
+Overall, the analysis suggests that fixed costs and facility capacities are the most sensitive parameters in the CFLP model, with transportation costs also playing a significant role.
+
+--- Scenario Log ---
+1. Scenario: 'Increase the fixed costs of all facilities by 50%, which may lead to infeasibility due to the increased financial burden on facility selection.' -> Status: Optimal, Cost: 589.06, ΔObj: 222.96 (60.9%)
+2. Scenario: 'Reduce the capacities of all facilities by 30%, which may lead to infeasibility as customer demands could exceed the new reduced supply capabilities.' -> Status: Optimal, Cost: 577.18, ΔObj: 211.08 (57.7%)
+3. Scenario: 'Scenario: 'Increase the demand of the highest-demand customer (currently 30 units) by 50%, which could lead to infeasibility as the total demand may exceed the available capacities, significantly impacting the overall costs.'' -> Status: Optimal, Cost: 445.27, ΔObj: 79.17 (21.6%)
+4. Scenario: 'Scenario: 'Decrease the capacities of the two highest-capacity facilities by 50%, which may lead to significant infeasibility as combined customer demands could exceed the drastically reduced supply capabilities.'' -> Status: Optimal, Cost: 454.03, ΔObj: 87.93 (24.0%)
+5. Scenario: 'Scenario: 'Increase the transportation costs of all routes by 40%, which could significantly impact total costs and lead to infeasibility due to the increased logistical expenses associated with meeting customer demands.'' -> Status: Optimal, Cost: 480.33, ΔObj: 114.23 (31.2%)

@@ -11,12 +11,13 @@ from pulp import LpStatus, LpStatusOptimal, LpStatusInfeasible
 from typing import List
 import json
 from utils import _replace, _read_source_code, _run_with_exec, modify_and_run_model
+from config import MODEL_FILE_PATH, MODEL_DATA_PATH
 
 class CoderAgent:
-    def __init__(self):
-        self.source_code = _read_source_code("multi_agent_supply_chain_optimization/capfacloc_model.py")
+    def __init__(self, model_path: str = MODEL_FILE_PATH, llm_model_name: str = "gpt-4o", llm_temperature: float = 0):
+        self.source_code = _read_source_code(model_path)
         self.tools = [self._create_safety_tool()]
-        self.llm = ChatOpenAI(model_name="gpt-4o", temperature=0)
+        self.llm = ChatOpenAI(model_name=llm_model_name, temperature=llm_temperature)
 
         self.prompt_template = self._build_prompt()
         self.agent = create_react_agent(

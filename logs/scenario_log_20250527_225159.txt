@@ -1,0 +1,22 @@
+LangGraph Automated Sensitivity Analysis Log (Run ID: 20250527_225159)
+============================================================
+
+Model Path: vrp_model.py
+Data Path: data/vrp_data_10cust_2veh.json
+Baseline Objective Value: 330.1
+Number of Parameters: 34
+
+Iterations Ran: 5
+Total Run Time: 44.25 seconds
+Planner LLM: gpt-4o-mini (Temp: 0.7)
+Coder LLM: gpt-4o (Temp: 0.0)
+
+--- Final Analysis Summary ---
+Error during final analysis: "Input to PromptTemplate is missing variables {'model_description'}.  Expected: ['model_description', 'scenario_log'] Received: ['scenario_log']\nNote: if you intended {model_description} to be part of the string and not a variable, please escape it with double curly braces like: '{{model_description}}'.\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/INVALID_PROMPT_INPUT "
+
+--- Scenario Log ---
+1. Scenario: 'Increase the demand of the highest-demand customer (currently customer 4 with a demand of 9) to 20, while keeping all other demands the same.' -> Status: Optimal, Cost: 362.57, ΔObj: 32.47 (9.8%)
+2. Scenario: 'Decrease the vehicle capacity from 50 to 30 to test the feasibility of serving all customers with fewer resources and to observe the impact on total cost and potential route restructuring.' -> Status: Optimal, Cost: 416.89, ΔObj: 86.79 (26.3%)
+3. Scenario: 'Decrease the number of available vehicles from 2 to 1 to test the feasibility of serving all customers with significantly reduced resources and observe the impact on total cost and route optimization.' -> Error: Execution Result: Model Infeasible
+4. Scenario: 'Decrease the demand of the lowest-demand customer (currently customer 0 with a demand of 0) to 10, while keeping all other demands the same, to test the impact on total cost and potential route restructuring.' -> Status: Optimal, Cost: 330.1, ΔObj: 0.0 (0.0%)
+5. Scenario: 'Increase the demand of the second-highest-demand customer (currently customer 10 with a demand of 9) to 25, while keeping all other demands the same, to test the impact on total cost and potential route infeasibility.' -> Status: Optimal, Cost: 404.51, ΔObj: 74.41 (22.5%)

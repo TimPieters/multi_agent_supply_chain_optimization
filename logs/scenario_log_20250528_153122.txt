@@ -1,0 +1,48 @@
+LangGraph Automated Sensitivity Analysis Log (Run ID: 20250528_153122)
+============================================================
+
+Model Path: models/VRP/vrp_model.py
+Data Path: models/VRP/data/vrp_data_10cust_2veh.json
+Baseline Objective Value: 330.1
+Number of Parameters: 0
+
+Iterations Ran: 5
+Total Run Time: 49.78 seconds
+Planner LLM: gpt-4o-mini (Temp: 0.7)
+Coder LLM: gpt-4o (Temp: 0.0)
+
+--- Final Analysis Summary ---
+**1. Summarize Key Findings:**
+
+The sensitivity analysis reveals that changes in vehicle capacity have the most significant impact on both the total cost and model feasibility. Reducing vehicle capacity consistently leads to increased costs and, in more severe reductions, results in model infeasibility. This indicates that vehicle capacity is a critical constraint in the VRP model. Conversely, increasing the number of vehicles does not impact the total cost, suggesting that the original number of vehicles was sufficient to meet demand efficiently. Reducing demand at specific customer locations decreases the total cost, highlighting the influence of demand distribution on routing efficiency.
+
+**2. Rank Parameter/Change Type Sensitivity:**
+
+1. **Vehicle Capacity:**
+   - Most impactful, as reductions in capacity lead to significant cost increases and infeasibility.
+   - Example: Reducing capacity from 50 to 30 increased costs by 26.3%, and further reductions led to infeasibility.
+
+2. **Demand Levels:**
+   - Changes in demand at specific locations can decrease costs, indicating sensitivity to demand distribution.
+   - Example: Reducing demand at locations 4 and 5 decreased costs by 10.3%.
+
+3. **Number of Vehicles:**
+   - Increasing the number of vehicles had no impact on cost, indicating low sensitivity in this scenario.
+
+**3. Identify Critical Scenarios:**
+
+- **Scenario 3 and 5 (Infeasibility):** Reducing vehicle capacity to 20 and 10 led to model infeasibility, highlighting the critical role of capacity in maintaining feasibility.
+- **Scenario 2 (Largest Cost Increase):** Reducing vehicle capacity from 50 to 30 resulted in the largest cost increase (26.3%), demonstrating the sensitivity of the model to capacity constraints.
+- **Scenario 4 (Cost Decrease):** Reducing demand at specific locations led to a significant cost decrease (-10.3%), showing the impact of demand distribution on cost efficiency.
+
+--- Scenario Log ---
+1. Scenario: 'Increase the number of vehicles from 2 to 4 to assess the impact on total cost and the distribution of demand across a larger fleet, potentially revealing critical insights into capacity utilization and route optimization.' -> Status: Optimal, Cost: 330.1, ΔObj: 0.0 (0.0%)
+2. Scenario: 'Decrease the vehicle capacity from 50 to 30 to evaluate the impact on feasibility and total cost, potentially leading to increased routes and higher overall distances due to constraints on demand fulfillment.' -> Status: Optimal, Cost: 416.89, ΔObj: 86.79 (26.3%)
+3. Scenario: 'Decrease the vehicle capacity from 50 to 20 to evaluate the impact on feasibility and total cost, potentially leading to significant route complications and increased overall distances due to greater constraints on demand fulfillment.' -> Error: Execution Result: Model Infeasible
+4. Scenario: 'Decrease the demand at customer locations 4 and 5 to 0 to assess the effect on total cost and feasibility, potentially revealing insights into how demand distribution impacts routing efficiency and vehicle utilization.' -> Status: Optimal, Cost: 296.26, ΔObj: -33.84 (-10.3%)
+5. Scenario: 'Decrease the total vehicle capacity from 50 to 10 to evaluate the impact on feasibility and total cost, likely leading to increased route complexity and potential infeasibility due to severe constraints on demand fulfillment.' -> Error: Execution Result: Model Infeasible
+1. Scenario: 'Increase the demand at customer locations 1, 2, and 3 by 50% to evaluate the impact on total cost and feasibility, potentially leading to significant route complications and revealing critical insights into capacity constraints and demand distribution.' -> Status: Optimal, Cost: 382.11, ΔObj: 52.01 (15.8%)
+2. Scenario: 'Increase the demand at customer location 6 to 20 to assess the impact on feasibility and total cost, potentially leading to route complications and revealing critical insights into how increased demands affect vehicle utilization and overall routing efficiency.' -> Status: Optimal, Cost: 404.51, ΔObj: 74.41 (22.5%)
+3. Scenario: 'Increase the demand at customer locations 8 and 9 to 15 each to evaluate the impact on total cost and feasibility, potentially leading to significant route complications and revealing critical insights into capacity constraints and demand distribution.' -> Status: Optimal, Cost: 397.29, ΔObj: 67.19 (20.4%)
+4. Scenario: 'Increase the vehicle capacity from 50 to 80 to evaluate the impact on total cost and feasibility, potentially leading to increased efficiency in demand fulfillment and revealing critical insights into how higher capacity affects route optimization and overall cost dynamics.' -> Status: Optimal, Cost: 296.26, ΔObj: -33.84 (-10.3%)
+5. Scenario: 'Increase the vehicle capacity from 50 to 100 to assess the impact on total cost and feasibility, potentially allowing for significant demand fulfillment and revealing critical insights into how much additional capacity can optimize routing efficiency and reduce overall costs.' -> Status: Optimal, Cost: 296.26, ΔObj: -33.84 (-10.3%)

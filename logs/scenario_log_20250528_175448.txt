@@ -1,0 +1,49 @@
+LangGraph Automated Sensitivity Analysis Log (Run ID: 20250528_175448)
+============================================================
+
+Model Path: models/VRP/vrp_model.py
+Data Path: models/VRP/data/vrp_data_10cust_2veh.json
+Baseline Objective Value: 330.1
+Number of Parameters: 34
+
+Iterations Ran: 5
+Total Run Time: 44.50 seconds
+Planner LLM: gpt-4o-mini (Temp: 0.7)
+Coder LLM: gpt-4o (Temp: 0.0)
+
+--- Final Analysis Summary ---
+**1. Summarize Key Findings:**
+
+The sensitivity analysis of the Vehicle Routing Problem (VRP) model reveals that changes in vehicle capacity and the number of available vehicles have the most significant impact on both total costs and model feasibility. Specifically, reducing vehicle capacity or the number of vehicles often leads to infeasibility, indicating that the model is highly sensitive to these parameters. Increasing customer demand also results in noticeable cost increases, though it does not lead to infeasibility within the tested scenarios.
+
+**2. Rank Parameter/Change Type Sensitivity:**
+
+1. **Vehicle Capacity:**
+   - Reducing vehicle capacity from 50 to 30 resulted in a significant cost increase of 26.3% and maintained feasibility.
+   - Further reduction to 20 led to model infeasibility, highlighting the critical role of vehicle capacity in maintaining feasible solutions.
+
+2. **Number of Available Vehicles:**
+   - Reducing the number of vehicles from 2 to 1 resulted in model infeasibility, indicating a high sensitivity to the number of vehicles available.
+
+3. **Customer Demand Levels:**
+   - Increasing demand at specific customer locations by 50% led to a cost increase of 15.8%, showing a moderate impact on costs without causing infeasibility.
+
+4. **Increased Vehicle Capacity:**
+   - Increasing vehicle capacity from 50 to 70 resulted in a cost decrease of 10.3%, demonstrating a positive impact on cost efficiency.
+
+**3. Identify Critical Scenarios:**
+
+- **Scenario 2 (Reduce the number of available vehicles from 2 to 1):** This scenario was critical as it led to model infeasibility, underscoring the importance of having a sufficient number of vehicles to meet customer demands.
+  
+- **Scenario 4 (Decrease the vehicle capacity from 50 to 20):** This scenario also resulted in infeasibility, highlighting the sensitivity of the model to severe reductions in vehicle capacity.
+
+- **Scenario 3 (Reduce the vehicle capacity from 50 to 30):** This scenario caused the largest cost increase (26.3%) while maintaining feasibility, indicating a threshold where capacity reduction begins to significantly impact costs.
+
+Overall, the analysis suggests that maintaining adequate vehicle capacity and a sufficient number of vehicles is crucial for the feasibility and cost-effectiveness of the VRP model.
+
+--- Scenario Log ---
+1. Scenario: 'Increase the vehicle capacity from 50 to 70 to examine the impact on total costs and feasibility, potentially allowing for more efficient routing or revealing constraints related to customer demands.' -> Status: Optimal, Cost: 296.26, ΔObj: -33.84 (-10.3%)
+2. Scenario: 'Reduce the number of available vehicles from 2 to 1 to test the feasibility of serving all customers under tighter capacity constraints, which may lead to increased costs or infeasibility.' -> Error: Execution Result: Model Infeasible
+3. Scenario: 'Reduce the vehicle capacity from 50 to 30 to examine the impact on feasibility and total costs, potentially leading to increased infeasibility due to higher customer demands relative to available capacity.' -> Status: Optimal, Cost: 416.89, ΔObj: 86.79 (26.3%)
+4. Scenario: 'Decrease the vehicle capacity from 50 to 20 to assess the feasibility of serving all customers under severe capacity constraints, which may lead to significant cost increases or model infeasibility.' -> Error: Execution Result: Model Infeasible
+5. Scenario: 'Increase the demand at customer locations 2, 5, and 10 by 50% to assess the impact on total costs and feasibility, potentially leading to increased infeasibility due to higher demand relative to vehicle capacity.' -> Status: Optimal, Cost: 382.11, ΔObj: 52.01 (15.8%)

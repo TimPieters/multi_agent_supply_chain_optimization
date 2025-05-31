@@ -1,0 +1,7 @@
+LangGraph Automated Sensitivity Analysis Log
+========================================
+1. Scenario: 'Increase the fixed costs of the facilities by 50%, significantly impacting total costs and potentially leading to infeasibility in meeting customer demands.' -> Status: Optimal, Cost: 520.5, ΔObj: 154.4 (42.2%)
+2. Scenario: 'Decrease the capacities of all facilities by 30%, which may lead to infeasibility in meeting customer demands and significantly increase total costs due to unmet demands.' -> Status: Optimal, Cost: 372.89, ΔObj: 6.79 (1.9%)
+3. Scenario: 'Scenario: 'Increase the customer demands by 40%, which may lead to increased transportation costs and potential infeasibility in meeting heightened customer needs with existing facility capacities.'' -> Status: Optimal, Cost: 372.48, ΔObj: 6.38 (1.7%)
+4. Scenario: 'Scenario: 'Decrease the capacities of the two highest-capacity facilities by 50%, which may lead to significant infeasibility in meeting customer demands and drastically increase total costs due to unmet demands and limited supply options.'' -> Status: Optimal, Cost: 366.0, ΔObj: -0.1 (-0.0%)
+5. Scenario: 'Scenario: 'Increase the transportation costs for all facility-to-customer routes by 25%, which may lead to significantly higher total costs and potential infeasibility in meeting customer demands due to elevated logistical expenses.'' -> Status: Optimal, Cost: 378.1, ΔObj: 12.0 (3.3%)

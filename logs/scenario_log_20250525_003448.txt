@@ -1,0 +1,34 @@
+LangGraph Automated Sensitivity Analysis Log (Run ID: 20250525_003448)
+============================================================
+
+Model Path: capfacloc_model.py
+Data Path: data/capfacloc_data_10cust_10fac.json
+Baseline Objective Value: 366.1
+Number of Parameters: 130
+
+Iterations Ran: 5
+Total Run Time: 12.09 seconds
+Planner LLM: gpt-4o-mini (Temp: 0.7)
+Coder LLM: gpt-4o (Temp: 0.0)
+
+--- Final Analysis Summary ---
+**1. Summarize Key Findings:**
+
+The scenarios tested in the log focus exclusively on limiting the capacities of various facilities. All scenarios resulted in an optimal solution, indicating that the model remained feasible despite the imposed capacity constraints. The changes in total cost (ΔObj) ranged from 19.1% to 19.9%, suggesting a moderate sensitivity to capacity limitations. The most significant impact on total cost was observed when the capacity of facility 5 was limited, resulting in the highest percentage increase in cost.
+
+**2. Rank Parameter/Change Type Sensitivity:**
+
+1. **Facility Capacities:** The only parameter type tested in the scenarios was facility capacities. Limiting capacities consistently led to an increase in total cost, with the impact ranging from 19.1% to 19.9%. This indicates that facility capacities are a sensitive parameter in the model, affecting the total cost significantly when altered.
+
+**3. Identify Critical Scenarios:**
+
+- **Scenario with the Largest Cost Swing:** The scenario that limited the capacity of facility 5 (index 4) to 50 resulted in the highest percentage increase in cost (19.9%). This scenario is particularly revealing as it indicates that facility 5 plays a crucial role in maintaining cost efficiency within the model.
+
+Overall, the analysis highlights the importance of facility capacities in the CFLP model, with specific attention to facility 5, which appears to be a critical component in minimizing total costs.
+
+--- Scenario Log ---
+1. Scenario: 'Limit the capacity of facility 4 (index 3) to 50.' -> Status: Optimal, Cost: 436.06, ΔObj: 69.96 (19.1%)
+2. Scenario: 'Limit the capacity of facility 5 (index 4) to 50.' -> Status: Optimal, Cost: 439.0, ΔObj: 72.9 (19.9%)
+3. Scenario: 'Limit the capacity of facility 3 (index 2) to 40.' -> Status: Optimal, Cost: 436.06, ΔObj: 69.96 (19.1%)
+4. Scenario: 'Limit the capacity of facility 1 (index 0) to 30.' -> Status: Optimal, Cost: 436.06, ΔObj: 69.96 (19.1%)
+5. Scenario: 'Limit the capacity of facility 6 (index 5) to 50.' -> Status: Optimal, Cost: 436.06, ΔObj: 69.96 (19.1%)

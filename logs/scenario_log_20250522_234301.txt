@@ -1,0 +1,16 @@
+LangGraph Automated Sensitivity Analysis Log (Run ID: 20250522_234301)
+============================================================
+
+Model Path: capfacloc_model.py
+Data Path: data/capfacloc_data_10cust_10fac.json
+Baseline Objective Value: 366.1
+Number of Parameters: 130
+Iterations Ran: 0
+Total Run Time: 0.01 seconds
+Planner LLM: gpt-4o-mini (Temp: 0.7)
+Coder LLM: gpt-4o (Temp: 0.0)
+
+--- Final Analysis Summary ---
+No scenarios were run or logged.
+
+--- Scenario Log ---

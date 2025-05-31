@@ -1,0 +1,43 @@
+# Capacitated Facility Location Problem (CFLP) Model Description
+
+This model addresses the Capacitated Facility Location Problem, a classic optimization problem in supply chain management. The goal is to determine the optimal locations for opening facilities and the optimal assignment of customers to these open facilities, such that the total cost (fixed costs of opening facilities plus transportation costs from facilities to customers) is minimized, while satisfying customer demands and respecting facility capacities.
+
+## Key Components:
+
+1.  **Customers:** Entities with specific demands that need to be satisfied.
+2.  **Potential Facilities:** A set of candidate locations where facilities can be opened. Each potential facility has a fixed cost associated with opening it and a maximum capacity it can serve.
+3.  **Transportation Costs:** The cost of serving a unit of demand from a specific facility to a specific customer.
+
+## Decision Variables:
+
+*   `facility_open[j]`: A binary variable that is 1 if facility `j` is opened, and 0 otherwise.
+*   `assignment[i, j]`: A continuous variable representing the fraction of customer `i`'s demand served by facility `j`. (Note: In some formulations, this might be a quantity, but here it's a fraction of demand, with total demand being `demands[i]`.)
+
+## Objective Function:
+
+Minimize the sum of:
+*   Fixed costs for all opened facilities.
+*   Transportation costs for serving all customer demands from assigned facilities.
+
+## Constraints:
+
+1.  **Demand Satisfaction:** Each customer's total demand must be fully satisfied by the assigned facilities.
+2.  **Facility Capacity:** The total demand served by an open facility cannot exceed its capacity. If a facility is not open, it cannot serve any demand.
+3.  **Total Open Capacity:** The sum of capacities of all open facilities must be at least equal to the total demand across all customers.
+4.  **Linking Constraint:** A customer can only be assigned to a facility if that facility is open.
+
+## Input Data Structure (JSON):
+
+The model expects input data in a JSON format with the following keys:
+
+*   `demands`: A list of integers, where `demands[i]` is the demand of customer `i`.
+*   `capacities`: A list of integers, where `capacities[j]` is the maximum capacity of potential facility `j`.
+*   `fixed_costs`: A list of floats, where `fixed_costs[j]` is the fixed cost of opening facility `j`.
+*   `transportation_costs`: A 2D list (matrix) of floats, where `transportation_costs[i][j]` is the cost of transporting one unit of demand from facility `j` to customer `i`. (Note: The current model code seems to interpret `transportation_costs[i][j]` as cost from customer `i` to facility `j` for assignment `assignment[i,j]`, which is typical for customer-facility assignment. Clarification might be needed if the matrix indexing is facility-customer.)
+
+## Example Scenario Modifications:
+
+*   **"Increase all demands by 15%"**: Modifies the `demands` list.
+*   **"Decrease fixed costs by 10%"**: Modifies the `fixed_costs` list.
+*   **"Limit capacity of facility 2 (index 1) to 60"**: Modifies a specific element in the `capacities` list.
+*   **"Add a constraint that total items served by facility 3 (index 2) must be at least 50"**: Adds a new constraint to the model.

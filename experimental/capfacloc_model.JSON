@@ -1,0 +1,1107 @@
+{
+    "objective": {
+        "name": "OBJ",
+        "coefficients": [
+            {
+                "name": "Open_0",
+                "value": 150
+            },
+            {
+                "name": "Open_1",
+                "value": 180
+            },
+            {
+                "name": "Open_2",
+                "value": 160
+            },
+            {
+                "name": "Open_3",
+                "value": 170
+            },
+            {
+                "name": "Open_4",
+                "value": 155
+            },
+            {
+                "name": "Serve_0_0",
+                "value": 10
+            },
+            {
+                "name": "Serve_0_1",
+                "value": 12
+            },
+            {
+                "name": "Serve_0_2",
+                "value": 15
+            },
+            {
+                "name": "Serve_0_3",
+                "value": 20
+            },
+            {
+                "name": "Serve_0_4",
+                "value": 18
+            },
+            {
+                "name": "Serve_1_0",
+                "value": 14
+            },
+            {
+                "name": "Serve_1_1",
+                "value": 11
+            },
+            {
+                "name": "Serve_1_2",
+                "value": 13
+            },
+            {
+                "name": "Serve_1_3",
+                "value": 16
+            },
+            {
+                "name": "Serve_1_4",
+                "value": 19
+            },
+            {
+                "name": "Serve_2_0",
+                "value": 13
+            },
+            {
+                "name": "Serve_2_1",
+                "value": 17
+            },
+            {
+                "name": "Serve_2_2",
+                "value": 12
+            },
+            {
+                "name": "Serve_2_3",
+                "value": 14
+            },
+            {
+                "name": "Serve_2_4",
+                "value": 15
+            },
+            {
+                "name": "Serve_3_0",
+                "value": 12
+            },
+            {
+                "name": "Serve_3_1",
+                "value": 15
+            },
+            {
+                "name": "Serve_3_2",
+                "value": 10
+            },
+            {
+                "name": "Serve_3_3",
+                "value": 18
+            },
+            {
+                "name": "Serve_3_4",
+                "value": 16
+            },
+            {
+                "name": "Serve_4_0",
+                "value": 11
+            },
+            {
+                "name": "Serve_4_1",
+                "value": 13
+            },
+            {
+                "name": "Serve_4_2",
+                "value": 14
+            },
+            {
+                "name": "Serve_4_3",
+                "value": 15
+            },
+            {
+                "name": "Serve_4_4",
+                "value": 17
+            }
+        ]
+    },
+    "constraints": [
+        {
+            "sense": 1,
+            "pi": 10.0,
+            "constant": -1,
+            "name": "Demand_0",
+            "coefficients": [
+                {
+                    "name": "Serve_0_0",
+                    "value": 1
+                },
+                {
+                    "name": "Serve_0_1",
+                    "value": 1
+                },
+                {
+                    "name": "Serve_0_2",
+                    "value": 1
+                },
+                {
+                    "name": "Serve_0_3",
+                    "value": 1
+                },
+                {
+                    "name": "Serve_0_4",
+                    "value": 1
+                }
+            ]
+        },
+        {
+            "sense": 1,
+            "pi": 14.0,
+            "constant": -1,
+            "name": "Demand_1",
+            "coefficients": [
+                {
+                    "name": "Serve_1_0",
+                    "value": 1
+                },
+                {
+                    "name": "Serve_1_1",
+                    "value": 1
+                },
+                {
+                    "name": "Serve_1_2",
+                    "value": 1
+                },
+                {
+                    "name": "Serve_1_3",
+                    "value": 1
+                },
+                {
+                    "name": "Serve_1_4",
+                    "value": 1
+                }
+            ]
+        },
+        {
+            "sense": 1,
+            "pi": 13.0,
+            "constant": -1,
+            "name": "Demand_2",
+            "coefficients": [
+                {
+                    "name": "Serve_2_0",
+                    "value": 1
+                },
+                {
+                    "name": "Serve_2_1",
+                    "value": 1
+                },
+                {
+                    "name": "Serve_2_2",
+                    "value": 1
+                },
+                {
+                    "name": "Serve_2_3",
+                    "value": 1
+                },
+                {
+                    "name": "Serve_2_4",
+                    "value": 1
+                }
+            ]
+        },
+        {
+            "sense": 1,
+            "pi": 10.6,
+            "constant": -1,
+            "name": "Demand_3",
+            "coefficients": [
+                {
+                    "name": "Serve_3_0",
+                    "value": 1
+                },
+                {
+                    "name": "Serve_3_1",
+                    "value": 1
+                },
+                {
+                    "name": "Serve_3_2",
+                    "value": 1
+                },
+                {
+                    "name": "Serve_3_3",
+                    "value": 1
+                },
+                {
+                    "name": "Serve_3_4",
+                    "value": 1
+                }
+            ]
+        },
+        {
+            "sense": 1,
+            "pi": 11.0,
+            "constant": -1,
+            "name": "Demand_4",
+            "coefficients": [
+                {
+                    "name": "Serve_4_0",
+                    "value": 1
+                },
+                {
+                    "name": "Serve_4_1",
+                    "value": 1
+                },
+                {
+                    "name": "Serve_4_2",
+                    "value": 1
+                },
+                {
+                    "name": "Serve_4_3",
+                    "value": 1
+                },
+                {
+                    "name": "Serve_4_4",
+                    "value": 1
+                }
+            ]
+        },
+        {
+            "sense": -1,
+            "pi": 0.0,
+            "constant": 0,
+            "name": "Capacity_0",
+            "coefficients": [
+                {
+                    "name": "Serve_0_0",
+                    "value": 20
+                },
+                {
+                    "name": "Serve_1_0",
+                    "value": 25
+                },
+                {
+                    "name": "Serve_2_0",
+                    "value": 30
+                },
+                {
+                    "name": "Serve_3_0",
+                    "value": 18
+                },
+                {
+                    "name": "Serve_4_0",
+                    "value": 22
+                },
+                {
+                    "name": "Open_0",
+                    "value": -80
+                }
+            ]
+        },
+        {
+            "sense": -1,
+            "pi": -0.12,
+            "constant": 0,
+            "name": "Capacity_1",
+            "coefficients": [
+                {
+                    "name": "Serve_0_1",
+                    "value": 20
+                },
+                {
+                    "name": "Serve_1_1",
+                    "value": 25
+                },
+                {
+                    "name": "Serve_2_1",
+                    "value": 30
+                },
+                {
+                    "name": "Serve_3_1",
+                    "value": 18
+                },
+                {
+                    "name": "Serve_4_1",
+                    "value": 22
+                },
+                {
+                    "name": "Open_1",
+                    "value": -90
+                }
+            ]
+        },
+        {
+            "sense": -1,
+            "pi": -0.033333333,
+            "constant": 0,
+            "name": "Capacity_2",
+            "coefficients": [
+                {
+                    "name": "Serve_0_2",
+                    "value": 20
+                },
+                {
+                    "name": "Serve_1_2",
+                    "value": 25
+                },
+                {
+                    "name": "Serve_2_2",
+                    "value": 30
+                },
+                {
+                    "name": "Serve_3_2",
+                    "value": 18
+                },
+                {
+                    "name": "Serve_4_2",
+                    "value": 22
+                },
+                {
+                    "name": "Open_2",
+                    "value": -70
+                }
+            ]
+        },
+        {
+            "sense": -1,
+            "pi": 0.0,
+            "constant": 0,
+            "name": "Capacity_3",
+            "coefficients": [
+                {
+                    "name": "Serve_0_3",
+                    "value": 20
+                },
+                {
+                    "name": "Serve_1_3",
+                    "value": 25
+                },
+                {
+                    "name": "Serve_2_3",
+                    "value": 30
+                },
+                {
+                    "name": "Serve_3_3",
+                    "value": 18
+                },
+                {
+                    "name": "Serve_4_3",
+                    "value": 22
+                },
+                {
+                    "name": "Open_3",
+                    "value": -100
+                }
+            ]
+        },
+        {
+            "sense": -1,
+            "pi": 0.0,
+            "constant": 0,
+            "name": "Capacity_4",
+            "coefficients": [
+                {
+                    "name": "Serve_0_4",
+                    "value": 20
+                },
+                {
+                    "name": "Serve_1_4",
+                    "value": 25
+                },
+                {
+                    "name": "Serve_2_4",
+                    "value": 30
+                },
+                {
+                    "name": "Serve_3_4",
+                    "value": 18
+                },
+                {
+                    "name": "Serve_4_4",
+                    "value": 22
+                },
+                {
+                    "name": "Open_4",
+                    "value": -85
+                }
+            ]
+        },
+        {
+            "sense": 1,
+            "pi": 0.0,
+            "constant": -115,
+            "name": "TotalDemand",
+            "coefficients": [
+                {
+                    "name": "Open_0",
+                    "value": 80
+                },
+                {
+                    "name": "Open_1",
+                    "value": 90
+                },
+                {
+                    "name": "Open_2",
+                    "value": 70
+                },
+                {
+                    "name": "Open_3",
+                    "value": 100
+                },
+                {
+                    "name": "Open_4",
+                    "value": 85
+                }
+            ]
+        },
+        {
+            "sense": -1,
+            "pi": 0.0,
+            "constant": 0,
+            "name": "Link_0_0",
+            "coefficients": [
+                {
+                    "name": "Serve_0_0",
+                    "value": 1
+                },
+                {
+                    "name": "Open_0",
+                    "value": -1
+                }
+            ]
+        },
+        {
+            "sense": -1,
+            "pi": 0.0,
+            "constant": 0,
+            "name": "Link_0_1",
+            "coefficients": [
+                {
+                    "name": "Serve_0_1",
+                    "value": 1
+                },
+                {
+                    "name": "Open_1",
+                    "value": -1
+                }
+            ]
+        },
+        {
+            "sense": -1,
+            "pi": 0.0,
+            "constant": 0,
+            "name": "Link_0_2",
+            "coefficients": [
+                {
+                    "name": "Serve_0_2",
+                    "value": 1
+                },
+                {
+                    "name": "Open_2",
+                    "value": -1
+                }
+            ]
+        },
+        {
+            "sense": -1,
+            "pi": 0.0,
+            "constant": 0,
+            "name": "Link_0_3",
+            "coefficients": [
+                {
+                    "name": "Serve_0_3",
+                    "value": 1
+                },
+                {
+                    "name": "Open_3",
+                    "value": -1
+                }
+            ]
+        },
+        {
+            "sense": -1,
+            "pi": 0.0,
+            "constant": 0,
+            "name": "Link_0_4",
+            "coefficients": [
+                {
+                    "name": "Serve_0_4",
+                    "value": 1
+                },
+                {
+                    "name": "Open_4",
+                    "value": -1
+                }
+            ]
+        },
+        {
+            "sense": -1,
+            "pi": 0.0,
+            "constant": 0,
+            "name": "Link_1_0",
+            "coefficients": [
+                {
+                    "name": "Serve_1_0",
+                    "value": 1
+                },
+                {
+                    "name": "Open_0",
+                    "value": -1
+                }
+            ]
+        },
+        {
+            "sense": -1,
+            "pi": 0.0,
+            "constant": 0,
+            "name": "Link_1_1",
+            "coefficients": [
+                {
+                    "name": "Serve_1_1",
+                    "value": 1
+                },
+                {
+                    "name": "Open_1",
+                    "value": -1
+                }
+            ]
+        },
+        {
+            "sense": -1,
+            "pi": 0.0,
+            "constant": 0,
+            "name": "Link_1_2",
+            "coefficients": [
+                {
+                    "name": "Serve_1_2",
+                    "value": 1
+                },
+                {
+                    "name": "Open_2",
+                    "value": -1
+                }
+            ]
+        },
+        {
+            "sense": -1,
+            "pi": 0.0,
+            "constant": 0,
+            "name": "Link_1_3",
+            "coefficients": [
+                {
+                    "name": "Serve_1_3",
+                    "value": 1
+                },
+                {
+                    "name": "Open_3",
+                    "value": -1
+                }
+            ]
+        },
+        {
+            "sense": -1,
+            "pi": 0.0,
+            "constant": 0,
+            "name": "Link_1_4",
+            "coefficients": [
+                {
+                    "name": "Serve_1_4",
+                    "value": 1
+                },
+                {
+                    "name": "Open_4",
+                    "value": -1
+                }
+            ]
+        },
+        {
+            "sense": -1,
+            "pi": 0.0,
+            "constant": 0,
+            "name": "Link_2_0",
+            "coefficients": [
+                {
+                    "name": "Serve_2_0",
+                    "value": 1
+                },
+                {
+                    "name": "Open_0",
+                    "value": -1
+                }
+            ]
+        },
+        {
+            "sense": -1,
+            "pi": 0.0,
+            "constant": 0,
+            "name": "Link_2_1",
+            "coefficients": [
+                {
+                    "name": "Serve_2_1",
+                    "value": 1
+                },
+                {
+                    "name": "Open_1",
+                    "value": -1
+                }
+            ]
+        },
+        {
+            "sense": -1,
+            "pi": 0.0,
+            "constant": 0,
+            "name": "Link_2_2",
+            "coefficients": [
+                {
+                    "name": "Serve_2_2",
+                    "value": 1
+                },
+                {
+                    "name": "Open_2",
+                    "value": -1
+                }
+            ]
+        },
+        {
+            "sense": -1,
+            "pi": 0.0,
+            "constant": 0,
+            "name": "Link_2_3",
+            "coefficients": [
+                {
+                    "name": "Serve_2_3",
+                    "value": 1
+                },
+                {
+                    "name": "Open_3",
+                    "value": -1
+                }
+            ]
+        },
+        {
+            "sense": -1,
+            "pi": 0.0,
+            "constant": 0,
+            "name": "Link_2_4",
+            "coefficients": [
+                {
+                    "name": "Serve_2_4",
+                    "value": 1
+                },
+                {
+                    "name": "Open_4",
+                    "value": -1
+                }
+            ]
+        },
+        {
+            "sense": -1,
+            "pi": 0.0,
+            "constant": 0,
+            "name": "Link_3_0",
+            "coefficients": [
+                {
+                    "name": "Serve_3_0",
+                    "value": 1
+                },
+                {
+                    "name": "Open_0",
+                    "value": -1
+                }
+            ]
+        },
+        {
+            "sense": -1,
+            "pi": 0.0,
+            "constant": 0,
+            "name": "Link_3_1",
+            "coefficients": [
+                {
+                    "name": "Serve_3_1",
+                    "value": 1
+                },
+                {
+                    "name": "Open_1",
+                    "value": -1
+                }
+            ]
+        },
+        {
+            "sense": -1,
+            "pi": 0.0,
+            "constant": 0,
+            "name": "Link_3_2",
+            "coefficients": [
+                {
+                    "name": "Serve_3_2",
+                    "value": 1
+                },
+                {
+                    "name": "Open_2",
+                    "value": -1
+                }
+            ]
+        },
+        {
+            "sense": -1,
+            "pi": 0.0,
+            "constant": 0,
+            "name": "Link_3_3",
+            "coefficients": [
+                {
+                    "name": "Serve_3_3",
+                    "value": 1
+                },
+                {
+                    "name": "Open_3",
+                    "value": -1
+                }
+            ]
+        },
+        {
+            "sense": -1,
+            "pi": 0.0,
+            "constant": 0,
+            "name": "Link_3_4",
+            "coefficients": [
+                {
+                    "name": "Serve_3_4",
+                    "value": 1
+                },
+                {
+                    "name": "Open_4",
+                    "value": -1
+                }
+            ]
+        },
+        {
+            "sense": -1,
+            "pi": 0.0,
+            "constant": 0,
+            "name": "Link_4_0",
+            "coefficients": [
+                {
+                    "name": "Serve_4_0",
+                    "value": 1
+                },
+                {
+                    "name": "Open_0",
+                    "value": -1
+                }
+            ]
+        },
+        {
+            "sense": -1,
+            "pi": 0.0,
+            "constant": 0,
+            "name": "Link_4_1",
+            "coefficients": [
+                {
+                    "name": "Serve_4_1",
+                    "value": 1
+                },
+                {
+                    "name": "Open_1",
+                    "value": -1
+                }
+            ]
+        },
+        {
+            "sense": -1,
+            "pi": 0.0,
+            "constant": 0,
+            "name": "Link_4_2",
+            "coefficients": [
+                {
+                    "name": "Serve_4_2",
+                    "value": 1
+                },
+                {
+                    "name": "Open_2",
+                    "value": -1
+                }
+            ]
+        },
+        {
+            "sense": -1,
+            "pi": 0.0,
+            "constant": 0,
+            "name": "Link_4_3",
+            "coefficients": [
+                {
+                    "name": "Serve_4_3",
+                    "value": 1
+                },
+                {
+                    "name": "Open_3",
+                    "value": -1
+                }
+            ]
+        },
+        {
+            "sense": -1,
+            "pi": 0.0,
+            "constant": 0,
+            "name": "Link_4_4",
+            "coefficients": [
+                {
+                    "name": "Serve_4_4",
+                    "value": 1
+                },
+                {
+                    "name": "Open_4",
+                    "value": -1
+                }
+            ]
+        }
+    ],
+    "variables": [
+        {
+            "lowBound": 0,
+            "upBound": 1,
+            "cat": "Integer",
+            "varValue": 1.0,
+            "dj": 150.0,
+            "name": "Open_0"
+        },
+        {
+            "lowBound": 0,
+            "upBound": 1,
+            "cat": "Integer",
+            "varValue": 0.0,
+            "dj": 169.2,
+            "name": "Open_1"
+        },
+        {
+            "lowBound": 0,
+            "upBound": 1,
+            "cat": "Integer",
+            "varValue": 1.0,
+            "dj": 157.66667,
+            "name": "Open_2"
+        },
+        {
+            "lowBound": 0,
+            "upBound": 1,
+            "cat": "Integer",
+            "varValue": 0.0,
+            "dj": 170.0,
+            "name": "Open_3"
+        },
+        {
+            "lowBound": 0,
+            "upBound": 1,
+            "cat": "Integer",
+            "varValue": 0.0,
+            "dj": 155.0,
+            "name": "Open_4"
+        },
+        {
+            "lowBound": 0,
+            "upBound": 1,
+            "cat": "Continuous",
+            "varValue": 1.0,
+            "dj": 0.0,
+            "name": "Serve_0_0"
+        },
+        {
+            "lowBound": 0,
+            "upBound": 1,
+            "cat": "Continuous",
+            "varValue": 0.0,
+            "dj": 4.4,
+            "name": "Serve_0_1"
+        },
+        {
+            "lowBound": 0,
+            "upBound": 1,
+            "cat": "Continuous",
+            "varValue": 0.0,
+            "dj": 5.6666667,
+            "name": "Serve_0_2"
+        },
+        {
+            "lowBound": 0,
+            "upBound": 1,
+            "cat": "Continuous",
+            "varValue": 0.0,
+            "dj": 10.0,
+            "name": "Serve_0_3"
+        },
+        {
+            "lowBound": 0,
+            "upBound": 1,
+            "cat": "Continuous",
+            "varValue": 0.0,
+            "dj": 8.0,
+            "name": "Serve_0_4"
+        },
+        {
+            "lowBound": 0,
+            "upBound": 1,
+            "cat": "Continuous",
+            "varValue": 0.0,
+            "dj": 0.0,
+            "name": "Serve_1_0"
+        },
+        {
+            "lowBound": 0,
+            "upBound": 1,
+            "cat": "Continuous",
+            "varValue": 0.0,
+            "dj": 0.0,
+            "name": "Serve_1_1"
+        },
+        {
+            "lowBound": 0,
+            "upBound": 1,
+            "cat": "Continuous",
+            "varValue": 1.0,
+            "dj": -0.16666667,
+            "name": "Serve_1_2"
+        },
+        {
+            "lowBound": 0,
+            "upBound": 1,
+            "cat": "Continuous",
+            "varValue": 0.0,
+            "dj": 2.0,
+            "name": "Serve_1_3"
+        },
+        {
+            "lowBound": 0,
+            "upBound": 1,
+            "cat": "Continuous",
+            "varValue": 0.0,
+            "dj": 5.0,
+            "name": "Serve_1_4"
+        },
+        {
+            "lowBound": 0,
+            "upBound": 1,
+            "cat": "Continuous",
+            "varValue": 0.1,
+            "dj": 0.0,
+            "name": "Serve_2_0"
+        },
+        {
+            "lowBound": 0,
+            "upBound": 1,
+            "cat": "Continuous",
+            "varValue": 0.0,
+            "dj": 7.6,
+            "name": "Serve_2_1"
+        },
+        {
+            "lowBound": 0,
+            "upBound": 1,
+            "cat": "Continuous",
+            "varValue": 0.9,
+            "dj": 0.0,
+            "name": "Serve_2_2"
+        },
+        {
+            "lowBound": 0,
+            "upBound": 1,
+            "cat": "Continuous",
+            "varValue": 0.0,
+            "dj": 1.0,
+            "name": "Serve_2_3"
+        },
+        {
+            "lowBound": 0,
+            "upBound": 1,
+            "cat": "Continuous",
+            "varValue": 0.0,
+            "dj": 2.0,
+            "name": "Serve_2_4"
+        },
+        {
+            "lowBound": 0,
+            "upBound": 1,
+            "cat": "Continuous",
+            "varValue": 0.0,
+            "dj": 1.4,
+            "name": "Serve_3_0"
+        },
+        {
+            "lowBound": 0,
+            "upBound": 1,
+            "cat": "Continuous",
+            "varValue": 0.0,
+            "dj": 6.56,
+            "name": "Serve_3_1"
+        },
+        {
+            "lowBound": 0,
+            "upBound": 1,
+            "cat": "Continuous",
+            "varValue": 1.0,
+            "dj": 3.3306691e-16,
+            "name": "Serve_3_2"
+        },
+        {
+            "lowBound": 0,
+            "upBound": 1,
+            "cat": "Continuous",
+            "varValue": 0.0,
+            "dj": 7.4,
+            "name": "Serve_3_3"
+        },
+        {
+            "lowBound": 0,
+            "upBound": 1,
+            "cat": "Continuous",
+            "varValue": 0.0,
+            "dj": 5.4,
+            "name": "Serve_3_4"
+        },
+        {
+            "lowBound": 0,
+            "upBound": 1,
+            "cat": "Continuous",
+            "varValue": 1.0,
+            "dj": 0.0,
+            "name": "Serve_4_0"
+        },
+        {
+            "lowBound": 0,
+            "upBound": 1,
+            "cat": "Continuous",
+            "varValue": 0.0,
+            "dj": 4.64,
+            "name": "Serve_4_1"
+        },
+        {
+            "lowBound": 0,
+            "upBound": 1,
+            "cat": "Continuous",
+            "varValue": 0.0,
+            "dj": 3.7333333,
+            "name": "Serve_4_2"
+        },
+        {
+            "lowBound": 0,
+            "upBound": 1,
+            "cat": "Continuous",
+            "varValue": 0.0,
+            "dj": 4.0,
+            "name": "Serve_4_3"
+        },
+        {
+            "lowBound": 0,
+            "upBound": 1,
+            "cat": "Continuous",
+            "varValue": 0.0,
+            "dj": 6.0,
+            "name": "Serve_4_4"
+        }
+    ],
+    "parameters": {
+        "name": "CapacitatedFacilityLocation",
+        "sense": 1,
+        "status": 1,
+        "sol_status": 1
+    },
+    "sos1": [],
+    "sos2": []
+}
