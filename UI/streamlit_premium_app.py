@@ -9,6 +9,11 @@ import plotly.express as px
 from plotly.subplots import make_subplots
 import numpy as np
 
+# Add the parent directory to sys.path to allow imports from the project root
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 # Import the necessary components from your LangGraph script
 from langgraph_sensitivity_analysis import (
     run_sensitivity_analysis, run_sensitivity_analysis_generator,
@@ -493,7 +498,7 @@ st.markdown("""
         <h1 class="hero-title">🔬 AI-Powered Sensitivity Analysis</h1>
         <p class="hero-subtitle">
             Harness the power of multi-agent AI systems to automatically explore and analyze 
-            optimization model sensitivities with unprecedented intelligence and efficiency.
+            optimization model sensitivities with intelligence and efficiency.
         </p>
     </div>
 </div>
@@ -745,7 +750,7 @@ with tab2:
                 About This Platform
             </div>
             <p style="color: #4a5568; line-height: 1.6;">
-                This cutting-edge application leverages <strong>LangGraph multi-agent systems</strong> 
+                This application leverages <strong>LangGraph multi-agent systems</strong> 
                 to perform intelligent sensitivity analysis on optimization models.
             </p>
             <ul style="color: #718096; font-size: 0.9rem; line-height: 1.5;">
@@ -753,6 +758,7 @@ with tab2:
                 <li><strong>Coder Agent:</strong> Translates ideas into code</li>
                 <li><strong>Executor:</strong> Runs modified models</li>
                 <li><strong>Analyzer:</strong> Synthesizes insights</li>
+                <li><strong>Final analysis agent:</strong> Provides a complete report</li>
             </ul>
         </div>
         """, unsafe_allow_html=True)

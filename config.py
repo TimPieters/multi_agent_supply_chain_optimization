@@ -2,6 +2,13 @@
 
 # Configuration for the LangGraph Sensitivity Analysis system
 
+import logging
+
+# Global logging level for the application
+# Set to logging.DEBUG for verbose output, logging.INFO for general info,
+# or logging.NOTSET to effectively turn off most logging.
+LOGGING_LEVEL = logging.INFO
+
 # Path to the optimization model Python file
 MODEL_FILE_PATH = "models/VRP/vrp_model.py"
 

@@ -16,6 +16,8 @@ from neo4j import GraphDatabase
 from dotenv import load_dotenv, find_dotenv
 from config import MODEL_FILE_PATH, MODEL_DATA_PATH, MODEL_PARAMETERS # Import from config
 
+import logging
+
 # --- extracting and modifying model code. ---
 
 # Placeholder in the source code where constraints will be inserted
@@ -80,26 +82,26 @@ def _run_with_exec(src_code: str, run_id: str = None, log_filepath: str = 'utils
     Returns:
         dict: The locals dictionary after executing the model, or an empty dictionary if an error occurs.
     """
-    print("\nlog - Running optimization model...")  
+    logging.info("Running optimization model...")  
 
     locals_dict = {}
     locals_dict.update(globals())  
     locals_dict.update(locals())   
 
     try:
-        print("\nlog - Executing model source code...")  
+        logging.info("Executing model source code...")  
         start_time = time.time() # Start timing
         exec(src_code, locals_dict, locals_dict)
         end_time = time.time() # End timing
         execution_time = end_time - start_time # Calculate execution time
         locals_dict['execution_time'] = execution_time # Store execution time in locals_dict
 
-        print("\nlog - Model execution completed.")  
+        logging.info("Model execution completed.")  
         
         return locals_dict
 
     except Exception as e:
-        print("\nExecution Error:", traceback.format_exc())  
+        logging.error("Execution Error:", exc_info=True)  
         return {} # Return empty dict on error
 
 def _get_optimization_result(locals_dict: dict) -> dict:
@@ -115,10 +117,10 @@ def _get_optimization_result(locals_dict: dict) -> dict:
             - 'solution': Non-zero decision variable values.
             - 'total_cost': Objective function value if solved optimally.
     """
-    print("\nlog - Extracting optimization results...")  
+    logging.info("Extracting optimization results...")  
 
     if "model" not in locals_dict:
-        print("Error: `model` not found in execution context.")
+        logging.error("`model` not found in execution context.")
         return {"status": "Error", "message": "model not found in execution context."}
 
     model = locals_dict["model"]
@@ -144,7 +146,7 @@ def _get_optimization_result(locals_dict: dict) -> dict:
         }
         result["total_cost"] = model.objective.value()
 
-    print("\nlog - Optimization results extracted.")  
+    logging.info("Optimization results extracted.")  
     return result
 
 
@@ -158,10 +160,10 @@ def format_constraint_input(constraint_code: str) -> str:
     Returns:
         str: A properly formatted constraint statement.
     """
-    print("CONSTRAINT CODE " + constraint_code)
+    logging.debug(f"CONSTRAINT CODE {constraint_code}")
     # Ensure there are no unnecessary backticks or formatting issues
     constraint_code = constraint_code.strip().strip("`")
-    print("STRIPPED CONSTRAINT CODE " + constraint_code)
+    logging.debug(f"STRIPPED CONSTRAINT CODE {constraint_code}")
     # Remove backticks (`, ```) and strip enclosing quotes if the whole string is quoted
     if constraint_code.startswith(("'", '"', "`")) and constraint_code.endswith(("'", '"', "`")):
         constraint_code = constraint_code[1:-1].strip()
@@ -238,7 +240,7 @@ def _apply_model_modification(source_code: str, operations: dict) -> str:
 
     return updated_code
 
-def modify_and_run_model(modification_json: dict, model_file_path: str, model_data_path: str, run_id: str = None, log_filepath: str = 'utils_main_run_log.csv') -> dict:
+def modify_and_run_model(modification_json: dict, model_file_path: str, model_data_path: str, run_id: str = None, log_filepath: str = None) -> dict:
     """
     Applies a structured modification (e.g., adding data or constraints), executes the supply chain model, and returns results.
 
@@ -247,7 +249,7 @@ def modify_and_run_model(modification_json: dict, model_file_path: str, model_da
         model_file_path (str): The path to the model's Python file.
         model_data_path (str): The path to the model's JSON data file.
         run_id (str, optional): The run ID to use for logging. If None, a default will be generated.
-        log_filepath (str, optional): Path to the CSV file for logging. Defaults to 'utils_main_run_log.csv'.
+        log_filepath (str, optional): Path to the CSV file for logging. Defaults to None.
 
     Returns:
         dict: The optimization results, or an error message/empty dict if an error occurs.
@@ -304,9 +306,8 @@ def modify_and_run_model(modification_json: dict, model_file_path: str, model_da
 
         # Log the run
         # Use provided run_id or generate a default if not provided (for standalone tests)
-        actual_run_id = run_id if run_id is not None else f'utils_main_test_{datetime.now().strftime("%Y%m%d_%H%M%S")}'
-        print(f"Logging run '{actual_run_id}' to '{log_filepath}'...")
-
+        actual_run_id = run_id if run_id is not None else f'unspecified_run_{datetime.now().strftime("%Y%m%d_%H%M%S")}'
+        
         run_data = _prepare_run_data(
             model=model,
             parameters=parameters,
@@ -315,23 +316,33 @@ def modify_and_run_model(modification_json: dict, model_file_path: str, model_da
             model_data_path=MODEL_DATA_PATH, # Pass the dynamically loaded model data path
             execution_time=execution_time # Pass execution time
         )
-        write_run_data_to_csv(
-            run_data_list = [run_data],
-            log_filepath = log_filepath)
+
+        if log_filepath is not None:
+            if run_id is not None:
+                logging.info(f"Logging run '{actual_run_id}' to '{log_filepath}'...")
+            else:
+                logging.info(f"When ID not specified, logging unspecified run '{actual_run_id}' to '{log_filepath}'...")
+            write_run_data_to_csv(
+                run_data_list = [run_data],
+                log_filepath = log_filepath)
+        else:
+            if run_id is not None:
+                logging.warning(f"Log file path not specified. Skipping logging run '{actual_run_id}' to CSV.")
+            else:
+                logging.warning(f"Log file path not specified. Skipping logging unspecified run '{actual_run_id}' to CSV.")
         
         # Display results
-        print("\nlog - Optimization Completed.")
-        # print(f"Status: {result['status']}")
-        # print(f"Total Cost: {result['total_cost']}")
-        # print("Solution:")
+        logging.info("Optimization Completed.")
+        # logging.info(f"Status: {result['status']}")
+        # logging.info(f"Total Cost: {result['total_cost']}")
+        # logging.info("Solution:")
         # for key, value in result['solution'].items():
-        #     print(f"  - {key}: {value}")
+        #     logging.info(f"  - {key}: {value}")
 
         return result
 
     except Exception as e:
-        print(f"Error during modification or execution: {str(e)}")
-        print(traceback.format_exc())
+        logging.error(f"Error during modification or execution: {str(e)}", exc_info=True)
         return {"status": "Error", "message": f"Error during modification or execution: {str(e)}"}
     
 
@@ -387,7 +398,7 @@ def get_mps_format(model):
     filename = f"{model.name}.mps"
     model.writeMPS(filename)
     
-    print(f"Model exported to MPS format: {filename}")
+    logging.info(f"Model exported to MPS format: {filename}")
     return filename
 
 def get_lp_format(model):
@@ -404,7 +415,7 @@ def get_lp_format(model):
     filename = f"{model.name}.lp"
     model.writeLP(filename)
     
-    print(f"Model exported to LP format: {filename}")
+    logging.info(f"Model exported to LP format: {filename}")
     return filename
 
 def build_model_from_lp(lp_file):
@@ -420,7 +431,7 @@ def build_model_from_lp(lp_file):
     # Create a new empty model
     model = pulp.LpProblem(name=lp_file.replace('.lp', ''))
     
-    print(f"Model built from LP file: {lp_file}")
+    logging.info(f"Model built from LP file: {lp_file}")
     return model
 
 def build_model_from_mps(mps_file):
@@ -435,7 +446,7 @@ def build_model_from_mps(mps_file):
     """
     variables_dict, model = pulp.LpProblem.fromMPS(mps_file, sense=pulp.LpMinimize)
     
-    print(f"Model built from MPS file: {mps_file}")
+    logging.info(f"Model built from MPS file: {mps_file}")
     return model
 
 
@@ -764,7 +775,7 @@ def write_run_data_to_csv(run_data_list: list[dict], log_filepath: str):
         log_filepath (str): Path to the CSV file for logging.
     """
     if not run_data_list:
-        print("No run data to write.")
+        logging.info("No run data to write.")
         return
 
     try:
@@ -779,11 +790,10 @@ def write_run_data_to_csv(run_data_list: list[dict], log_filepath: str):
 
         # Save updated DataFrame
         df.to_csv(log_filepath, index=False)
-        print(f"Successfully logged {len(run_data_list)} runs to {log_filepath}")
+        logging.info(f"Successfully logged {len(run_data_list)} runs to {log_filepath}")
 
     except Exception as e:
-        print(f"Error writing run data to CSV: {e}")
-        print(traceback.format_exc())
+        logging.error(f"Error writing run data to CSV: {e}", exc_info=True)
 
 def write_run_data_to_parquet(run_data_list: list[dict], log_filepath: str):
     """
@@ -795,7 +805,7 @@ def write_run_data_to_parquet(run_data_list: list[dict], log_filepath: str):
         log_filepath (str): Path to the Parquet file for logging.
     """
     if not run_data_list:
-        print("No run data to write.")
+        logging.info("No run data to write.")
         return
 
     try:
@@ -812,14 +822,12 @@ def write_run_data_to_parquet(run_data_list: list[dict], log_filepath: str):
 
         # Save updated DataFrame to parquet
         df.to_parquet(log_filepath, index=False)
-        print(f"Successfully logged {len(run_data_list)} runs to {log_filepath}")
+        logging.info(f"Successfully logged {len(run_data_list)} runs to {log_filepath}")
 
     except ImportError:
-        print("Error: 'pyarrow' and 'fastparquet' libraries are required to write Parquet files.")
-        print("Please install them using: pip install pyarrow fastparquet")
+        logging.error("Error: 'pyarrow' and 'fastparquet' libraries are required to write Parquet files.\nPlease install them using: pip install pyarrow fastparquet")
     except Exception as e:
-        print(f"Error writing run data to Parquet: {e}")
-        print(traceback.format_exc())
+        logging.error(f"Error writing run data to Parquet: {e}", exc_info=True)
 
 
 if __name__ == "__main__":

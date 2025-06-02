@@ -183,7 +183,8 @@ def run_scenario(macro, seq, vals, model_code_with_data_path):
         run_data.update({
             'modification': json.dumps(mod_json),
             'scenario_text': question,
-            'scenario_type': macro['scenario_type']
+            'scenario_type': macro['scenario_type'],
+            'placeholder_values': json.dumps(vals) # Add placeholder_values
         })
         
         return run_data

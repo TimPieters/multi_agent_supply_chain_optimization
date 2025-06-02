@@ -6,6 +6,7 @@ import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from tqdm import tqdm # Import tqdm for progress bar
 from itertools import product
+import itertools
 
 # Ensure project root is on sys.path so we can import utils
 root_dir = Path(__file__).resolve().parents[2]
@@ -16,14 +17,14 @@ from config import MODEL_PARAMETERS # Import MODEL_PARAMETERS for dynamic parame
 
 # CONFIGURATION
 default_model_path = "models/CFLP/capfacloc_model.py"
-default_data_path  = "models/CFLP/data/capfacloc_data_25cust_25fac.json"
+default_data_path  = "models/CFLP/data/capfacloc_data_50cust_50fac.json"
 data_options = ["capfacloc_data_10cust_10fac.json",
                 "capfacloc_data_25cust_25fac.json",
                 "capfacloc_data_50cust_50fac.json",
                 ]
-csv_log_filepath = "benchmark/CFLP/cflp_benchmark_25cust_25fac.csv"
-parquet_log_filepath = "benchmark/CFLP/cflp_benchmark_25cust_25fac.parquet"
-max_workers       = 16  # number of threads
+csv_log_filepath = "benchmark/CFLP/cflp_benchmark_50cust_50fac.csv"
+parquet_log_filepath = "benchmark/CFLP/cflp_benchmark_50cust_50fac.parquet"
+max_workers       = 14  # number of threads
 
 # Load base data
 try:
@@ -172,24 +173,23 @@ scenario_macros = [
     }
 ]
 
-# 2) Build full Cartesian product of all placeholder values
-tasks = []
-seq = 0
-
-for macro in scenario_macros:
-    keys        = list(macro["placeholders"].keys())
-    value_lists = [macro["placeholders"][k] for k in keys]
-
-    for combo in product(*value_lists):
-        seq += 1
-        vals = { keys[i]: combo[i] for i in range(len(keys)) }
-        tasks.append((macro, seq, vals))
-
-# Read the base model code once
-base_model_code = _read_source_code(default_model_path)
+# 2) Generator for all scenario tasks
+def generate_all_scenario_tasks(scenario_macros, customers, facilities):
+    """
+    Generates all scenario tasks iteratively, yielding one at a time.
+    """
+    seq = 0
+    for macro in scenario_macros:
+        keys = list(macro["placeholders"].keys())
+        value_lists = [macro["placeholders"][k] for k in keys]
+        
+        for combo in product(*value_lists):
+            seq += 1
+            vals = {keys[i]: combo[i] for i in range(len(keys))}
+            yield (macro, seq, vals)
 
 # 3) Worker: each thread prepares run data
-def run_scenario(macro, seq, vals, base_model_code):
+def run_scenario(macro, seq, vals, base_model_code, default_data_path, default_model_path):
     question   = macro["question"].format(**vals)
     code_snip  = macro["code_template"].format(**vals)
     mod_json   = {macro["code_type"]: code_snip}
@@ -271,15 +271,58 @@ def run_scenario(macro, seq, vals, base_model_code):
             'message': f"Error: {str(e)}"
         }
 
-# 4) Dispatch in parallel and collect all run data
-all_benchmark_runs = []
-with ThreadPoolExecutor(max_workers=max_workers) as executor:
-    futures = [executor.submit(run_scenario, m, s, v, base_model_code) for (m, s, v) in tasks]
-    for f in tqdm(as_completed(futures), total=len(tasks), desc="Running CFLP Benchmark Scenarios"):
-        all_benchmark_runs.append(f.result())
+# 4) Dispatch in parallel and collect all run data in batches
+total_scenarios = 0
+# Estimate total scenarios for tqdm, if possible, otherwise it will be dynamic
+# This is a rough estimate, actual count might differ if placeholder lists are dynamic
+for macro in scenario_macros:
+    num_combinations = 1
+    for key in macro["placeholders"]:
+        num_combinations *= len(macro["placeholders"][key])
+    total_scenarios += num_combinations
 
-# 5) Write all collected run data to the final log file
-# write_run_data_to_csv(all_benchmark_runs, csv_log_filepath)
-write_run_data_to_parquet(all_benchmark_runs, parquet_log_filepath)
-# print(f"Benchmark complete: {len(all_benchmark_runs)} runs logged to CSV path: {csv_log_filepath}.")
-print(f"Benchmark complete: {len(all_benchmark_runs)} runs logged to Parquet path: {parquet_log_filepath}.")
+BATCH_SIZE = 1000 # Process 1000 scenarios at a time to manage memory
+
+base_model_code = _read_source_code(default_model_path)
+
+with ThreadPoolExecutor(max_workers=max_workers) as executor:
+    futures = []
+    processed_count = 0
+    
+    # Use tqdm with a generator for tasks
+    task_generator = generate_all_scenario_tasks(scenario_macros, customers, facilities)
+    
+    pbar = tqdm(total=total_scenarios, desc="Running CFLP Benchmark Scenarios")
+    
+    while True:
+        batch_tasks = list(itertools.islice(task_generator, BATCH_SIZE))
+        if not batch_tasks:
+            break # No more tasks
+        
+        for macro, seq, vals in batch_tasks:
+            futures.append(executor.submit(run_scenario, macro, seq, vals, base_model_code, default_data_path, default_model_path))
+        
+        batch_results = []
+        for future in as_completed(futures):
+            batch_results.append(future.result())
+            pbar.update(1) # Update progress bar for each completed scenario
+        
+        # Clear futures for the next batch
+        futures = [] 
+        
+        # Write results of the current batch incrementally
+        if batch_results:
+            if parquet_log_filepath.endswith('.parquet'):
+                write_run_data_to_parquet(batch_results, parquet_log_filepath)
+            elif csv_log_filepath.endswith('.csv'):
+                write_run_data_to_csv(batch_results, csv_log_filepath)
+            else:
+                print("Warning: No valid log file extension found. Results not saved for this batch.")
+        
+        processed_count += len(batch_results)
+        
+    pbar.close()
+
+print(f"Benchmark complete: {processed_count} runs logged.")
+print(f"Results saved to Parquet: {parquet_log_filepath}")
+print(f"Results saved to CSV (if applicable): {csv_log_filepath}")

@@ -16,8 +16,9 @@ import os
 from typing import List
 import json
 from langchain.agents.tools import InvalidTool
+import logging
 from utils import _read_source_code, modify_and_run_model # Removed _replace, _run_with_exec, _apply_model_modification as they are internal to modify_and_run_model
-from config import MODEL_FILE_PATH, MODEL_DATA_PATH, MODEL_DESCRIPTION_PATH
+from config import MODEL_FILE_PATH, MODEL_DATA_PATH, MODEL_DESCRIPTION_PATH, LOGGING_LEVEL
 
 # Load environment variables
 load_dotenv()
@@ -29,19 +30,19 @@ model_description = _read_source_code(MODEL_DESCRIPTION_PATH)
 
 # Get baseline result by running the model without modifications
 # This will use the modify_and_run_model function with an empty modification
-print("Running baseline model to get original result...")
+logging.info("Running baseline model to get original result...")
 original_result_dict = modify_and_run_model({}, MODEL_FILE_PATH, MODEL_DATA_PATH)
 original_result = json.dumps(original_result_dict) # Convert dict to string for prompt partial variable
-print(f"Baseline model run complete. Original result: {original_result}")
+logging.info("Baseline model run complete. Original result: %s", original_result)
 
 # === WHAT-IF AGENT ===
 
-# Define a simple prompt to test the connection
+# Define the prompt template for the agent
 prompt = PromptTemplate(
     input_variables=["tools", "tool_names", "input", "agent_scratchpad"],
-    partial_variables={"source_code": source_code, # Use the dynamically loaded source_code
-                       "original_result": original_result,
-                       "input_data": input_data,
+    partial_variables={"source_code": source_code, # Give source_code to agent
+                       "original_result": original_result, # Give the baseline result to agent
+                       "input_data": input_data, # Give input data to agent
                        "model_description": model_description # Add model description to context
                        },
     template="""
@@ -239,6 +240,8 @@ def extract_last_run_details(log_file=LOG_FILE):
 
 # Example usage
 if __name__ == "__main__":
+    # Configure logging
+    logging.basicConfig(level=LOGGING_LEVEL, format='%(levelname)s: %(message)s')
 
     # Load pre-trained Large Language Model from OpenAI
     llm = ChatOpenAI(model_name="gpt-4o", temperature=0.5)
@@ -257,7 +260,7 @@ if __name__ == "__main__":
         print(f"Running agent with model: {MODEL_FILE_PATH} and data: {MODEL_DATA_PATH}")
 
         # Example questions for capfacloc_model.py:
-        response = whatif_agent_executor.invoke({"input": "What happens if the capacity of the first facility is limited to 15?"})
+        # response = whatif_agent_executor.invoke({"input": "What happens if the capacity of the first facility is limited to 15?"})
         # response = whatif_agent_executor.invoke({"input": "What happens if the demand for the second customer increases by 15 units, raising it from 25 to 40?"})
         # response = whatif_agent_executor.invoke({"input": "What happens if the fixed cost of the third facility is increased by 25%?"})
         # response = whatif_agent_executor.invoke({"input": "What happens if the demand for the fourth customer increases by 30 units, raising it from 18 to 48?"})
@@ -269,30 +272,33 @@ if __name__ == "__main__":
         # response = whatif_agent_executor.invoke({"input": "What happens if supply at supplier 0 decreases? And what if it's completely zero?"})
         # response = whatif_agent_executor.invoke({"input": "Limit supplier 0 to 100 and force demand center 2 to receive exactly 90 units."})
 
-        print("API Connection Successful! Response:")
-        print(response)
-        # Optionally, also write the string representation to a text file
-        with open("agent_verbose_log.txt", "w", encoding="utf-8") as f:
-            f.write(str(response))
-        print("Output:")
-        print(response["output"])
-        print("Intermediate Steps:")
-        print(response["intermediate_steps"])
+        # Example questions for vrp_model.py:
+        response = whatif_agent_executor.invoke({"input": "What happens if the capacity of the vehicle is reduced to 30?"})
+
+        # print("API Connection Successful! Response:")
+        # print(response)
+        # # Optionally, also write the string representation to a text file
+        # with open("agent_verbose_log.txt", "w", encoding="utf-8") as f:
+        #     f.write(str(response))
+        # print("Output:")
+        # print(response["output"])
+        # print("Intermediate Steps:")
+        # print(response["intermediate_steps"])
 
         # Log this run in the JSON file as an element in an array.
         log_execution(response)
         
         details = extract_last_run_details()
-        if details:
-            print("User Input:")
-            print(details["user_input"])
-            print("\nTool Steps:")
-            for i, step in enumerate(details["steps"], start=1):
-                print(f"Step {i}:")
-                print("  Tool Input:", step["tool_input"])
-                print("  Tool Output:", step["tool_output"])
-        else:
-            print("No log details extracted.")
+        # if details:
+        #     print("User Input:")
+        #     print(details["user_input"])
+        #     print("\nTool Steps:")
+        #     for i, step in enumerate(details["steps"], start=1):
+        #         print(f"Step {i}:")
+        #         print("  Tool Input:", step["tool_input"])
+        #         print("  Tool Output:", step["tool_output"])
+        # else:
+        #     print("No log details extracted.")
 
     except Exception as e:
         print("API Connection Failed. Error:")

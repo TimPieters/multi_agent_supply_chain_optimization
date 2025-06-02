@@ -1,5 +1,7 @@
+# Ignore environment files
 /masterthesis/
 .env
+# Ignore all Python bytecode/cache dirs
 **/__pycache__/
 __pycache__/
 # Ignore any CSV or Parquet under benchmark/CFLP
