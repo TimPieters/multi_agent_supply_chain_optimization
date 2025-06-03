@@ -22,7 +22,9 @@ Watch a brief demonstration of the Streamlit application in action:
 
 ## Getting Started
 
-(Further instructions on how to set up and run the project would go here, e.g., installation, running the Streamlit app, etc.)
+(Further instructions on how to set up and run the project will go here, e.g., installation, running the Streamlit app, etc.)
+
+I will provied a complete documentation in the future.
 
 ## Technologies Used
 
