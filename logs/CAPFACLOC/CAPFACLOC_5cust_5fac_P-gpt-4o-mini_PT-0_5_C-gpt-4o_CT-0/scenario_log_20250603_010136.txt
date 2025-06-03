@@ -1,0 +1,42 @@
+LangGraph Automated Sensitivity Analysis Log (Run ID: 20250603_010136)
+============================================================
+
+Model Path: models/CFLP/capfacloc_model.py
+Data Path: models/CFLP/data/capfacloc_data_5cust_5fac.json
+Baseline Objective Value: 223.0
+Number of Parameters: 20
+
+Iterations Ran: 10
+Total Run Time: 20.51 seconds
+Planner LLM: gpt-4o-mini (Temp: 0.5)
+Coder LLM: gpt-4o (Temp: 0.0)
+Final Analysis LLM: gpt-4o (Temp: 0.1)
+
+--- Final Analysis Summary ---
+### 1. Summarize Key Findings:
+
+The sensitivity analysis of the Capacitated Facility Location Problem (CFLP) model reveals that changes in facility capacities generally have a limited impact on the total cost, with most scenarios resulting in no change in the objective function (ΔObj = 0.0%). However, specific capacity limitations on facility 3 (index 2) led to a noticeable increase in total cost (ΔObj = 10.0, 4.5%). No scenarios resulted in infeasibility, indicating that the model is robust to the tested capacity changes.
+
+### 2. Rank Parameter/Change Type Sensitivity:
+
+1. **Facility Capacities (Specific to Facility 3, index 2):** Limiting the capacity of facility 3 to 50 or 40 resulted in a 4.5% increase in total cost, making it the most impactful change observed in the scenarios.
+2. **Other Facility Capacities:** Changes to the capacities of other facilities (indices 0, 1, 3, 4) did not affect the total cost, indicating lower sensitivity to these parameters.
+
+### 3. Identify Critical Scenarios:
+
+- **Scenario 4 and Scenario 7:** Both scenarios involved limiting the capacity of facility 3 (index 2) and resulted in a cost increase of 10.0 (4.5%). These scenarios are critical as they highlight the sensitivity of the model to capacity changes at this specific facility, suggesting that facility 3 plays a crucial role in maintaining cost efficiency.
+
+Overall, the analysis suggests that while most capacity changes do not impact the model's cost, facility 3's capacity is a critical factor in the cost structure of the supply chain.
+
+
+--- Scenario Log ---
+1. Scenario: 'Limit the capacity of facility 4 (index 3) to 50.' -> Status: Optimal, Cost: 223.0, ΔObj: 0.0 (0.0%)
+2. Scenario: 'Limit the capacity of facility 2 (index 1) to 30.' -> Status: Optimal, Cost: 223.0, ΔObj: 0.0 (0.0%)
+3. Scenario: 'Limit the capacity of facility 1 (index 0) to 40.' -> Status: Optimal, Cost: 223.0, ΔObj: 0.0 (0.0%)
+4. Scenario: 'Limit the capacity of facility 3 (index 2) to 50.' -> Status: Optimal, Cost: 233.0, ΔObj: 10.0 (4.5%)
+5. Scenario: 'Limit the capacity of facility 5 (index 4) to 70.' -> Status: Optimal, Cost: 223.0, ΔObj: 0.0 (0.0%)
+6. Scenario: 'Limit the capacity of facility 5 (index 4) to 50.' -> Status: Optimal, Cost: 223.0, ΔObj: 0.0 (0.0%)
+7. Scenario: 'Limit the capacity of facility 3 (index 2) to 40.' -> Status: Optimal, Cost: 233.0, ΔObj: 10.0 (4.5%)
+8. Scenario: 'Limit the capacity of facility 1 (index 0) to 20.' -> Status: Optimal, Cost: 223.0, ΔObj: 0.0 (0.0%)
+9. Scenario: 'Limit the capacity of facility 5 (index 4) to 40.' -> Status: Optimal, Cost: 223.0, ΔObj: 0.0 (0.0%)
+10. Scenario: 'Limit the capacity of facility 2 (index 1) to 20.' -> Status: Optimal, Cost: 223.0, ΔObj: 0.0 (0.0%)

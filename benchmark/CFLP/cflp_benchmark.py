@@ -17,13 +17,14 @@ from config import MODEL_PARAMETERS # Import MODEL_PARAMETERS for dynamic parame
 
 # CONFIGURATION
 default_model_path = "models/CFLP/capfacloc_model.py"
-default_data_path  = "models/CFLP/data/capfacloc_data_50cust_50fac.json"
+config_str = "50cust_50fac"
+default_data_path  = f"models/CFLP/data/capfacloc_data_{config_str}.json"
 data_options = ["capfacloc_data_10cust_10fac.json",
                 "capfacloc_data_25cust_25fac.json",
                 "capfacloc_data_50cust_50fac.json",
                 ]
-csv_log_filepath = "benchmark/CFLP/cflp_benchmark_50cust_50fac.csv"
-parquet_log_filepath = "benchmark/CFLP/cflp_benchmark_50cust_50fac.parquet"
+csv_log_filepath = "" #f"benchmark/CFLP/cflp_benchmark_{config_str}.csv"
+parquet_log_filepath = f"benchmark/CFLP/cflp_benchmark_{config_str}.parquet"
 max_workers       = 14  # number of threads
 
 # Load base data
@@ -281,7 +282,7 @@ for macro in scenario_macros:
         num_combinations *= len(macro["placeholders"][key])
     total_scenarios += num_combinations
 
-BATCH_SIZE = 1000 # Process 1000 scenarios at a time to manage memory
+BATCH_SIZE = 500 # Process 500 scenarios at a time to manage memory
 
 base_model_code = _read_source_code(default_model_path)
 
@@ -314,7 +315,7 @@ with ThreadPoolExecutor(max_workers=max_workers) as executor:
         if batch_results:
             if parquet_log_filepath.endswith('.parquet'):
                 write_run_data_to_parquet(batch_results, parquet_log_filepath)
-            elif csv_log_filepath.endswith('.csv'):
+            if csv_log_filepath.endswith('.csv'):
                 write_run_data_to_csv(batch_results, csv_log_filepath)
             else:
                 print("Warning: No valid log file extension found. Results not saved for this batch.")

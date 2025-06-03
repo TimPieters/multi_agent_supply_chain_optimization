@@ -1,0 +1,53 @@
+LangGraph Automated Sensitivity Analysis Log (Run ID: 20250603_012501)
+============================================================
+
+Model Path: models/VRP/vrp_model.py
+Data Path: models/VRP/data/vrp_data_10cust_2veh_50cap.json
+Baseline Objective Value: 330.1
+Number of Parameters: 34
+
+Iterations Ran: 10
+Total Run Time: 48.36 seconds
+Planner LLM: gpt-4o-mini (Temp: 0.0)
+Coder LLM: gpt-4o (Temp: 0.0)
+Final Analysis LLM: gpt-4o (Temp: 0.1)
+
+--- Final Analysis Summary ---
+**1. Summarize Key Findings:**
+
+The sensitivity analysis of the Vehicle Routing Problem (VRP) model reveals several key insights:
+
+- **Demand Increases:** Increasing the demand of the highest-demand customer consistently led to model execution errors, indicating potential infeasibility due to exceeding vehicle capacity. This suggests that the model is highly sensitive to demand changes, particularly for high-demand customers.
+  
+- **Vehicle Capacity Changes:** Reducing vehicle capacity from 50 to 30 resulted in a significant cost increase (ΔObj: 26.3%), highlighting the model's sensitivity to capacity constraints. Conversely, increasing vehicle capacity to 70 reduced costs by 10.3%, suggesting that higher capacities allow for more efficient routing.
+
+- **Number of Vehicles:** Increasing the number of vehicles from 2 to 4 or 5 did not change the total cost, indicating that the model might already be optimized for the available routes or that additional vehicles do not provide further cost benefits under the current demand and capacity constraints.
+
+**2. Rank Parameter/Change Type Sensitivity:**
+
+1. **Demand Levels:** Changes in demand, especially for high-demand customers, had the most significant impact, often leading to model execution errors and potential infeasibility.
+   
+2. **Vehicle Capacity:** Adjustments to vehicle capacity showed substantial cost impacts, with reduced capacity leading to increased costs and increased capacity leading to decreased costs.
+
+3. **Number of Vehicles:** Changes in the number of vehicles had minimal impact on cost, suggesting limited sensitivity in this area under the tested scenarios.
+
+**3. Identify Critical Scenarios:**
+
+- **Scenario 1:** Reducing vehicle capacity from 50 to 30 resulted in a significant cost increase (ΔObj: 26.3%), highlighting the critical role of capacity constraints in the model.
+
+- **Scenario 5:** Increasing vehicle capacity to 70 led to a notable cost reduction (ΔObj: -10.3%), demonstrating the potential for cost savings with higher capacities.
+
+- **Scenarios 3, 6, 8, 9, 10:** Increasing the demand of the highest-demand customer consistently led to model execution errors, underscoring the critical impact of demand changes on model feasibility.
+
+
+--- Scenario Log ---
+1. Scenario: 'Reduce the vehicle capacity from 50 to 30, which may lead to infeasibility due to increased demand exceeding the new capacity limits.' -> Status: Optimal, Cost: 416.89, ΔObj: 86.79 (26.3%)
+2. Scenario: 'Increase the number of vehicles from 2 to 4, which may lead to a significant reduction in total distance traveled but could also reveal potential routing inefficiencies or increased operational costs.' -> Status: Optimal, Cost: 330.1, ΔObj: 0.0 (0.0%)
+3. Scenario: 'Increase the demand of the highest-demand customer (currently 9) to 20, which may lead to infeasibility due to exceeding the total vehicle capacity with the current number of vehicles.' -> Status: Error (Model execution failed or 'model' not found in locals_dict.)
+4. Scenario: 'Increase the demand of the second highest-demand customer (currently 9) to 25, which may lead to infeasibility due to exceeding the total vehicle capacity with the current number of vehicles.' -> Status: Optimal, Cost: 362.57, ΔObj: 32.47 (9.8%)
+5. Scenario: 'Increase the vehicle capacity from 50 to 70, which may allow for more efficient routing and potentially reduce total distance traveled significantly, but could also reveal new constraints or inefficiencies in the model.' -> Status: Optimal, Cost: 296.26, ΔObj: -33.84 (-10.3%)
+6. Scenario: 'Increase the demand of the highest-demand customer (currently 9) to 30, which may lead to infeasibility due to exceeding the total vehicle capacity with the current number of vehicles.' -> Status: Error (Model execution failed or 'model' not found in locals_dict.)
+7. Scenario: 'Increase the number of vehicles from 2 to 5, which may lead to significant routing improvements but could also reveal new inefficiencies or operational costs that exceed the benefits of reduced distance traveled.' -> Status: Optimal, Cost: 330.1, ΔObj: 0.0 (0.0%)
+8. Scenario: 'Increase the demand of the highest-demand customer (currently 9) to 35, which may lead to infeasibility due to exceeding the total vehicle capacity with the current number of vehicles.' -> Status: Error (Model execution failed or 'model' not found in locals_dict.)
+9. Scenario: 'Increase the demand of the highest-demand customer (currently 9) to 40, which may lead to infeasibility due to exceeding the total vehicle capacity with the current number of vehicles.' -> Status: Error (Model execution failed or 'model' not found in locals_dict.)
+10. Scenario: 'Increase the demand of the highest-demand customer (currently 9) to 50, which may lead to infeasibility due to exceeding the total vehicle capacity with the current number of vehicles.' -> Status: Error (Model execution failed or 'model' not found in locals_dict.)

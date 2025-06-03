@@ -13,7 +13,7 @@ LOGGING_LEVEL = logging.INFO
 MODEL_FILE_PATH = "models/VRP/vrp_model.py"
 
 # Path to the JSON data file for the model
-MODEL_DATA_PATH = "models/VRP/data/vrp_data_10cust_2veh.json"
+MODEL_DATA_PATH = "models/VRP/data/vrp_data_10cust_2veh_50cap.json"
 
 # Path to the model description file (for Planner agent context)
 MODEL_DESCRIPTION_PATH = "models/VRP/description.txt"
@@ -66,8 +66,8 @@ MODEL_DATA_MAPPING = {
         "capfacloc_data.json" # Add the generic one too
     ],
     "models/VRP/vrp_model.py": [
-        "vrp_data_10cust_2veh.json",
-        "vrp_data_10cust_5veh.json",
-        "vrp_data_20cust_5veh.json"
+        "vrp_data_10cust_2veh_50cap.json",
+        "vrp_data_10cust_5veh_50cap.json",
+        "vrp_data_20cust_5veh_50cap.json"
     ]
 }

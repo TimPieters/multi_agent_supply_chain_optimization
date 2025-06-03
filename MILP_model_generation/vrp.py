@@ -8,7 +8,7 @@ from pulp import (
     LpVariable, lpSum,
     LpBinary, LpContinuous,
     LpStatus, value,
-    PULP_CBC_CMD
+    PULP_CBC_CMD, SCIP_PY
 )
 import matplotlib.pyplot as plt
 
@@ -122,6 +122,9 @@ class VehicleRouting:
                         <= len(customers) - 1
                     ), f"MTZ_{i}_{j}"
 
+        # Total demand must be less than or equal to total vehicle capacity
+        model += lpSum(demand) <= K * Q, "TotalVehicleCapacity"
+
         # Capacity linking constraints
         for i in customers:
             for j in customers:
@@ -143,7 +146,7 @@ class VehicleRouting:
         Solve the VRP and return status and solve time.
         """
         start = time.time()
-        solver = PULP_CBC_CMD()
+        solver = SCIP_PY() #PULP_CBC_CMD() # SCIP_PY
         model.solve(solver)
         end = time.time()
 
@@ -238,10 +241,10 @@ class VehicleRouting:
 if __name__ == '__main__':
     seed = 42
     parameters = {
-        'n_customers': 10,
+        'n_customers': 15,
         'coordinate_interval': (0, 100),
         'demand_interval': (1, 10),
-        'vehicle_capacity': 50,
+        'vehicle_capacity': 100,
         'num_vehicles': 2
     }
 
@@ -251,7 +254,7 @@ if __name__ == '__main__':
     # Ensure output directory exists
     OUTPUT_DIR = os.path.join("models", "VRP", "data")
     os.makedirs(OUTPUT_DIR, exist_ok=True)
-    fname = f"vrp_data_{parameters['n_customers']}cust_{parameters['num_vehicles']}veh.json"
+    fname = f"vrp_data_{parameters['n_customers']}cust_{parameters['num_vehicles']}veh_{parameters['vehicle_capacity']}cap.json"
     fpath = os.path.join(OUTPUT_DIR, fname)
 
     # Export to JSON

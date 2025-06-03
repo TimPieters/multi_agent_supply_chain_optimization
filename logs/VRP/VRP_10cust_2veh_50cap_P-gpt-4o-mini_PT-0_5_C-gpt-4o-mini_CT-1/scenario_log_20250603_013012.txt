@@ -1,0 +1,47 @@
+LangGraph Automated Sensitivity Analysis Log (Run ID: 20250603_013012)
+============================================================
+
+Model Path: models/VRP/vrp_model.py
+Data Path: models/VRP/data/vrp_data_10cust_2veh_50cap.json
+Baseline Objective Value: 330.1
+Number of Parameters: 34
+
+Iterations Ran: 10
+Total Run Time: 80.44 seconds
+Planner LLM: gpt-4o-mini (Temp: 0.5)
+Coder LLM: gpt-4o-mini (Temp: 1.0)
+Final Analysis LLM: gpt-4o (Temp: 0.1)
+
+--- Final Analysis Summary ---
+**1. Summarize Key Findings:**
+
+The sensitivity analysis of the Vehicle Routing Problem (VRP) model reveals that changes in customer demand levels have the most significant impact on both the total cost and model feasibility. Specifically, increasing the demand of individual customers often leads to substantial increases in total cost and, in one case, model infeasibility. Reducing vehicle capacity also significantly impacts the total cost, although it did not lead to infeasibility in the tested scenario. Increasing the number of vehicles did not change the cost but potentially improved route efficiency.
+
+**2. Rank Parameter/Change Type Sensitivity:**
+
+1. **Demand Levels:** Changes in customer demand levels had the most significant impact, with increases leading to large cost changes and, in one case, infeasibility. The highest ΔObj % was observed when demand was increased for customer 2 (37.5%).
+   
+2. **Vehicle Capacity:** Reducing vehicle capacity from 50 to 30 resulted in a significant cost increase (26.3%), indicating high sensitivity to capacity constraints.
+
+3. **Number of Vehicles:** Increasing the number of vehicles from 2 to 4 did not change the cost but likely improved route efficiency, suggesting that vehicle availability can optimize operations without affecting costs.
+
+**3. Identify Critical Scenarios:**
+
+- **Scenario 9:** Increasing the demand of customer 2 from 3 to 50 resulted in the largest cost increase (ΔObj: 123.76, 37.5%), highlighting the critical impact of excessive demand on cost.
+  
+- **Scenario 10:** Increasing the demand of customer 7 from 5 to 50 led to model infeasibility, demonstrating the limits of the model's capacity to handle excessive demand increases.
+
+These scenarios underscore the importance of managing customer demand levels to maintain cost efficiency and model feasibility in the VRP.
+
+
+--- Scenario Log ---
+1. Scenario: 'Reduce the vehicle capacity from 50 to 30, which may lead to infeasibility by not being able to serve all customer demands with the current number of vehicles.' -> Status: Optimal, Cost: 416.89, ΔObj: 86.79 (26.3%)
+2. Scenario: 'Increase the demand of customer 3 from 7 to 20 while keeping the vehicle capacity at 50 and the number of vehicles at 2, which may lead to infeasibility and significantly increase the total cost.' -> Status: Optimal, Cost: 404.51, ΔObj: 74.41 (22.5%)
+3. Scenario: 'Increase the number of vehicles from 2 to 4 while maintaining the current vehicle capacity of 50 and customer demands, which may significantly reduce the total cost by optimizing routes more effectively and potentially reveal the impact of increased vehicle availability on overall efficiency.' -> Status: Optimal, Cost: 330.1, ΔObj: 0.0 (0.0%)
+4. Scenario: 'Increase the demand of customer 4 from 9 to 25 while keeping the vehicle capacity at 50 and the number of vehicles at 2, which may lead to infeasibility and significantly increase the total cost.' -> Status: Optimal, Cost: 362.57, ΔObj: 32.47 (9.8%)
+5. Scenario: 'Increase the demand of customer 6 from 3 to 30 while keeping the vehicle capacity at 50 and the number of vehicles at 2, which may lead to infeasibility and significantly increase the total cost.' -> Status: Optimal, Cost: 429.34, ΔObj: 99.24 (30.1%)
+6. Scenario: 'Increase the demand of customer 5 from 9 to 35 while keeping the vehicle capacity at 50 and the number of vehicles at 2, which may lead to infeasibility and significantly increase the total cost.' -> Status: Optimal, Cost: 330.1, ΔObj: 0.0 (0.0%)
+7. Scenario: 'Increase the demand of customer 8 from 7 to 40 while keeping the vehicle capacity at 50 and the number of vehicles at 2, which may lead to infeasibility due to excessive demand exceeding the capacity constraints.' -> Status: Optimal, Cost: 372.46, ΔObj: 42.36 (12.8%)
+8. Scenario: 'Increase the demand of customer 1 from 0 to 25 while keeping the vehicle capacity at 50 and the number of vehicles at 2, which may lead to infeasibility due to the sudden demand increase from a previously unserved customer.' -> Status: Optimal, Cost: 393.39, ΔObj: 63.29 (19.2%)
+9. Scenario: 'Increase the demand of customer 2 from 3 to 50 while keeping the vehicle capacity at 50 and the number of vehicles at 2, which may lead to infeasibility due to the excessive demand exceeding the capacity constraints.' -> Status: Optimal, Cost: 453.86, ΔObj: 123.76 (37.5%)
+10. Scenario: 'Increase the demand of customer 7 from 5 to 50 while keeping the vehicle capacity at 50 and the number of vehicles at 2, which may lead to infeasibility due to the excessive demand exceeding the capacity constraints.' -> Error: Execution Result: Model Infeasible

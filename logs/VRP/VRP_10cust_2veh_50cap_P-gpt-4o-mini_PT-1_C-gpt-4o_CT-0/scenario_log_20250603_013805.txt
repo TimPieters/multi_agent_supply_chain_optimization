@@ -1,0 +1,58 @@
+LangGraph Automated Sensitivity Analysis Log (Run ID: 20250603_013805)
+============================================================
+
+Model Path: models/VRP/vrp_model.py
+Data Path: models/VRP/data/vrp_data_10cust_2veh_50cap.json
+Baseline Objective Value: 330.1
+Number of Parameters: 34
+
+Iterations Ran: 10
+Total Run Time: 59.43 seconds
+Planner LLM: gpt-4o-mini (Temp: 1.0)
+Coder LLM: gpt-4o (Temp: 0.0)
+Final Analysis LLM: gpt-4o (Temp: 0.1)
+
+--- Final Analysis Summary ---
+**1. Summarize Key Findings:**
+
+The sensitivity analysis of the Vehicle Routing Problem (VRP) model reveals that changes in vehicle capacity and the number of available vehicles have the most significant impact on both the total cost and model feasibility. Specifically, reducing vehicle capacity consistently leads to increased costs and, in extreme cases, model infeasibility. Similarly, reducing the number of available vehicles often results in infeasibility, especially when combined with increased customer demands. Conversely, increasing vehicle capacity can lead to cost savings, as seen in the scenario where capacity was increased from 50 to 70. Overall, the model is highly sensitive to capacity constraints and vehicle availability, with demand changes exacerbating these effects.
+
+**2. Rank Parameter/Change Type Sensitivity:**
+
+1. **Vehicle Capacity Reductions:**
+   - Most impactful in terms of causing infeasibility and significant cost increases.
+   - Scenarios with capacity reductions to 20, 15, and 10 resulted in infeasibility.
+   - Capacity reduction from 50 to 30 led to a 26.3% cost increase.
+
+2. **Number of Available Vehicles:**
+   - Reducing the number of vehicles from 2 to 1 consistently led to infeasibility.
+   - Combined with demand increases, this change further stressed the system.
+
+3. **Demand Increases:**
+   - While not directly causing infeasibility alone, demand increases in combination with reduced capacity or fewer vehicles led to infeasibility.
+   - Doubling demand at selected locations with increased vehicle availability resulted in a 17.2% cost increase.
+
+4. **Vehicle Capacity Increases:**
+   - Increasing capacity from 50 to 70 resulted in a 10.3% cost decrease, showing potential for cost savings.
+
+**3. Identify Critical Scenarios:**
+
+- **Scenario 2:** Reducing the number of vehicles from 2 to 1 led to infeasibility, highlighting the critical role of vehicle availability.
+- **Scenario 5 and 6:** Reducing vehicle capacity to 20 and 10, respectively, resulted in infeasibility, demonstrating the model's sensitivity to capacity constraints.
+- **Scenario 1:** Increasing vehicle capacity from 50 to 70 resulted in a significant cost decrease of 10.3%, indicating potential for optimization through capacity adjustments.
+- **Scenario 10:** Doubling demand at selected locations with increased vehicle availability led to a 17.2% cost increase, showing the impact of demand changes even with more resources.
+
+--- END OF ANALYSIS SUMMARY ---
+
+
+--- Scenario Log ---
+1. Scenario: 'Increase the vehicle capacity from 50 to 70 to test how the system adapts to serving larger customer demands with fewer vehicles, potentially leading to significant cost savings or infeasibility if demand exceeds capacity.' -> Status: Optimal, Cost: 296.26, ΔObj: -33.84 (-10.3%)
+2. Scenario: 'Reduce the number of available vehicles from 2 to 1 to test the system's ability to manage increasing customer demands and potential infeasibility due to capacity constraints.' -> Error: Execution Result: Model Infeasible
+3. Scenario: 'Reduce the vehicle capacity from 50 to 40 to assess the impact on feasibility and total cost given the existing customer demands, potentially leading to significant cost increases or infeasibility.' -> Status: Optimal, Cost: 387.01, ΔObj: 56.91 (17.2%)
+4. Scenario: 'Reduce the vehicle capacity from 50 to 30 to evaluate the impact on feasibility and total cost given the existing customer demands, which may lead to significant cost increases or infeasibility as more demands exceed the reduced capacity.' -> Status: Optimal, Cost: 416.89, ΔObj: 86.79 (26.3%)
+5. Scenario: 'Reduce the vehicle capacity from 50 to 20 to assess the drastic impact on feasibility and total cost, which may lead to significant infeasibility as customer demands far exceed the reduced capacity.' -> Error: Execution Result: Model Infeasible
+6. Scenario: 'Reduce the vehicle capacity from 50 to 10 to test the potential for larger infeasibility and a dramatic increase in total cost due to the significant mismatch between customer demands and available transportation capacity.' -> Error: Execution Result: Model Infeasible
+7. Scenario: 'Reduce the number of available vehicles from 2 to 1 and simultaneously increase customer demands by 20% to test the model's ability to manage significantly higher loads with fewer resources, potentially leading to drastic increases in total cost or infeasibility.' -> Error: Execution Result: Model Infeasible
+8. Scenario: 'Reduce the vehicle capacity from 50 to 15 while simultaneously increasing customer demands by 30% to examine the model's ability to handle extreme capacity constraints against heightened demand, likely resulting in significant infeasibility and insights into operational limits.' -> Error: Execution Result: Model Infeasible
+9. Scenario: 'Decrease the vehicle capacity from 50 to 25 while simultaneously reducing the number of available vehicles from 2 to 1, testing the limits of feasibility and significantly increasing total cost due to heightened demand per vehicle.' -> Error: Execution Result: Model Infeasible
+10. Scenario: 'Increase the number of available vehicles from 2 to 4 while simultaneously doubling the demand at selected high-demand customer locations (customers 3, 4, and 10) to test the system's ability to manage significantly increased demand with improved vehicle availability, potentially leading to drastic changes in total cost and insights on resource optimization under pressure.' -> Status: Optimal, Cost: 387.01, ΔObj: 56.91 (17.2%)

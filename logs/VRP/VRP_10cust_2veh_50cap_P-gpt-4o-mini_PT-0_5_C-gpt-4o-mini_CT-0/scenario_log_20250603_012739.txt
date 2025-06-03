@@ -1,0 +1,52 @@
+LangGraph Automated Sensitivity Analysis Log (Run ID: 20250603_012739)
+============================================================
+
+Model Path: models/VRP/vrp_model.py
+Data Path: models/VRP/data/vrp_data_10cust_2veh_50cap.json
+Baseline Objective Value: 330.1
+Number of Parameters: 34
+
+Iterations Ran: 10
+Total Run Time: 98.75 seconds
+Planner LLM: gpt-4o-mini (Temp: 0.5)
+Coder LLM: gpt-4o-mini (Temp: 0.0)
+Final Analysis LLM: gpt-4o (Temp: 0.1)
+
+--- Final Analysis Summary ---
+**1. Summarize Key Findings:**
+
+The sensitivity analysis of the Vehicle Routing Problem (VRP) model reveals that changes in customer demand and vehicle capacity have the most significant impact on the total cost. Specifically, increasing customer demand, particularly for high-demand customers, consistently leads to substantial increases in total cost. Conversely, increasing vehicle capacity tends to reduce costs, indicating improved route efficiency. The number of vehicles available also affects cost, but to a lesser extent, as seen in scenarios where increasing the number of vehicles did not change the cost. Notably, none of the scenarios led to infeasibility, suggesting that the model is robust to the tested changes within the given parameter ranges.
+
+**2. Rank Parameter/Change Type Sensitivity:**
+
+1. **Demand Levels:**
+   - Increasing demand, especially for high-demand customers, consistently resulted in significant cost increases (up to 22.5%).
+   
+2. **Vehicle Capacity:**
+   - Reducing vehicle capacity led to increased costs (26.3%), while increasing capacity reduced costs (-10.3%).
+
+3. **Number of Vehicles:**
+   - Changes in the number of vehicles had no impact on cost in the scenarios tested, indicating lower sensitivity compared to demand and capacity changes.
+
+**3. Identify Critical Scenarios:**
+
+- **Scenario 1:** Reducing vehicle capacity from 50 to 30 resulted in the largest cost increase (26.3%), highlighting the critical role of vehicle capacity in cost management.
+  
+- **Scenario 9:** Increasing the demand of the highest-demand customer to 25 led to a significant cost increase (22.5%), underscoring the sensitivity of the model to changes in high-demand customer requirements.
+
+- **Scenario 7:** Increasing vehicle capacity from 50 to 70 resulted in a notable cost reduction (-10.3%), demonstrating the potential for cost savings through capacity enhancements.
+
+These scenarios are particularly revealing as they illustrate the model's sensitivity to changes in demand and capacity, which are key drivers of cost in the VRP model.
+
+
+--- Scenario Log ---
+1. Scenario: 'Reduce the vehicle capacity from 50 to 30 to test for potential infeasibility and significantly increase the total cost due to the increased number of trips required to serve customer demands.' -> Status: Optimal, Cost: 416.89, ΔObj: 86.79 (26.3%)
+2. Scenario: 'Increase the number of vehicles from 2 to 4 to test for potential cost reductions and assess the impact on route efficiency, while examining if the demand can be met without exceeding vehicle capacity.' -> Status: Optimal, Cost: 330.1, ΔObj: 0.0 (0.0%)
+3. Scenario: 'Increase the demand of the highest-demand customer (currently 9) to 20 while keeping all other parameters constant to test for potential infeasibility and a significant increase in total cost due to exceeding vehicle capacity.' -> Status: Optimal, Cost: 387.01, ΔObj: 56.91 (17.2%)
+4. Scenario: 'Increase the demand of the second highest-demand customer (currently 9) to 20 while keeping all other parameters constant to test for potential infeasibility and a significant increase in total cost due to exceeding vehicle capacity.' -> Status: Optimal, Cost: 362.57, ΔObj: 32.47 (9.8%)
+5. Scenario: 'Increase the number of vehicles from 2 to 6 to test for potential cost reductions and assess the impact on route efficiency while examining if the increased capacity leads to reduced total cost or if it creates infeasibility due to constraints on customer assignments.' -> Status: Optimal, Cost: 330.1, ΔObj: 0.0 (0.0%)
+6. Scenario: 'Increase the demand of the lowest-demand customer (currently 3) to 15 while keeping all other parameters constant to test for potential infeasibility and a significant increase in total cost due to exceeding vehicle capacity.' -> Status: Optimal, Cost: 393.39, ΔObj: 63.29 (19.2%)
+7. Scenario: 'Increase the vehicle capacity from 50 to 70 to test for potential cost reductions and assess the impact on route efficiency, while examining if it allows for better demand fulfillment without exceeding the new capacity.' -> Status: Optimal, Cost: 296.26, ΔObj: -33.84 (-10.3%)
+8. Scenario: 'Increase the number of vehicles from 2 to 5 while simultaneously reducing the vehicle capacity from 50 to 40 to test for potential infeasibility and assess the combined impact on total cost due to both increased demand fulfillment needs and limitations on vehicle capacity.' -> Status: Optimal, Cost: 387.01, ΔObj: 56.91 (17.2%)
+9. Scenario: 'Increase the demand of the highest-demand customer (currently 9) to 25 while keeping all other parameters constant to test for potential infeasibility and a significant increase in total cost due to exceeding vehicle capacity.' -> Status: Optimal, Cost: 404.51, ΔObj: 74.41 (22.5%)
+10. Scenario: 'Increase the demand of the second lowest-demand customer (currently 3) to 25 while keeping all other parameters constant to test for potential infeasibility and a significant increase in total cost due to exceeding vehicle capacity.' -> Status: Optimal, Cost: 393.39, ΔObj: 63.29 (19.2%)

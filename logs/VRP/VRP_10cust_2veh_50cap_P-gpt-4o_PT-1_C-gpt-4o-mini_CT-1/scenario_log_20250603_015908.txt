@@ -1,0 +1,46 @@
+LangGraph Automated Sensitivity Analysis Log (Run ID: 20250603_015908)
+============================================================
+
+Model Path: models/VRP/vrp_model.py
+Data Path: models/VRP/data/vrp_data_10cust_2veh_50cap.json
+Baseline Objective Value: 330.1
+Number of Parameters: 34
+
+Iterations Ran: 10
+Total Run Time: 69.73 seconds
+Planner LLM: gpt-4o (Temp: 1.0)
+Coder LLM: gpt-4o-mini (Temp: 1.0)
+Final Analysis LLM: gpt-4o (Temp: 0.1)
+
+--- Final Analysis Summary ---
+**1. Summarize Key Findings:**
+
+The sensitivity analysis of the Vehicle Routing Problem (VRP) model reveals that changes in vehicle availability and customer demand levels have the most significant impact on both the feasibility and cost of the model. Reducing the number of available vehicles frequently led to infeasibility, indicating that the system is highly sensitive to vehicle availability. Increases in customer demand, particularly at high-demand locations, consistently resulted in significant increases in total distance traveled, highlighting the model's sensitivity to demand fluctuations. Introducing specific constraints, such as partitioning routes or mandating specific customer visits, also led to infeasibility, suggesting that the model is sensitive to rigid routing constraints.
+
+**2. Rank Parameter/Change Type Sensitivity:**
+
+1. **Vehicle Availability:** Reducing the number of vehicles from 2 to 1 led to infeasibility in multiple scenarios, indicating a high sensitivity to vehicle availability.
+2. **Demand Levels:** Increasing demand, especially at high-demand locations, resulted in significant cost increases (up to 26.3% in one scenario), showing high sensitivity to demand changes.
+3. **Specific Constraints:** Introducing constraints that partition routes or mandate specific customer visits often led to infeasibility, indicating sensitivity to rigid operational constraints.
+4. **Vehicle Capacity:** Decreasing vehicle capacity led to a substantial cost increase (26.3%), showing sensitivity to capacity constraints.
+5. **Distance Changes:** Increasing distances had a moderate impact on cost (5.8%), indicating some sensitivity to travel distances.
+
+**3. Identify Critical Scenarios:**
+
+- **Scenario 1 & 7:** Reducing the number of available vehicles from 2 to 1 consistently led to infeasibility, highlighting the critical role of vehicle availability in maintaining feasibility.
+- **Scenario 3:** Decreasing vehicle capacity from 50 to 30 resulted in the largest cost increase (26.3%), indicating a critical sensitivity to vehicle capacity constraints.
+- **Scenario 9:** Simultaneously increasing demand at the two highest-demand locations by 100% resulted in a significant cost increase (17.2%), demonstrating the model's sensitivity to extreme demand surges.
+- **Scenario 10:** Introducing a strict partitioning constraint led to infeasibility, underscoring the model's sensitivity to specific routing constraints.
+
+
+--- Scenario Log ---
+1. Scenario: 'Reduce the number of available vehicles from 2 to 1 to assess the impact on feasibility and total distance traveled, especially when demand at multiple high-demand customers approaches vehicle capacity.' -> Error: Execution Result: Model Infeasible
+2. Scenario: 'Scenario: "Increase the demand at customer location with the highest demand (location 4) by 50%, to explore its impact on route feasibility and total distance traveled."' -> Status: Optimal, Cost: 362.57, ΔObj: 32.47 (9.8%)
+3. Scenario: '"Decrease vehicle capacity from 50 to 30 to evaluate the impact on route feasibility and total distance traveled when vehicle capacity becomes a more stringent constraint."' -> Status: Optimal, Cost: 416.89, ΔObj: 86.79 (26.3%)
+4. Scenario: '"Increase the demand at all customer locations by 20% simultaneously to evaluate the system's ability to handle a uniform surge in demand and its impact on total distance traveled and route feasibility."' -> Status: Optimal, Cost: 382.11, ΔObj: 52.01 (15.8%)
+5. Scenario: '"Add a constraint that mandates each vehicle must serve exactly one high-demand customer (either location 4 or 11) to evaluate the impact on route allocation and total distance traveled."' -> Status: Error (Model execution failed or 'model' not found in locals_dict.)
+6. Scenario: '"Increase the distance between the depot and all customer locations by 30% to evaluate its impact on total distance traveled and route feasibility, particularly when longer travel times might necessitate additional vehicles or adjustments."' -> Status: Optimal, Cost: 349.14, ΔObj: 19.04 (5.8%)
+7. Scenario: '"Decrease the number of available vehicles from 2 to 1 and simultaneously increase the demand of customer locations with initial demands greater than 5 by 50% to assess the combined impact on feasibility and total distance traveled, especially when demand becomes significantly more challenging to meet."' -> Status: Error (Model execution failed or 'model' not found in locals_dict.)
+8. Scenario: 'Scenario: "Introduce a constraint that each vehicle must start by visiting a specific low-demand, distant customer (e.g., customer 6 or 3) to determine the impact on route prioritization, total distance traveled, and vehicle allocation."' -> Status: Optimal, Cost: 330.1, ΔObj: 0.0 (0.0%)
+9. Scenario: '"Simultaneously increase the demand at the two highest-demand customer locations (locations 4 and 11) by 100% to assess the system's resilience to extreme demand surges and its impact on total distance traveled and route feasibility."' -> Status: Optimal, Cost: 387.01, ΔObj: 56.91 (17.2%)
+10. Scenario: '"Introduce a constraint where one vehicle must serve only odd-numbered customer locations and the other vehicle only even-numbered locations, to evaluate the impact on route feasibility and total distance traveled under a strict partitioning constraint."' -> Error: Execution Result: Model Infeasible

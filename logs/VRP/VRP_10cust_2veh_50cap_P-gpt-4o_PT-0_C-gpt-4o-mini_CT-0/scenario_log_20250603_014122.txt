@@ -1,0 +1,59 @@
+LangGraph Automated Sensitivity Analysis Log (Run ID: 20250603_014122)
+============================================================
+
+Model Path: models/VRP/vrp_model.py
+Data Path: models/VRP/data/vrp_data_10cust_2veh_50cap.json
+Baseline Objective Value: 330.1
+Number of Parameters: 34
+
+Iterations Ran: 10
+Total Run Time: 65.11 seconds
+Planner LLM: gpt-4o (Temp: 0.0)
+Coder LLM: gpt-4o-mini (Temp: 0.0)
+Final Analysis LLM: gpt-4o (Temp: 0.1)
+
+--- Final Analysis Summary ---
+**1. Summarize Key Findings:**
+
+The sensitivity analysis reveals that changes related to vehicle capacity and the number of available vehicles have the most significant impact on the model's feasibility and total cost. Specifically, reducing the number of vehicles or vehicle capacity consistently leads to either infeasibility or substantial increases in total cost. Demand increases, both concentrated and uniform, also significantly impact the total cost, though they do not lead to infeasibility. Introducing specific constraints related to customer assignments or travel distances generally results in moderate to no impact on total cost, indicating that the model is relatively robust to these types of changes.
+
+**2. Rank Parameter/Change Type Sensitivity:**
+
+1. **Number of Available Vehicles:**
+   - Most impactful, as reducing vehicles from 2 to 1 led to infeasibility.
+   
+2. **Vehicle Capacity:**
+   - Significant impact, with a 26.3% increase in cost when capacity was reduced from 50 to 30.
+   
+3. **Demand Levels:**
+   - Notable impact, with a 15.8% increase in cost when all demands were increased by 20%.
+   - Concentrated demand increase at a single location resulted in a 9.8% cost increase.
+   
+4. **Specific Constraints (Long-Distance Travel):**
+   - Moderate impact, with a 29.2% increase in cost when long-distance travel was mandated.
+   
+5. **Specific Constraints (Demand Clustering and Prioritization):**
+   - Minimal to no impact, as scenarios involving demand clustering and prioritization showed 0% change in cost.
+
+**3. Identify Critical Scenarios:**
+
+- **Scenario 1:** Reducing the number of vehicles from 2 to 1 was critical as it led to model infeasibility, highlighting the importance of vehicle availability.
+  
+- **Scenario 4:** Reducing vehicle capacity from 50 to 30 resulted in a 26.3% increase in cost, indicating the sensitivity of the model to vehicle capacity constraints.
+  
+- **Scenario 5 and 9:** Introducing long-distance travel constraints, especially when combined with reduced capacity, led to a 29.2% increase in cost, showing the impact of travel distance constraints on cost.
+
+These scenarios underscore the critical role of vehicle-related parameters in maintaining model feasibility and controlling costs.
+
+
+--- Scenario Log ---
+1. Scenario: 'Reduce the number of available vehicles from 2 to 1 to test the feasibility and impact on total cost when vehicle resources are constrained.' -> Error: Execution Result: Model Infeasible
+2. Scenario: 'Increase the demand at the customer location with the highest current demand (location 4) by 50% to test the impact on total cost and feasibility when demand is concentrated.' -> Status: Optimal, Cost: 362.57, ΔObj: 32.47 (9.8%)
+3. Scenario: 'Increase the demand at all customer locations by 20% to test the impact on total cost and feasibility when overall demand is uniformly increased.' -> Status: Optimal, Cost: 382.11, ΔObj: 52.01 (15.8%)
+4. Scenario: '"Reduce the vehicle capacity from 50 to 30 to test the impact on total cost and feasibility when vehicle capacity is significantly constrained."' -> Status: Optimal, Cost: 416.89, ΔObj: 86.79 (26.3%)
+5. Scenario: '"Introduce a constraint that requires each vehicle to serve at least one customer located more than 70 units of distance from the depot to test the impact on total cost and feasibility when long-distance travel is mandated."' -> Status: Optimal, Cost: 426.54, ΔObj: 96.44 (29.2%)
+6. Scenario: '"Introduce a constraint that requires each vehicle to serve at least two customer locations with a combined demand exceeding 10 units to test the impact on total cost and feasibility when demand clustering is mandated."' -> Status: Optimal, Cost: 330.1, ΔObj: 0.0 (0.0%)
+7. Scenario: '"Introduce a constraint that requires each vehicle to serve at least one customer location with a demand of 7 or more units to test the impact on total cost and feasibility when high-demand locations are prioritized."' -> Status: Optimal, Cost: 330.1, ΔObj: 0.0 (0.0%)
+8. Scenario: '"Introduce a constraint that requires each vehicle to serve at least one customer location with a demand of 9 units to test the impact on total cost and feasibility when the highest-demand locations are prioritized."' -> Status: Optimal, Cost: 330.1, ΔObj: 0.0 (0.0%)
+9. Scenario: '"Introduce a constraint that requires each vehicle to serve at least one customer location that is more than 80 units of distance from the depot, and simultaneously reduce the vehicle capacity from 50 to 40 to test the impact on total cost and feasibility when both long-distance travel and reduced capacity are mandated."' -> Status: Optimal, Cost: 426.54, ΔObj: 96.44 (29.2%)
+10. Scenario: '"Introduce a constraint that requires each vehicle to serve at least one customer location with a demand of 5 or more units and simultaneously increase the demand at all customer locations by 30% to test the impact on total cost and feasibility when demand is both concentrated and increased."' -> Status: Optimal, Cost: 330.1, ΔObj: 0.0 (0.0%)

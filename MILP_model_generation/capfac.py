@@ -136,8 +136,8 @@ class CapacitatedFacilityLocation:
 if __name__ == '__main__':
     seed = 42
     parameters = {
-        'n_customers': 50,
-        'n_facilities': 50,
+        'n_customers': 200,
+        'n_facilities': 200,
         'demand_interval': (5, 36),
         'capacity_interval': (80, 120),
         'transportation_cost_interval': (10, 20),
@@ -151,7 +151,7 @@ if __name__ == '__main__':
     instance = facility_location.generate_instance(data)
 
 # === Export the data to a JSON file ===
-    OUTPUT_DIR = "data"
+    OUTPUT_DIR = "models/CFLP/data"
     # Convert numpy arrays to lists
     for k, v in data.items():
         if isinstance(v, np.ndarray):

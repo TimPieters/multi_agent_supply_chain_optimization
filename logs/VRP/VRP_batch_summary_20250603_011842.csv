@@ -1,0 +1,26 @@
+run_label,status,final_summary,total_run_time,iterations_ran,planner_model,planner_temperature,coder_model,coder_temperature,log_directory
+VRP_10cust_2veh_50cap_P-gpt-4o-mini_PT-0.5_C-gpt-4o_CT-0,Completed,"**1. Summarize Key Findings:**
+
+The sensitivity analysis of the Vehicle Routing Problem (VRP) model reveals several key insights:
+
+- **Demand Increases:** Increasing customer demand, particularly for high-demand customers, frequently led to model execution errors, indicating potential infeasibility. This suggests that the model is highly sensitive to demand changes, especially when demands approach or exceed vehicle capacity limits.
+  
+- **Vehicle Capacity Changes:** Adjusting vehicle capacity had a significant impact on the total cost. Reducing capacity led to increased costs, while increasing capacity generally resulted in cost reductions. This indicates that the model is sensitive to vehicle capacity, with larger capacities allowing for more efficient routing.
+
+- **Number of Vehicles:** Increasing the number of available vehicles did not significantly impact the total cost, suggesting that the current vehicle fleet size is adequate for the demand levels tested.
+
+**2. Rank Parameter/Change Type Sensitivity:**
+
+1. **Demand Levels:** Changes in customer demand, particularly increases for high-demand customers, had the most significant impact, often leading to infeasibility or model execution errors.
+   
+2. **Vehicle Capacity:** Adjustments to vehicle capacity showed substantial cost impacts, with reduced capacity increasing costs and increased capacity decreasing costs.
+
+3. **Number of Vehicles:** Changes in the number of vehicles had minimal impact on costs, indicating lower sensitivity compared to demand and capacity changes.
+
+**3. Identify Critical Scenarios:**
+
+- **Scenario 2, 6, and 7:** These scenarios, which involved increasing the demand of high-demand customers, resulted in model execution errors, highlighting the critical sensitivity of the model to demand increases.
+
+- **Scenario 1:** Reducing vehicle capacity from 50 to 30 led to a significant cost increase (ΔObj: 26.3%), demonstrating the impact of capacity constraints on the model's cost efficiency.
+
+- **Scenario 5, 9, and 10:** Increasing vehicle capacity to 70, 100, and 120 consistently resulted in cost reductions (ΔObj: -10.3%), indicating that higher capacities allow for more efficient routing and cost savings.",47.00123834609985,10,gpt-4o-mini,0.5,gpt-4o,0,logs/VRP/VRP_10cust_2veh_50cap_P-gpt-4o-mini_PT-0_5_C-gpt-4o_CT-0

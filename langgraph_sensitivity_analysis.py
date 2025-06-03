@@ -5,6 +5,9 @@ import operator
 import pandas as pd
 from datetime import datetime # Import datetime for unique run IDs
 import time
+import os # Import os for path manipulation and directory creation
+from pathlib import Path # Import Path for path manipulation
+from itertools import product # Import product for generating combinations
 
 from typing import TypedDict, Annotated, List, Union
 from langchain_core.prompts import PromptTemplate
@@ -21,6 +24,16 @@ from config import MODEL_FILE_PATH, MODEL_DATA_PATH, MODEL_DESCRIPTION_PATH, DAT
 # Paths are now loaded from config.py
 LOG_FILE = "logs/agent_execution_log.json" # Log file used by existing agents
 BASELINE_OBJ = 366.10 # Baseline objective value for comparison (consider moving to config or dynamic calculation)
+
+# Global variable for the base log directory, can be changed dynamically
+BASE_LOG_DIR = "logs"
+
+def set_log_directory(base_log_dir: str):
+    """Sets the base directory for all log files and ensures it exists."""
+    global BASE_LOG_DIR
+    BASE_LOG_DIR = base_log_dir
+    os.makedirs(BASE_LOG_DIR, exist_ok=True)
+    print(f"Log directory set to: {BASE_LOG_DIR}")
 
 # Dynamically load model source code, input data, and model description
 source_code = _read_source_code(MODEL_FILE_PATH)
@@ -76,8 +89,7 @@ class SensitivityAnalysisState(TypedDict):
 
 # --- Nodes (Agent Functions) ---
 
-# Initialize planner LLM
-planner_llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.7) # Using mini for planning/coding
+# LLM instances will be initialized dynamically within run_sensitivity_analysis
 
 # 1. Planner Node
 planner_prompt_template = """
@@ -109,11 +121,11 @@ Propose the scenario as a single line of natural language.
 """
 
 planner_prompt = PromptTemplate(
-    input_variables=["base_context", "scenario_log","input_data"],
+    input_variables=["model_description", "scenario_log","input_data"],
     template=planner_prompt_template
 )
 
-planner_chain = planner_prompt | planner_llm | StrOutputParser()
+# planner_chain will be initialized dynamically within run_sensitivity_analysis
 
 def planner_node(state: SensitivityAnalysisState) -> SensitivityAnalysisState:
     """Proposes the next sensitivity scenario."""
@@ -149,11 +161,62 @@ def planner_node(state: SensitivityAnalysisState) -> SensitivityAnalysisState:
 # A simpler chain might suffice: Prompt -> LLM -> JSON Parser
 # Let's try a direct call first.
 
-# Re-using the CoderAgent for translation
-coder_agent = CoderAgent()
-
 # Simplified approach: Use a dedicated LLM call for translation
-coder_llm = ChatOpenAI(model="gpt-4o", temperature=0) # Use a powerful model for coding
+# coder_llm will be initialized dynamically within run_sensitivity_analysis
+
+coder_prompt_template = """
+Translate the following natural language scenario for a supply chain optimization model into a JSON modification suitable for the 'modify_and_run_model' tool.
+The JSON should have one key: "ADD DATA" or "ADD CONSTRAINT".
+The value should be a Python string representing the code to modify the parameter lists/arrays in the '{model_file_path}' file, or add a constraint using 'model += ...'.
+
+You are an AI assistant for supply chain optimization. You analyze the provided Python optimization model
+and modify it based on the user's questions. You just state your added code.
+You use the key "ADD CONSTRAINT" to add a constraint, and you use the key "ADD DATA" to add data.
+You can only do one modification.
+
+You must provide a valid JSON object using double quotes for both keys and values. NEVER add ```json ```
+Example:
+{{ "ADD CONSTRAINT": "model += lpSum(variables[0, j] for j in range(len(demand))) <= 80, \\"Supply_Limit_Supplier_0\\"" }}
+or
+{{ "ADD DATA": "supply = [200, 300, 300]" }}
+Do not use single quotes or Python-style dictionaries.
+
+your written code will be added to the line with substring:
+"### DATA MANIPULATION CODE HERE ###"
+"### CONSTRAINT CODE HERE ###"
+
+Below is the full source code of the supply chain model:
+---SOURCE CODE---
+```python
+{source_code}
+```
+
+--- Input Data ---
+{input_data}
+---
+
+Focus on modifying the existing data structures based on the scenario.
+Example Scenario: "Increase all demands by 15%"
+Example JSON Output: {{ "ADD DATA": "demands = [int(d * 1.15) for d in demands]" }}
+
+Example Scenario: "Decrease fixed costs by 10%"
+Example JSON Output: {{ "ADD DATA": "fixed_costs = [fc * 0.90 for fc in fixed_costs]" }}
+
+Example Scenario: "Limit capacity of facility 2 (index 1) to 60"
+Example JSON Output: {{ "ADD DATA": "capacities[1] = 60" }}
+
+Example Scenario: "Add a constraint that total items served by facility 3 (index 2) must be at least 50"
+Example JSON Output: {{ "ADD CONSTRAINT": "model += lpSum(assignment[i, 2] * demands[i] for i in range(n_customers)) >= 50, 'MinServe_Fac2'" }}
+
+
+Scenario: "{scenario}"
+
+JSON Output:
+"""
+coder_prompt = PromptTemplate(
+    input_variables=["scenario", "source_code", "input_data", "model_file_path"],
+    template=coder_prompt_template
+)
 
 def coder_node(state: SensitivityAnalysisState) -> SensitivityAnalysisState:
     """Translates the natural language scenario into code modifications."""
@@ -172,61 +235,9 @@ def coder_node(state: SensitivityAnalysisState) -> SensitivityAnalysisState:
         # Let's call the internal agent executor directly to get the thought process
         # and extract the final JSON action input without executing.
 
-        coder_prompt_template = """
-        Translate the following natural language scenario for a capacitated facility location model into a JSON modification suitable for the 'modify_and_run_model' tool.
-        The JSON should have one key: "ADD DATA" or "ADD CONSTRAINT".
-        The value should be a Python string representing the code to modify the 'demands', 'capacities', 'fixed_costs', or 'transportation_costs' lists/arrays in the '{model_file_path}' file, or add a constraint using 'model += ...'.
-
-        You are an AI assistant for supply chain optimization. You analyze the provided Python optimization model
-        and modify it based on the user's questions. You just state your added code.
-        You use the key "ADD CONSTRAINT" to add a constraint, and you use the key "ADD DATA" to add data.
-        You can only do one modification.
-
-        You must provide a valid JSON object using double quotes for both keys and values. NEVER add ```json ```
-        Example:
-        {{ "ADD CONSTRAINT": "model += lpSum(variables[0, j] for j in range(len(demand))) <= 80, \\"Supply_Limit_Supplier_0\\"" }}
-        or
-        {{ "ADD DATA": "supply = [200, 300, 300]" }}
-        Do not use single quotes or Python-style dictionaries.
-
-        your written code will be added to the line with substring:
-        "### DATA MANIPULATION CODE HERE ###"
-        "### CONSTRAINT CODE HERE ###"
-
-        Below is the full source code of the supply chain model:
-        ---SOURCE CODE---
-        ```python
-        {source_code}
-        ```
-
-        --- Input Data ---
-        {input_data}
-        ---
-
-        Focus on modifying the existing data structures based on the scenario.
-        Example Scenario: "Increase all demands by 15%"
-        Example JSON Output: {{ "ADD DATA": "demands = [int(d * 1.15) for d in demands]" }}
-
-        Example Scenario: "Decrease fixed costs by 10%"
-        Example JSON Output: {{ "ADD DATA": "fixed_costs = [fc * 0.90 for fc in fixed_costs]" }}
-
-        Example Scenario: "Limit capacity of facility 2 (index 1) to 60"
-        Example JSON Output: {{ "ADD DATA": "capacities[1] = 60" }}
-
-        Example Scenario: "Add a constraint that total items served by facility 3 (index 2) must be at least 50"
-        Example JSON Output: {{ "ADD CONSTRAINT": "model += lpSum(assignment[i, 2] * demands[i] for i in range(n_customers)) >= 50, 'MinServe_Fac2'" }}
-
-
-        Scenario: "{scenario}"
-
-        JSON Output:
-        """
-        coder_prompt = PromptTemplate(
-            input_variables=["scenario", "source_code", "input_data", "model_file_path"],
-            template=coder_prompt_template
-        )
-        coder_chain = coder_prompt | coder_llm | StrOutputParser()
-        # Wrap in token callback
+        # coder_llm is now dynamically initialized in run_sensitivity_analysis,
+        # and coder_chain is re-created there.
+        # So, we just use the global coder_chain here.
         with get_openai_callback() as cb:
             json_modification_str = coder_chain.invoke({
                 "scenario": scenario,
@@ -298,7 +309,7 @@ def execute_node(state: SensitivityAnalysisState) -> SensitivityAnalysisState:
             MODEL_FILE_PATH,
             MODEL_DATA_PATH,
             run_id=f"run_id_{state['run_id']}_it_{state['current_iteration']}", # Unique run ID for this iteration
-            log_filepath=f"logs/run_log_{state['run_id']}.csv" # Pass the specific log file path
+            log_filepath=os.path.join(BASE_LOG_DIR, f"run_log_{state['run_id']}.csv") # Pass the specific log file path
         )
         print(f"Execution Result: {result}")
         state['execution_result'] = result
@@ -368,7 +379,8 @@ def analyze_node(state: SensitivityAnalysisState) -> SensitivityAnalysisState:
     # ─── Detailed internal CSV logging via util log ────────────────────
     # Construct a unique log file path for each run
     run_id = state['run_id']
-    FULL_LOG_PATH = f'logs/run_log_{run_id}.csv'
+    # Use the global BASE_LOG_DIR
+    FULL_LOG_PATH = os.path.join(BASE_LOG_DIR, f'run_log_{run_id}.csv')
 
     # Read the most recent entry from the FULL_LOG_PATH (logged by modify_and_run_model)
     # This read is to get the base data from the model execution, not the full log.
@@ -446,10 +458,12 @@ def analyze_node(state: SensitivityAnalysisState) -> SensitivityAnalysisState:
 
 
 # Helper function to print the graph
-def print_workflow_graph(app):
+def print_workflow_graph(workflow):
     """Prints the LangGraph workflow as a Mermaid diagram for Jupyter Notebooks."""
     try:
-        mermaid_diagram = app.get_graph().draw_mermaid()
+        # Compile the workflow temporarily to get the graph for printing
+        temp_app = workflow.compile()
+        mermaid_diagram = temp_app.get_graph().draw_mermaid()
         print("```mermaid")
         print(mermaid_diagram)
         print("```")
@@ -487,7 +501,7 @@ final_analyzer_prompt = PromptTemplate(
     template=final_analyzer_prompt_template
 )
 
-final_analyzer_chain = final_analyzer_prompt | final_analyzer_llm | StrOutputParser()
+# final_analyzer_chain will be initialized dynamically within run_sensitivity_analysis
 
 def final_analyzer_node(state: SensitivityAnalysisState) -> SensitivityAnalysisState:
     """Analyzes the complete scenario log to summarize sensitivity."""
@@ -566,8 +580,6 @@ workflow.add_conditional_edges(
 )
 workflow.add_edge("final_analyzer", END) # Add edge from final analyzer to END
 
-# Compile the graph
-app = workflow.compile()
 
 def run_sensitivity_analysis(
     baseline_objective: float,
@@ -586,26 +598,32 @@ def run_sensitivity_analysis(
     Runs the LangGraph sensitivity analysis with specified parameters.
     """
     global source_code, input_data, model_description, BASELINE_OBJ, MODEL_FILE_PATH, MODEL_DATA_PATH, MODEL_DESCRIPTION_PATH
-    global planner_llm, coder_llm
+    global planner_chain, coder_chain, final_analyzer_chain, app # Declare app as global to recompile
 
-    # Update global variables for the current run
+    # Update global variables for the current run (these are for logging/metadata)
     MODEL_FILE_PATH = model_file_path
     MODEL_DATA_PATH = model_data_path
     MODEL_DESCRIPTION_PATH = model_description_path
     BASELINE_OBJ = baseline_objective
 
-    source_code = _read_source_code(MODEL_FILE_PATH)
-    input_data = _read_source_code(MODEL_DATA_PATH)
-    model_description = _read_source_code(MODEL_DESCRIPTION_PATH)
-
-    # Initialize LLMs with potentially new models/temperatures and API key
+    # Re-initialize LLMs with potentially new models/temperatures and API key
     if openai_api_key:
-        planner_llm = ChatOpenAI(model=planner_model, temperature=planner_temperature, openai_api_key=openai_api_key)
-        coder_llm = ChatOpenAI(model=coder_model, temperature=coder_temperature, openai_api_key=openai_api_key)
+        planner_llm_dynamic = ChatOpenAI(model=planner_model, temperature=planner_temperature, openai_api_key=openai_api_key)
+        coder_llm_dynamic = ChatOpenAI(model=coder_model, temperature=coder_temperature, openai_api_key=openai_api_key)
+        final_analyzer_llm_dynamic = ChatOpenAI(model="gpt-4o", temperature=0.1, openai_api_key=openai_api_key) # Final analyzer model/temp fixed or passed as param
     else:
         # Fallback to environment variable if key not provided
-        planner_llm = ChatOpenAI(model=planner_model, temperature=planner_temperature)
-        coder_llm = ChatOpenAI(model=coder_model, temperature=coder_temperature)
+        planner_llm_dynamic = ChatOpenAI(model=planner_model, temperature=planner_temperature)
+        coder_llm_dynamic = ChatOpenAI(model=coder_model, temperature=coder_temperature)
+        final_analyzer_llm_dynamic = ChatOpenAI(model="gpt-4o", temperature=0.1) # Final analyzer model/temp fixed or passed as param
+
+    # Re-create chains with the new LLM instances
+    planner_chain = planner_prompt | planner_llm_dynamic | StrOutputParser()
+    coder_chain = coder_prompt | coder_llm_dynamic | StrOutputParser()
+    final_analyzer_chain = final_analyzer_prompt | final_analyzer_llm_dynamic | StrOutputParser()
+
+    # Recompile the graph to use the new chains
+    app = workflow.compile()
 
     # Generate a unique run ID based on timestamp
     run_id = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -621,12 +639,12 @@ def run_sensitivity_analysis(
         current_iteration=0,
         error_message=None,
         run_id=run_id,
-        planner_model=planner_llm.model_name,
-        planner_temperature=planner_llm.temperature,
-        coder_model=coder_llm.model_name,
-        coder_temperature=coder_llm.temperature,
-        final_analysis_model=final_analyzer_llm.model_name, # Initialize final_analysis_model
-        final_analysis_temperature=final_analyzer_llm.temperature, # Initialize final_analysis_temperature
+        planner_model=planner_llm_dynamic.model_name,
+        planner_temperature=planner_llm_dynamic.temperature,
+        coder_model=coder_llm_dynamic.model_name,
+        coder_temperature=coder_llm_dynamic.temperature,
+        final_analysis_model=final_analyzer_llm_dynamic.model_name, # Initialize final_analysis_model
+        final_analysis_temperature=final_analyzer_llm_dynamic.temperature, # Initialize final_analysis_temperature
         total_run_time=0.0,
     )
 
@@ -704,7 +722,7 @@ def run_sensitivity_analysis(
     # Dynamically parse input_data to get parameter count based on MODEL_PARAMETERS in config
     try:
         parsed_input_data = json.loads(input_data)
-        import os
+        # Removed 'import os' as it's now global
 
         current_model_filename = MODEL_FILE_PATH
         model_specific_params = MODEL_PARAMETERS.get(current_model_filename, [])
@@ -724,7 +742,7 @@ def run_sensitivity_analysis(
         total_parameters = "N/A"
 
     # Save the final log with run_id and additional details
-    log_output_path = f"logs/scenario_log_{run_id}.txt"
+    log_output_path = os.path.join(BASE_LOG_DIR, f"scenario_log_{run_id}.txt")
     with open(log_output_path, "w") as f:
         f.write(f"LangGraph Automated Sensitivity Analysis Log (Run ID: {run_id})\n")
         f.write("="*60 + "\n\n")
@@ -765,7 +783,7 @@ def run_sensitivity_analysis_generator(
     Generator version that yields intermediate results for custom handling.
     """
     global source_code, input_data, model_description, BASELINE_OBJ, MODEL_FILE_PATH, MODEL_DATA_PATH, MODEL_DESCRIPTION_PATH
-    global planner_llm, coder_llm
+    global planner_chain, coder_chain, final_analyzer_chain, app # Ensure app is global for recompilation
 
     # Setup code (same as above)
     MODEL_FILE_PATH = model_file_path
@@ -773,16 +791,28 @@ def run_sensitivity_analysis_generator(
     MODEL_DESCRIPTION_PATH = model_description_path
     BASELINE_OBJ = baseline_objective
 
+    # Re-read source code, input data, and model description in case paths changed
     source_code = _read_source_code(MODEL_FILE_PATH)
     input_data = _read_source_code(MODEL_DATA_PATH)
     model_description = _read_source_code(MODEL_DESCRIPTION_PATH)
 
+    # Re-initialize LLMs with potentially new models/temperatures and API key
     if openai_api_key:
-        planner_llm = ChatOpenAI(model=planner_model, temperature=planner_temperature, openai_api_key=openai_api_key)
-        coder_llm = ChatOpenAI(model=coder_model, temperature=coder_temperature, openai_api_key=openai_api_key)
+        planner_llm_dynamic = ChatOpenAI(model=planner_model, temperature=planner_temperature, openai_api_key=openai_api_key)
+        coder_llm_dynamic = ChatOpenAI(model=coder_model, temperature=coder_temperature, openai_api_key=openai_api_key)
+        final_analyzer_llm_dynamic = ChatOpenAI(model="gpt-4o", temperature=0.1, openai_api_key=openai_api_key)
     else:
-        planner_llm = ChatOpenAI(model=planner_model, temperature=planner_temperature)
-        coder_llm = ChatOpenAI(model=coder_model, temperature=coder_temperature)
+        planner_llm_dynamic = ChatOpenAI(model=planner_model, temperature=planner_temperature)
+        coder_llm_dynamic = ChatOpenAI(model=coder_model, temperature=coder_temperature)
+        final_analyzer_llm_dynamic = ChatOpenAI(model="gpt-4o", temperature=0.1)
+
+    # Re-create chains with the new LLM instances
+    planner_chain = planner_prompt | planner_llm_dynamic | StrOutputParser()
+    coder_chain = coder_prompt | coder_llm_dynamic | StrOutputParser()
+    final_analyzer_chain = final_analyzer_prompt | final_analyzer_llm_dynamic | StrOutputParser()
+
+    # Recompile the graph to use the new chains
+    app = workflow.compile()
 
     run_id = datetime.now().strftime("%Y%m%d_%H%M%S")
     
@@ -796,10 +826,10 @@ def run_sensitivity_analysis_generator(
         current_iteration=0,
         error_message=None,
         run_id=run_id,
-        planner_model=planner_llm.model_name,
-        planner_temperature=planner_llm.temperature,
-        coder_model=coder_llm.model_name,
-        coder_temperature=coder_llm.temperature,
+        planner_model=planner_llm_dynamic.model_name,
+        planner_temperature=planner_llm_dynamic.temperature,
+        coder_model=coder_llm_dynamic.model_name,
+        coder_temperature=coder_llm_dynamic.temperature,
         total_run_time=0.0,
     )
 
@@ -815,54 +845,143 @@ def run_sensitivity_analysis_generator(
             "run_id": run_id
         }
 
+def run_batch_sensitivity_analysis(
+    model_file_path: str,
+    model_data_path: str,
+    model_description_path: str,
+    llm_settings_grid: dict,
+    max_iterations_per_run: int = 20,
+    openai_api_key: str = None
+):
+    """
+    Runs sensitivity analysis for a given model across a grid of LLM settings.
+    Logs each run to a dedicated subdirectory.
+    """
+    print("\n--- Starting Batch Sensitivity Analysis ---")
+    
+    # Extract model name for directory creation
+    model_name = Path(model_file_path).stem.replace("_model", "").upper()
+    
+    # Extract data configuration from model_data_path
+    data_config_name = Path(model_data_path).stem
+    # Assuming format like 'capfacloc_data_5cust_5fac'
+    # Extracting '_5cust_5fac' part
+    data_suffix = ""
+    if "capfacloc_data" in data_config_name:
+        data_suffix = data_config_name.replace("capfacloc_data", "")
+    elif "vrp_data" in data_config_name:
+        data_suffix = data_config_name.replace("vrp_data", "")
+    
+    # Prepare combinations for LLM settings
+    planner_models = llm_settings_grid.get("planner_models", ["gpt-4o-mini"])
+    planner_temperatures = llm_settings_grid.get("planner_temperatures", [0.7])
+    coder_models = llm_settings_grid.get("coder_models", ["gpt-4o"])
+    coder_temperatures = llm_settings_grid.get("coder_temperatures", [0.0])
+
+    all_combinations = list(product(
+        planner_models, planner_temperatures,
+        coder_models, coder_temperatures
+    ))
+
+    total_runs = len(all_combinations)
+    print(f"Total {total_runs} combinations to run for model: {model_name}")
+
+    batch_results = [] # To collect summary of each batch run
+
+    for i, (p_model, p_temp, c_model, c_temp) in enumerate(all_combinations):
+        # Include data_suffix in the run_label
+        run_label = f"{model_name}{data_suffix}_P-{p_model}_PT-{p_temp}_C-{c_model}_CT-{c_temp}"
+        print(f"\n--- Running Combination {i+1}/{total_runs}: {run_label} ---")
+
+        # Set up a unique log directory for this specific run
+        current_run_log_dir = os.path.join("logs", model_name, run_label.replace('.', '_')) # Replace . with _ for valid path
+        set_log_directory(current_run_log_dir)
+
+        try:
+            # Determine dynamic baseline objective for the current model/data
+            print("--- Running Baseline Model to Determine Objective ---")
+            baseline_result = modify_and_run_model(
+                {}, # No modification for baseline run
+                model_file_path=model_file_path,
+                model_data_path=model_data_path
+            )
+
+            if baseline_result and baseline_result.get("status") == "Optimal":
+                dynamic_baseline_obj = baseline_result.get("total_cost")
+                if dynamic_baseline_obj is None:
+                    raise ValueError("Baseline model solved optimally but returned no total_cost.")
+                print(f"Baseline model solved. Objective: {dynamic_baseline_obj:.2f}")
+            else:
+                raise ValueError(f"Baseline model did not solve optimally. Status: {baseline_result.get('status', 'Unknown')}")
+
+            final_state_for_run = run_sensitivity_analysis(
+                baseline_objective=dynamic_baseline_obj,
+                max_iterations=max_iterations_per_run,
+                planner_model=p_model,
+                planner_temperature=p_temp,
+                coder_model=c_model,
+                coder_temperature=c_temp,
+                model_file_path=model_file_path,
+                model_data_path=model_data_path,
+                model_description_path=model_description_path,
+                openai_api_key=openai_api_key,
+                stream_output=False # Keep False for batch runs to avoid verbose output
+            )
+            batch_results.append({
+                "run_label": run_label,
+                "status": "Completed",
+                "final_summary": final_state_for_run.get('final_analysis_summary', 'N/A'),
+                "total_run_time": final_state_for_run.get('total_run_time', 'N/A'),
+                "iterations_ran": final_state_for_run.get('current_iteration', 'N/A'),
+                "planner_model": p_model,
+                "planner_temperature": p_temp,
+                "coder_model": c_model,
+                "coder_temperature": c_temp,
+                "log_directory": current_run_log_dir
+            })
+        except Exception as e:
+            print(f"Error running combination {run_label}: {e}")
+            batch_results.append({
+                "run_label": run_label,
+                "status": "Failed",
+                "error_message": str(e),
+                "log_directory": current_run_log_dir
+            })
+    
+    # Optionally save a summary of all batch runs
+    batch_summary_df = pd.DataFrame(batch_results)
+    batch_summary_path = os.path.join("logs", model_name, f"{model_name}_batch_summary_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv")
+    batch_summary_df.to_csv(batch_summary_path, index=False)
+    print(f"\nBatch summary saved to: {batch_summary_path}")
+    return batch_summary_df
+
 if __name__ == "__main__":
     print("\n--- LangGraph Workflow Structure (Mermaid) ---")
-    print_workflow_graph(app)
+    # Pass the workflow object to the print function
+    print_workflow_graph(workflow)
     print("----------------------------------------------")
-    print("Starting Automated Sensitivity Analysis...\n")
+    
+    # Define the model and data to be used for the batch run
+    target_model_file = "models/VRP/vrp_model.py" # Example: CFLP model
+    target_data_file = "models/VRP/data/vrp_data_10cust_2veh_50cap.json" # Example: 50 customers, 50 facilities
+    target_description_file = "models/VRP/description.txt"
 
-    # --- Dynamic Baseline Objective Calculation ---
-    print("--- Running Baseline Model to Determine Objective ---")
-    try:
-        # Perform a baseline run with no modifications
-        # MODEL_FILE_PATH and MODEL_DATA_PATH are loaded globally from config.py
-        baseline_result = modify_and_run_model(
-            {}, # No modification for baseline run
-            model_file_path=MODEL_FILE_PATH,
-            model_data_path=MODEL_DATA_PATH
-        )
+    # Define the grid of LLM settings
+    llm_grid_settings = {
+        "planner_models": ["gpt-4o-mini", "gpt-4o"], # , "gpt-4.1", "gpt-4.1-mini" #
+        "planner_temperatures": [0, 0.5, 1],
+        "coder_models": ["gpt-4o-mini", "gpt-4o"], #, "gpt-4.1", "gpt-4.1-mini" #
+        "coder_temperatures": [0, 0.5, 1]
+    }
 
-        if baseline_result and baseline_result.get("status") == "Optimal":
-            dynamic_baseline_obj = baseline_result.get("total_cost")
-            if dynamic_baseline_obj is None:
-                raise ValueError("Baseline model solved optimally but returned no total_cost.")
-            print(f"Baseline model solved. Objective: {dynamic_baseline_obj:.2f}")
-        else:
-            raise ValueError(f"Baseline model did not solve optimally. Status: {baseline_result.get('status', 'Unknown')}")
-
-    except Exception as e:
-        print(f"Error determining dynamic baseline objective: {e}")
-        print("Exiting sensitivity analysis. Please ensure the baseline model can run successfully.")
-        exit(1) # Exit if baseline cannot be established
-
-    # Parameters for standalone execution
-    default_max_iterations = 20
-    default_planner_model = "gpt-4o-mini"
-    default_planner_temperature = 0.7
-    default_coder_model = "gpt-4o"
-    default_coder_temperature = 0.0
-
-    final_state_main = run_sensitivity_analysis(
-        baseline_objective=dynamic_baseline_obj, # Use the dynamically determined baseline
-        max_iterations=default_max_iterations,
-        planner_model=default_planner_model,
-        planner_temperature=default_planner_temperature,
-        coder_model=default_coder_model,
-        coder_temperature=default_coder_temperature,
-        model_file_path=MODEL_FILE_PATH,
-        model_data_path=MODEL_DATA_PATH,
-        model_description_path=MODEL_DESCRIPTION_PATH,
-        stream_output=True # Set to True for streaming output
+    # Run the batch analysis
+    batch_summary = run_batch_sensitivity_analysis(
+        model_file_path=target_model_file,
+        model_data_path=target_data_file,
+        model_description_path=target_description_file,
+        llm_settings_grid=llm_grid_settings,
+        max_iterations_per_run=10, # Reduced for quicker testing
+        # openai_api_key="YOUR_OPENAI_API_KEY" # Uncomment and set if not using env var
     )
-    print("\n--- Main execution complete ---")
-    print(json.dumps(final_state_main, indent=2, default=str))
+    print("\n--- Batch execution complete ---")
+    print(batch_summary)

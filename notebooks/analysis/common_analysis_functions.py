@@ -13,7 +13,7 @@ sys.path.insert(0, str(root_dir))
 from utils import modify_and_run_model # Import modify_and_run_model
 
 # --- Baseline Objective Calculation ---
-def get_baseline_objective(model_file_path: str, model_data_path: str, baseline_log_filepath: str = "notebooks/baseline_cflp_log.csv"):
+def get_baseline_objective(model_file_path: str, model_data_path: str, baseline_log_filepath: str):
     """
     Runs the baseline model to get its objective value and logs the run.
 

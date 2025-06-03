@@ -1,0 +1,59 @@
+LangGraph Automated Sensitivity Analysis Log (Run ID: 20250603_015227)
+============================================================
+
+Model Path: models/VRP/vrp_model.py
+Data Path: models/VRP/data/vrp_data_10cust_2veh_50cap.json
+Baseline Objective Value: 330.1
+Number of Parameters: 34
+
+Iterations Ran: 10
+Total Run Time: 63.27 seconds
+Planner LLM: gpt-4o (Temp: 0.5)
+Coder LLM: gpt-4o (Temp: 0.0)
+Final Analysis LLM: gpt-4o (Temp: 0.1)
+
+--- Final Analysis Summary ---
+**1. Summarize Key Findings:**
+
+The sensitivity analysis of the Vehicle Routing Problem (VRP) model reveals several key insights:
+
+- **Demand Increases:** Increasing customer demands, either at specific locations or across all locations, consistently led to significant impacts on model feasibility and cost. Notably, a 100% increase in demand at all locations resulted in model infeasibility, highlighting the model's sensitivity to demand changes.
+  
+- **Vehicle Capacity Reductions:** Reducing vehicle capacity from 50 to 30 units resulted in a substantial cost increase (ΔObj: 26.3%), indicating that vehicle capacity is a critical constraint affecting the model's cost efficiency.
+
+- **Number of Vehicles:** Reducing the number of available vehicles from 2 to 1 consistently led to infeasibility, both with and without additional demand increases, underscoring the importance of having a sufficient number of vehicles to maintain feasibility.
+
+- **Distance Increases:** A 20% increase in travel distances between all locations resulted in a significant cost increase (ΔObj: 20.0%), demonstrating the model's sensitivity to changes in transportation costs.
+
+- **Specific Constraints:** Introducing constraints such as requiring each vehicle to visit at least four customer locations or to start and end routes at the depot twice did not impact the cost, indicating these constraints were not binding under the current setup.
+
+**2. Rank Parameter/Change Type Sensitivity:**
+
+1. **Demand Levels:** Changes in demand, especially large increases, had the most significant impact, often leading to infeasibility.
+2. **Number of Vehicles:** Reducing the number of vehicles was highly impactful, frequently causing infeasibility.
+3. **Vehicle Capacity:** Reductions in vehicle capacity led to substantial cost increases, indicating high sensitivity.
+4. **Transportation Costs (Distance):** Increases in travel distances resulted in notable cost increases.
+5. **Specific Constraints:** Some constraints, such as vehicle visit requirements, had minimal impact on cost, suggesting lower sensitivity.
+
+**3. Identify Critical Scenarios:**
+
+- **Scenario 6:** Increasing the demand at all customer locations by 100% led to model infeasibility, highlighting the critical impact of demand changes on feasibility.
+  
+- **Scenario 3 and 4:** Reducing the number of available vehicles to 1, both with and without additional demand increases, resulted in infeasibility, emphasizing the importance of vehicle availability.
+
+- **Scenario 1:** Reducing vehicle capacity from 50 to 30 resulted in the largest cost increase (ΔObj: 26.3%), demonstrating the sensitivity of the model to capacity constraints.
+
+- **Scenario 8:** Increasing the distance between all locations by 20% led to a significant cost increase (ΔObj: 20.0%), showing the impact of transportation cost changes.
+
+
+--- Scenario Log ---
+1. Scenario: 'Reduce the vehicle capacity from 50 to 30 to test the feasibility and impact on total cost.' -> Status: Optimal, Cost: 416.89, ΔObj: 86.79 (26.3%)
+2. Scenario: 'Increase the demand at customer locations 3, 5, and 10 by 50% to evaluate the impact on total cost and feasibility with current vehicle capacity and number.' -> Status: Optimal, Cost: 382.11, ΔObj: 52.01 (15.8%)
+3. Scenario: 'Reduce the number of available vehicles from 2 to 1 to test the impact on feasibility and total cost under current demand and vehicle capacity constraints.' -> Error: Execution Result: Model Infeasible
+4. Scenario: 'Reduce the number of available vehicles to 1 and increase the demand at customer locations 4, 6, and 8 by 25% to test the impact on feasibility and total cost under current vehicle capacity constraints.' -> Error: Execution Result: Model Infeasible
+5. Scenario: '"Introduce a constraint that requires each vehicle to visit at least four customer locations to evaluate the impact on total cost and feasibility with current vehicle capacity and number."' -> Status: Optimal, Cost: 330.1, ΔObj: 0.0 (0.0%)
+6. Scenario: '"Increase the demand at all customer locations by 100% to test the impact on total cost and feasibility with the current vehicle capacity and number of vehicles."' -> Error: Execution Result: Model Infeasible
+7. Scenario: '"Introduce a time window constraint for customer locations 2, 4, and 7, requiring deliveries to occur between specific time frames, to evaluate the impact on total cost and feasibility with current vehicle capacity and number of vehicles."' -> Status: Error (Model execution failed or 'model' not found in locals_dict.)
+8. Scenario: '"Increase the distance between all locations by 20% to evaluate the impact on total cost and feasibility with current vehicle capacity and number of vehicles."' -> Status: Optimal, Cost: 396.12, ΔObj: 66.02 (20.0%)
+9. Scenario: '"Introduce a constraint that limits each vehicle's maximum travel distance to 150 units to evaluate the impact on total cost and feasibility with current demand and vehicle capacity."' -> Error: Execution Result: Model Infeasible
+10. Scenario: '"Introduce a constraint that requires each vehicle to start and end its route at the depot twice, simulating a scenario where vehicles must return to the depot for restocking before completing all deliveries, to evaluate the impact on total cost and feasibility with current vehicle capacity and number of vehicles."' -> Status: Optimal, Cost: 330.1, ΔObj: 0.0 (0.0%)

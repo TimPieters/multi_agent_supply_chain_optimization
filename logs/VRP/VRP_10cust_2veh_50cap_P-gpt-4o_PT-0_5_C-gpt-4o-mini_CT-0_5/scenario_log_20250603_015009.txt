@@ -1,0 +1,52 @@
+LangGraph Automated Sensitivity Analysis Log (Run ID: 20250603_015009)
+============================================================
+
+Model Path: models/VRP/vrp_model.py
+Data Path: models/VRP/data/vrp_data_10cust_2veh_50cap.json
+Baseline Objective Value: 330.1
+Number of Parameters: 34
+
+Iterations Ran: 10
+Total Run Time: 67.04 seconds
+Planner LLM: gpt-4o (Temp: 0.5)
+Coder LLM: gpt-4o-mini (Temp: 0.5)
+Final Analysis LLM: gpt-4o (Temp: 0.1)
+
+--- Final Analysis Summary ---
+**1. Summarize Key Findings:**
+
+The sensitivity analysis of the Vehicle Routing Problem (VRP) model reveals that changes in vehicle capacity and the number of available vehicles have the most significant impact on model feasibility and total cost. Specifically, reducing the number of vehicles or vehicle capacity often leads to infeasibility or substantial increases in total distance traveled. Demand increases also significantly impact the total cost, though they do not lead to infeasibility in the scenarios tested. Introducing specific constraints related to customer assignments or travel distances generally results in optimal solutions with moderate cost increases, except when constraints severely limit vehicle travel, which can lead to infeasibility.
+
+**2. Rank Parameter/Change Type Sensitivity:**
+
+1. **Vehicle Capacity and Number of Vehicles:**
+   - Most impactful, with scenarios leading to infeasibility or significant cost increases (e.g., reducing vehicles from 2 to 1, reducing capacity from 50 to 30).
+
+2. **Demand Levels:**
+   - Significant impact on cost, with a 50% increase in demand leading to a 22.5% increase in total cost.
+
+3. **Specific Constraints:**
+   - Moderate impact on cost, with some constraints causing infeasibility (e.g., maximum distance constraint) and others resulting in optimal solutions with no cost change.
+
+**3. Identify Critical Scenarios:**
+
+- **Scenario 1:** Reducing the number of available vehicles from 2 to 1 resulted in model infeasibility, highlighting the critical role of vehicle availability in maintaining feasibility.
+  
+- **Scenario 4:** Reducing vehicle capacity from 50 to 30 led to a 26.3% increase in total cost, indicating the sensitivity of the model to vehicle capacity constraints.
+
+- **Scenario 2:** Increasing demand by 50% resulted in a 22.5% increase in total cost, demonstrating the significant impact of demand changes on the model's objective.
+
+- **Scenario 5:** Introducing a maximum distance constraint for vehicles led to infeasibility, underscoring the importance of travel flexibility in route optimization.
+
+
+--- Scenario Log ---
+1. Scenario: 'Reduce the number of available vehicles from 2 to 1 to test the feasibility and impact on total distance traveled when vehicle capacity is constrained.' -> Error: Execution Result: Model Infeasible
+2. Scenario: 'Increase the demand at each customer location by 50% to test the impact on total distance traveled and assess the feasibility under increased load conditions.' -> Status: Optimal, Cost: 404.51, ΔObj: 74.41 (22.5%)
+3. Scenario: 'Scenario: 'Introduce a constraint that requires each vehicle to visit at least three customer locations to assess the impact on route optimization and potential feasibility issues.'' -> Status: Optimal, Cost: 330.1, ΔObj: 0.0 (0.0%)
+4. Scenario: 'Reduce the vehicle capacity from 50 to 30 to test the impact on total distance traveled and assess the feasibility when vehicles have significantly lower capacity.' -> Status: Optimal, Cost: 416.89, ΔObj: 86.79 (26.3%)
+5. Scenario: 'Introduce a constraint that limits the maximum distance a single vehicle can travel to 150 units, to assess the impact on route optimization and potential feasibility issues under restricted travel conditions.' -> Error: Execution Result: Model Infeasible
+6. Scenario: 'Introduce a constraint that requires each vehicle to visit a specific high-demand customer location (e.g., customer 4 with demand 9) to assess the impact on route optimization and potential feasibility issues under customer-specific assignment conditions.' -> Status: Optimal, Cost: 330.1, ΔObj: 0.0 (0.0%)
+7. Scenario: 'Introduce a constraint that requires one vehicle to serve all customers with demand greater than 5, to assess the impact on route optimization and potential feasibility issues under high-demand customer grouping conditions.' -> Status: Optimal, Cost: 330.1, ΔObj: 0.0 (0.0%)
+8. Scenario: 'Introduce a constraint that requires each vehicle to visit at least one customer location that is more than 70 distance units away from the depot, to assess the impact on route optimization and potential feasibility issues under long-distance travel conditions.' -> Status: Optimal, Cost: 365.25, ΔObj: 35.15 (10.6%)
+9. Scenario: 'Introduce a constraint that requires each vehicle to serve at least one customer located at the maximum distance from the depot, to assess the impact on route optimization and potential feasibility issues under extreme travel conditions.' -> Status: Optimal, Cost: 377.3, ΔObj: 47.2 (14.3%)
+10. Scenario: 'Introduce a constraint that requires each vehicle to visit exactly two customer locations with the highest demands (e.g., customers 4 and 11 with demands 9), to assess the impact on route optimization and potential feasibility issues under high-demand customer balancing conditions.' -> Status: Optimal, Cost: 330.1, ΔObj: 0.0 (0.0%)
