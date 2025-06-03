@@ -18,14 +18,11 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from langgraph_sensitivity_analysis import (
     run_sensitivity_analysis, run_sensitivity_analysis_generator,
     SensitivityAnalysisState,
-    app, # The compiled LangGraph app
     print_workflow_graph, # Helper to print graph (optional for UI)
     BASELINE_OBJ as DEFAULT_BASELINE_OBJ, # Default baseline objective
     MODEL_FILE_PATH as DEFAULT_MODEL_FILE_PATH,
     MODEL_DATA_PATH as DEFAULT_MODEL_DATA_PATH, # This will be dynamically set
     MODEL_DESCRIPTION_PATH as DEFAULT_MODEL_DESCRIPTION_PATH,
-    planner_llm, # Default planner LLM
-    coder_llm # Default coder LLM
 )
 
 # Import _run_with_exec from utils.py
@@ -1052,15 +1049,15 @@ with tab2:
         st.markdown("**🧠 Planner Agent**")
         planner_model = st.selectbox(
             "Model",
-            options=["gpt-4o", "gpt-4o-mini", "gpt-3.5-turbo"],
-            index=0 if planner_llm.model_name == "gpt-4o" else 1,
+            options=["gpt-4.1","gpt-4.1-mini", "gpt-4o", "gpt-4o-mini"],
+            index=2, # Default to "gpt-4o"
             help="AI model for scenario planning"
         )
         planner_temperature = st.slider(
             "Creativity Level",
             min_value=0.0,
             max_value=1.0,
-            value=planner_llm.temperature,
+            value=0.7, # Default temperature
             step=0.1,
             help="Higher values = more creative scenarios"
         )
@@ -1068,15 +1065,15 @@ with tab2:
         st.markdown("**👨‍💻 Coder Agent**") 
         coder_model = st.selectbox(
             "Model",
-            options=["gpt-4o", "gpt-4o-mini", "gpt-3.5-turbo"],
-            index=0 if coder_llm.model_name == "gpt-4o" else 1,
+            options=["gpt-4.1","gpt-4.1-mini", "gpt-4o", "gpt-4o-mini"],
+            index=2, # Default to "gpt-4o"
             help="AI model for code generation"
         )
         coder_temperature = st.slider(
             "Precision Level",
             min_value=0.0,
             max_value=1.0, 
-            value=coder_llm.temperature,
+            value=0.0, # Default temperature
             step=0.1,
             help="Lower values = more deterministic code"
         )
@@ -1389,7 +1386,7 @@ with tab2:
         
         with tab1:
             # Create a mock dashboard with sample sensitivity data
-            st.markdown("### 🎯 Sensitivity Analysis Dashboard")
+            st.markdown("### 🎯 Sensitivity Analysis Dashboard (currently just mock data)")
             
             # Sample metrics (in real implementation, parse from actual results)
             col1, col2, col3, col4 = st.columns(4)
@@ -1511,58 +1508,3 @@ with tab2:
     if 'final_analysis_summary' in st.session_state and st.session_state['final_analysis_summary']:
         with st.expander("View Previous Analysis Summary", expanded=False):
             st.markdown(st.session_state['final_analysis_summary'])
-
-    # Add a real-time statistics section
-    st.markdown("""
-    <div class="custom-card slide-up">
-        <div class="card-title">
-            <span class="card-icon">📊</span>
-            Platform Statistics
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-
-    # Sample platform statistics
-    col1, col2, col3, col4 = st.columns(4)
-
-    with col1:
-        st.markdown(f"""
-        <div class="metric-container">
-            <div class="metric-value">1,247</div>
-            <div class="metric-label">Analyses Run</div>
-        </div>
-        """, unsafe_allow_html=True)
-
-    with col2:
-        st.markdown(f"""
-        <div class="metric-container">
-            <div class="metric-value">99.2%</div>
-            <div class="metric-label">Success Rate</div>
-        </div>
-        """, unsafe_allow_html=True)
-
-    with col3:
-        st.markdown(f"""
-        <div class="metric-container">
-            <div class="metric-value">2.1s</div>
-            <div class="metric-label">Avg Runtime</div>
-        </div>
-        """, unsafe_allow_html=True)
-
-    with col4:
-        st.markdown(f"""
-        <div class="metric-container">
-            <div class="metric-value">342</div>
-            <div class="metric-label">Users Served</div>
-        </div>
-        """, unsafe_allow_html=True)
-
-    # Footer
-    st.markdown("""
-    <div class="footer">
-        <p>🚀 Powered by LangGraph Multi-Agent AI | Built with Streamlit | © 2025</p>
-        <p style="font-size: 0.8rem; margin-top: 0.5rem;">
-            Transforming optimization analysis through intelligent automation
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
