@@ -17,7 +17,8 @@ This framework aims to enhance the efficiency and quality of sensitivity analysi
 
 Watch a brief demonstration of the Streamlit application in action:
 
-<video src="./media/app_demonstration.mp4" controls width="100%"></video>
+
+[![Streamlit Demo](./media/app_demo.png)](./media/app_demonstration.mp4)
 
 ## Getting Started
 
